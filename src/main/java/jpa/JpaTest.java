@@ -1,5 +1,7 @@
 package jpa;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,6 +9,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+
+import daoImpl.UtilisateurDaoImpl;
+import servicesImpl.UtilisateurServiceImpl;
 
 public class JpaTest {
 
@@ -28,7 +33,19 @@ public class JpaTest {
 		tx.begin();
 
 		try {
-			test.createEmployees();
+			
+			//test.createEmployees();
+			UtilisateurServiceImpl userServ = new UtilisateurServiceImpl();
+			Role myRole = new Role();
+			Collection<Role> r = new ArrayList<Role>();
+			r.add(myRole);
+			myRole.setName("createur");
+			Utilisateur ut1 = new Utilisateur();
+			ut1.setName("Sylla");
+			ut1.setFirstName("Mahamadou");
+			ut1.setMail("mahamadsylla5@gmail.com");
+			ut1.setRole(r);
+			userServ.createUtilisateur(ut1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,7 +56,7 @@ public class JpaTest {
 		// factory.close();
 	}
 
-	private void createEmployees() {
+	/*private void createEmployees() {
 		int numOfEmployees = manager.createQuery("Select a From Employee a", Employee.class).getResultList().size();
 		if (numOfEmployees == 0) {
 			Department department = new Department("java");
@@ -57,6 +74,6 @@ public class JpaTest {
 		for (Employee next : resultList) {
 			System.out.println("next employee: " + next);
 		}
-	}
+	}*/
 
 }

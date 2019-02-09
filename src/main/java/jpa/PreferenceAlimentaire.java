@@ -5,7 +5,10 @@ package jpa;
 
 import java.util.Collection;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 
 /**
@@ -17,25 +20,45 @@ import javax.persistence.OneToOne;
 public class PreferenceAlimentaire {
 	private Utilisateur participant;
 	private Reunion reunion;
-	Collection<String> preferences;
-	
+	@EmbeddedId
+	private PreferenceId id;
+
+	/**
+	 * @return the id
+	 */
+	public PreferenceId getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(PreferenceId id) {
+		this.id = id;
+	}
+
+	private Collection<String> preferences;
+
 	/**
 	 * 
 	 */
 	public PreferenceAlimentaire() {
-		// TODO Auto-generated constructor stub
 	}
+
 
 	/**
 	 * @return the participant
 	 */
+	@JoinColumns(@JoinColumn(name = "idParticipant", referencedColumnName = "idParticipant"))
 	@OneToOne
 	public Utilisateur getParticipant() {
 		return participant;
 	}
 
 	/**
-	 * @param participant the participant to set
+	 * @param participant
+	 *            the participant to set
 	 */
 	public void setParticipant(Utilisateur participant) {
 		this.participant = participant;
@@ -45,12 +68,14 @@ public class PreferenceAlimentaire {
 	 * @return the reunion
 	 */
 	@OneToOne
+	@JoinColumns(@JoinColumn(name = "idReunion", referencedColumnName = "idReunion"))
 	public Reunion getReunion() {
 		return reunion;
 	}
 
 	/**
-	 * @param reunion the reunion to set
+	 * @param reunion
+	 *            the reunion to set
 	 */
 	public void setReunion(Reunion reunion) {
 		this.reunion = reunion;
@@ -64,7 +89,8 @@ public class PreferenceAlimentaire {
 	}
 
 	/**
-	 * @param preferences the preferences to set
+	 * @param preferences
+	 *            the preferences to set
 	 */
 	public void setPreferences(Collection<String> preferences) {
 		this.preferences = preferences;

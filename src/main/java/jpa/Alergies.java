@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  * @author Mahamadou SYLLA
@@ -15,16 +14,15 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Alergies {
-	
+
 	private long id;
 	private String name;
 	private Utilisateur participant;
-	
+
 	/**
 	 * 
 	 */
 	public Alergies() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -37,6 +35,14 @@ public class Alergies {
 	}
 
 	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
 	 * @return the name
 	 */
 	public String getName() {
@@ -44,7 +50,8 @@ public class Alergies {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -59,7 +66,8 @@ public class Alergies {
 	}
 
 	/**
-	 * @param participant the participant to set
+	 * @param participant
+	 *            the participant to set
 	 */
 	public void setParticipant(Utilisateur participant) {
 		this.participant = participant;
