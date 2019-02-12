@@ -19,6 +19,8 @@
 			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost/" />
 		</properties>
 	</persistence-unit>
+	
+	
 	<persistence-unit name="prod" transaction-type="RESOURCE_LOCAL">
 		<!-- <class>org.hibernate.ejb.test.Cat</class> -->
 		<!-- <class>org.hibernate.ejb.test.Distributor</class> -->
@@ -54,9 +56,9 @@
 			<property name="hibernate.archive.autodetection" value="class, hbm" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.connection.password" value="anastasia" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost/tpjpa" />
-			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.username" value="amal" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.c3p0.min_size" value="5" />
 			<property name="hibernate.c3p0.max_size" value="20" />

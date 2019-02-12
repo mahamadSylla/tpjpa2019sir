@@ -5,7 +5,6 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class ChoixDate {
@@ -14,7 +13,7 @@ public class ChoixDate {
 	private Date myDate;
 	private int debut;
 	private int fin;
-	private Sondage sondage;
+	//private Sondage sondage;
 
 	public ChoixDate() {
 	}
@@ -83,18 +82,18 @@ public class ChoixDate {
 
 	/**
 	 * @return the sondage
-	 */
+	 
 	@ManyToOne
 	public Sondage getSondage() {
 		return sondage;
 	}
-
+*/
 	/**
 	 * @param sondage
 	 *            the sondage to set
-	 */
+	 
 	public void setSondage(Sondage sondage) {
 		this.sondage = sondage;
 	}
-
+*/
 }

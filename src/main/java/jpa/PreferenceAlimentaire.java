@@ -7,6 +7,8 @@ import java.util.Collection;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
@@ -18,15 +20,30 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class PreferenceAlimentaire {
-	private Utilisateur participant;
-	private Reunion reunion;
-	@EmbeddedId
-	private PreferenceId id;
+	
+	@Id
+	@GeneratedValue
+	private int id;
+	
+	
+	
+	//private Utilisateur participant;
+	//private Reunion reunion;
+	//@EmbeddedId
+	//private PreferenceId id;
 
 	/**
 	 * @return the id
 	 */
-	public PreferenceId getId() {
+	/*public PreferenceId getId() {
+		return id;
+	}*/
+
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
 		return id;
 	}
 
@@ -34,11 +51,18 @@ public class PreferenceAlimentaire {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(PreferenceId id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	private Collection<String> preferences;
+	/**
+	 * @param id the id to set
+	 */
+	/*public void setId(PreferenceId id) {
+		this.id = id;
+	}*/
+
+	//private Collection<String> preferences;
 
 	/**
 	 * 
@@ -50,50 +74,49 @@ public class PreferenceAlimentaire {
 	/**
 	 * @return the participant
 	 */
-	@JoinColumns(@JoinColumn(name = "idParticipant", referencedColumnName = "idParticipant"))
-	@OneToOne
-	public Utilisateur getParticipant() {
+	//@OneToOne
+	//@JoinColumns(@JoinColumn(name = "idParticipant", referencedColumnName = "idParticipant"))
+	/*public Utilisateur getParticipant() {
 		return participant;
-	}
+	}*/
 
 	/**
 	 * @param participant
 	 *            the participant to set
 	 */
-	public void setParticipant(Utilisateur participant) {
+	/*public void setParticipant(Utilisateur participant) {
 		this.participant = participant;
-	}
+	}*/
 
 	/**
 	 * @return the reunion
 	 */
-	@OneToOne
+	/*@OneToOne
 	@JoinColumns(@JoinColumn(name = "idReunion", referencedColumnName = "idReunion"))
 	public Reunion getReunion() {
 		return reunion;
-	}
+	}*/
 
 	/**
 	 * @param reunion
 	 *            the reunion to set
 	 */
-	public void setReunion(Reunion reunion) {
+	/*public void setReunion(Reunion reunion) {
 		this.reunion = reunion;
-	}
+	}*/
 
 	/**
 	 * @return the preferences
 	 */
-	public Collection<String> getPreferences() {
+	/*public Collection<String> getPreferences() {
 		return preferences;
-	}
+	}*/
 
 	/**
 	 * @param preferences
 	 *            the preferences to set
 	 */
-	public void setPreferences(Collection<String> preferences) {
+	/*public void setPreferences(Collection<String> preferences) {
 		this.preferences = preferences;
-	}
-
+	}*/
 }

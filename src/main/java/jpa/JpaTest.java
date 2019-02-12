@@ -25,9 +25,8 @@ public class JpaTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// EntityManagerFactory factory =
-		// Persistence.createEntityManagerFactory("tpjpa");
-		EntityManager manager = EntityManagerHelper.getEntityManager();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
+		EntityManager manager = factory.createEntityManager();
 		JpaTest test = new JpaTest(manager);
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
@@ -36,15 +35,13 @@ public class JpaTest {
 			
 			//test.createEmployees();
 			UtilisateurServiceImpl userServ = new UtilisateurServiceImpl();
-			Role myRole = new Role();
-			Collection<Role> r = new ArrayList<Role>();
-			r.add(myRole);
-			myRole.setName("createur");
+			Role role = new Role();
+			role.setName("createur");
 			Utilisateur ut1 = new Utilisateur();
 			ut1.setName("Sylla");
 			ut1.setFirstName("Mahamadou");
 			ut1.setMail("mahamadsylla5@gmail.com");
-			ut1.setRole(r);
+			ut1.setRole(role);
 			userServ.createUtilisateur(ut1);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -2,7 +2,13 @@ package servicesImpl;
 
 import java.util.Collection;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import dao.UtilisateurDAO;
+import daoImpl.UtilisateurDaoImpl;
 import jpa.Alergies;
 import jpa.Reunion;
 import jpa.Role;
@@ -10,15 +16,30 @@ import jpa.Sondage;
 import jpa.Utilisateur;
 import services.UtilisateurService;
 
+@Path("/home")
 public class UtilisateurServiceImpl implements UtilisateurService{
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Utilisateur getUser() {
+		Utilisateur u = new Utilisateur();
+		Role r = new Role();
+		r.setName("participant");
+		u.setName("toto");
+		u.setFirstName("tonton");
+		u.setMail("mahamadsylla5@gmail.com");
+		u.setRole(r);
+		return u;
+	}
 
-	private UtilisateurDAO utilisateur;
+	
+	private UtilisateurDAO utilisateurDAO;
 	public UtilisateurServiceImpl() {
-		this.utilisateur = new UtilisateurServiceImpl();
+		this.utilisateurDAO = new UtilisateurDaoImpl();
 	}
 
 	public void createUtilisateur(Utilisateur user) {
-		this.utilisateur.createUtilisateur(user);
+		//this.utilisateurDAO.createUtilisateur(user);
 		
 	}
 

@@ -4,15 +4,17 @@
 package jpa;
 
 import java.util.Collection;
+import java.util.HashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -29,6 +31,7 @@ public class Reunion {
 	private Collection<Utilisateur> participants;
 
 	public Reunion() {
+		this.participants = new HashSet<Utilisateur>();
 	}
 
 	/**
@@ -95,17 +98,19 @@ public class Reunion {
 	}
 
 	/**
-	 * @return the participants
-	 
-	@ManyToMany
-	@JoinTable(name = "reunion_utilisateur", 
-		joinColumns = @JoinColumn(name = "fk_reunion", referenceColumnName = "reunions"), 
-		inverseJoinColumns = @JoinColumn(name = "fk_utilisateur", referenceColumnName = "participants")
+	 * 
+	 */
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {CascadeType.MERGE, CascadeType.PERSIST}
+			)
+	@JoinTable(name="reunion_utilisateur",
+	joinColumns = @JoinColumn(name="fk_reunion"),
+	inverseJoinColumns = @JoinColumn(name = "fk_utilisateur")
 	)
 	public Collection<Utilisateur> getParticipants() {
 		return participants;
 	}
-*/
+
 	/**
 	 * @param participants
 	 *            the participants to set

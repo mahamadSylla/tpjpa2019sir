@@ -5,6 +5,7 @@ package jpa;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,8 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Mahamadou SYLLA
@@ -26,11 +27,13 @@ public class Utilisateur {
 	private String name;
 	private Collection<Reunion> reunions;
 	private Collection<Sondage> sondages;
-	private Collection<Role> role;
+	private Role role;
 	private Collection<Alergies> alergies;
 
 	public Utilisateur() {
-		this.reunions = new ArrayList<Reunion>();
+		this.reunions = new HashSet<Reunion>();
+		this.sondages = new HashSet<Sondage>();
+		this.alergies = new HashSet<Alergies>();
 	}
 
 	/**
@@ -99,9 +102,8 @@ public class Utilisateur {
 	/**
 	 * @return the role
 	 */
-	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "idUser")
-	public Collection<Role> getRole() {
+	@OneToOne
+	public Role getRole() {
 		return role;
 	}
 
@@ -109,7 +111,7 @@ public class Utilisateur {
 	 * @param role
 	 *            the role to set
 	 */
-	public void setRole(Collection<Role> role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 
@@ -124,7 +126,7 @@ public class Utilisateur {
 	 * @param sondages
 	 *            the sondages to set
 	 */
-	@OneToMany(mappedBy="paticipants")
+	@OneToMany(mappedBy="participants")
 	public void setSondages(Collection<Sondage> sondages) {
 		this.sondages = sondages;
 	}

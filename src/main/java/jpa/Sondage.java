@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -39,6 +40,7 @@ public class Sondage {
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the intitule
 	 */
@@ -47,7 +49,8 @@ public class Sondage {
 	}
 
 	/**
-	 * @param intitule the intitule to set
+	 * @param intitule
+	 *            the intitule to set
 	 */
 	public void setIntitule(String intitule) {
 		this.intitule = intitule;
@@ -61,11 +64,13 @@ public class Sondage {
 	}
 
 	/**
-	 * @param chooseFoodWebLink the chooseFoodWebLink to set
+	 * @param chooseFoodWebLink
+	 *            the chooseFoodWebLink to set
 	 */
 	public void setChooseFoodWebLink(String chooseFoodWebLink) {
 		this.chooseFoodWebLink = chooseFoodWebLink;
 	}
+
 	/**
 	 * @return the participants
 	 */
@@ -115,7 +120,8 @@ public class Sondage {
 	/**
 	 * @return the dates
 	 */
-	@OneToMany(mappedBy = "sondage")
+	@OneToMany
+	@JoinColumn(name="sondage_id")
 	public Collection<ChoixDate> getDates() {
 		return dates;
 	}
@@ -159,5 +165,4 @@ public class Sondage {
 	public void setCreateur(Utilisateur createur) {
 		this.createur = createur;
 	}
-
 }
