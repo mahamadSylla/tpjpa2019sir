@@ -6,11 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-@Entity
+//@Entity
 public class Sondage {
 	private long id;
 	private String intitule;
@@ -74,7 +75,8 @@ public class Sondage {
 	/**
 	 * @return the participants
 	 */
-	@OneToMany(mappedBy = "sondages")
+	// @OneToMany(mappedBy = "sondages")
+	@ManyToMany
 	public Collection<Utilisateur> getParticipants() {
 		return participants;
 	}

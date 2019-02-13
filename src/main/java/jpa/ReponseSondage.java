@@ -6,8 +6,9 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
-@Entity
+//@Entity
 public class ReponseSondage {
 	private long id;
 	private Utilisateur utilisateur;
@@ -29,7 +30,8 @@ public class ReponseSondage {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -43,7 +45,8 @@ public class ReponseSondage {
 	}
 
 	/**
-	 * @param utilisateur the utilisateur to set
+	 * @param utilisateur
+	 *            the utilisateur to set
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
@@ -57,7 +60,8 @@ public class ReponseSondage {
 	}
 
 	/**
-	 * @param sondage the sondage to set
+	 * @param sondage
+	 *            the sondage to set
 	 */
 	public void setSondage(Sondage sondage) {
 		this.sondage = sondage;
@@ -66,12 +70,14 @@ public class ReponseSondage {
 	/**
 	 * @return the choixDonnes
 	 */
+	@ManyToMany
 	public Collection<ChoixDate> getChoixDonnes() {
 		return choixDonnes;
 	}
 
 	/**
-	 * @param choixDonnes the choixDonnes to set
+	 * @param choixDonnes
+	 *            the choixDonnes to set
 	 */
 	public void setChoixDonnes(Collection<ChoixDate> choixDonnes) {
 		this.choixDonnes = choixDonnes;

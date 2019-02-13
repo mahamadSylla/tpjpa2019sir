@@ -13,7 +13,7 @@ import javax.persistence.Embeddable;
  * @author Mahamadou SYLLA
  *
  */
-@Embeddable
+//@Embeddable
 public class PreferenceId implements Serializable{
 	/**
 	 * 

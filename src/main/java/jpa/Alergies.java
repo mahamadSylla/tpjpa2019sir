@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
  * @author Mahamadou SYLLA
  *
  */
-@Entity
+//@Entity
 public class Alergies {
 
 	private long id;

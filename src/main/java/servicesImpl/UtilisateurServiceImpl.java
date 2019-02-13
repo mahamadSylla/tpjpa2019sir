@@ -18,7 +18,7 @@ import services.UtilisateurService;
 
 @Path("/home")
 public class UtilisateurServiceImpl implements UtilisateurService{
-	
+/*
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Utilisateur getUser() {
@@ -31,8 +31,8 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		u.setRole(r);
 		return u;
 	}
+*/
 
-	
 	private UtilisateurDAO utilisateurDAO;
 	public UtilisateurServiceImpl() {
 		this.utilisateurDAO = new UtilisateurDaoImpl();

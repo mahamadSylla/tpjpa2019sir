@@ -21,10 +21,11 @@ import javax.persistence.OneToOne;
  * @author Mahamadou SYLLA
  *
  */
-@Entity
+//@Entity
 public class Reunion {
 	private long id;
 	private String intitule;
+	private int ity;
 	private String resume;
 	private ChoixDate dateReunion;
 	private Sondage sondage;

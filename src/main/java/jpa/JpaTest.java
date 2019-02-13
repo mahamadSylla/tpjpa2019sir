@@ -32,16 +32,21 @@ public class JpaTest {
 		tx.begin();
 
 		try {
-			
-			//test.createEmployees();
 			UtilisateurServiceImpl userServ = new UtilisateurServiceImpl();
-			Role role = new Role();
-			role.setName("createur");
+
+			Collection<Role> roles = new ArrayList<Role>();
+			Role r1 = new Role();
+			Role r2 = new Role();
+			r1.setName("createur");
+			r2.setName("participant");
+			roles.add(r1);
+			roles.add(r2);
+
 			Utilisateur ut1 = new Utilisateur();
 			ut1.setName("Sylla");
 			ut1.setFirstName("Mahamadou");
 			ut1.setMail("mahamadsylla5@gmail.com");
-			ut1.setRole(role);
+			ut1.setRole(roles);
 			userServ.createUtilisateur(ut1);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,25 +57,5 @@ public class JpaTest {
 		EntityManagerHelper.closeEntityManagerFactory();
 		// factory.close();
 	}
-
-	/*private void createEmployees() {
-		int numOfEmployees = manager.createQuery("Select a From Employee a", Employee.class).getResultList().size();
-		if (numOfEmployees == 0) {
-			Department department = new Department("java");
-			manager.persist(department);
-
-			manager.persist(new Employee("Jakab Gipsz", department));
-			manager.persist(new Employee("Captain Nemo", department));
-
-		}
-	}
-
-	private void listEmployees() {
-		List<Employee> resultList = manager.createQuery("Select a From Employee a", Employee.class).getResultList();
-		System.out.println("num of employess:" + resultList.size());
-		for (Employee next : resultList) {
-			System.out.println("next employee: " + next);
-		}
-	}*/
 
 }

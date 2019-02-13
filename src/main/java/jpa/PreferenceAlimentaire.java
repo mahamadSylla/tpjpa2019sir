@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
  *
  */
 
-@Entity
+//@Entity
 public class PreferenceAlimentaire {
 	
 	@Id
