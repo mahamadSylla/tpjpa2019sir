@@ -16,7 +16,7 @@ import jpa.Sondage;
 import jpa.Utilisateur;
 import services.UtilisateurService;
 
-@Path("/home")
+@Path("/utilisateurs")
 public class UtilisateurServiceImpl implements UtilisateurService{
 /*
 	@GET
@@ -39,12 +39,14 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	}
 
 	public void createUtilisateur(Utilisateur user) {
-		//this.utilisateurDAO.createUtilisateur(user);
+		this.utilisateurDAO.createUtilisateur(user);
 		
 	}
 
-	public void listUtilisateurs() {
-		// TODO Auto-generated method stub
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Utilisateur> listUtilisateurs() {
+		return utilisateurDAO.listUtilisateurs();
 		
 	}
 

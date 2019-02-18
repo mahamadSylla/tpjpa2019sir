@@ -2,12 +2,14 @@ package daoImpl;
 
 import java.util.Collection;
 
+import javax.persistence.EntityManager;
+
 import dao.ReunionDAO;
 import jpa.Sondage;
 import jpa.Utilisateur;
 
 public class ReunionIDaoImpl implements ReunionDAO{
-
+	EntityManager manager;
 	public ReunionIDaoImpl() {
 	}
 

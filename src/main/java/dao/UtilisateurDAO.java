@@ -11,7 +11,7 @@ import jpa.Utilisateur;
 public interface UtilisateurDAO {
 	public void createUtilisateur(Utilisateur user);
 
-	public void listUtilisateurs();
+	public Collection<Utilisateur> listUtilisateurs();
 
 	public Role role(UtilisateurDAO utilisateur);
 

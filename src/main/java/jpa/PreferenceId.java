@@ -14,7 +14,7 @@ import javax.persistence.Embeddable;
  *
  */
 //@Embeddable
-public class PreferenceId implements Serializable{
+public class PreferenceId implements Serializable {
 	/**
 	 * 
 	 */
@@ -22,7 +22,7 @@ public class PreferenceId implements Serializable{
 
 	@Column(name = "idParticipant")
 	private Utilisateur participant;
-	
+
 	@Column(name = "idReunion")
 	private Reunion reunion;
 
@@ -50,7 +50,8 @@ public class PreferenceId implements Serializable{
 	}
 
 	/**
-	 * @param participant the participant to set
+	 * @param participant
+	 *            the participant to set
 	 */
 	public void setParticipant(Utilisateur participant) {
 		this.participant = participant;
@@ -64,24 +65,27 @@ public class PreferenceId implements Serializable{
 	}
 
 	/**
-	 * @param reunion the reunion to set
+	 * @param reunion
+	 *            the reunion to set
 	 */
 	public void setReunion(Reunion reunion) {
 		this.reunion = reunion;
 	}
-	
+
 	@Override
-	public boolean equals( Object o) {
-		if (this == o) return true;
-        if (!(o instanceof PreferenceId)) return false;
-        PreferenceId that = (PreferenceId) o;
-        return Objects.equals(getParticipant(), that.getParticipant()) &&
-                Objects.equals(getReunion(), that.getReunion());
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof PreferenceId))
+			return false;
+		PreferenceId that = (PreferenceId) o;
+		return Objects.equals(getParticipant(), that.getParticipant())
+				&& Objects.equals(getReunion(), that.getReunion());
 	}
-	
+
 	@Override
-    public int hashCode() {
-        return Objects.hash(getParticipant(), getReunion());
-    }
+	public int hashCode() {
+		return Objects.hash(getParticipant(), getReunion());
+	}
 
 }

@@ -6,6 +6,7 @@ package daoImpl;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import dao.UtilisateurDAO;
 import jpa.Alergies;
@@ -29,7 +30,10 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		this.manager = EntityManagerHelper.getEntityManager(); 
 	}
 
-	public void listUtilisateurs() {
+	public Collection<Utilisateur> listUtilisateurs() {
+		String query ="SELECT u FROM Utilisateur u";
+		Query q = manager.createQuery(query);
+		return q.getResultList();
 
 	}
 
@@ -70,7 +74,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		this.manager.persist(user);
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
-		System.out.println("mon user a ete bien enregistre"); 
+		System.out.println("L'utilisateur a été bien enregistré"); 
 		
 	}
 

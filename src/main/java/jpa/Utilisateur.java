@@ -3,14 +3,22 @@
  */
 package jpa;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -18,7 +26,18 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "find_All_Users",
+			query = "SELECT u FROM Utilisateur u"),
+	@NamedQuery(name = "find_Survey_User",
+				query = "SELECT u.sondages, FROM Utilisateur u"),
+	@NamedQuery(name = "find_Meetings_User",
+	query = "SELECT u.reunions, FROM Utilisateur u"),
+	@NamedQuery(name = "find_Survey_User",
+	query = "SELECT u.sondages, FROM Utilisateur u"),
+})
 public class Utilisateur {
+	private long id;
 	private String mail;
 	private String firstName;
 	private String name;
@@ -26,18 +45,40 @@ public class Utilisateur {
 	private Collection<Sondage> sondages;
 	private Collection<Role> role;
 	private Collection<Alergies> alergies;
+	private Collection<Preference> preferences;
+	private Collection<ReponseSondage> reponseSondages;
 
 	public Utilisateur() {
 		this.reunions = new HashSet<Reunion>();
 		this.sondages = new HashSet<Sondage>();
 		this.alergies = new HashSet<Alergies>();
+		this.preferences = new HashSet<Preference>();
+		this.reponseSondages = new ArrayList<ReponseSondage>();
 	}
+	
+	/**
+	 * @return the id
+	 */
+	@Id
+	@GeneratedValue
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
 
 	/**
 	 * @return the mail
 	 */
-	@Id
-	@Column(name = "idUser")
+	@Column(nullable=false, unique=true)
 	public String getMail() {
 		return mail;
 	}
@@ -81,26 +122,10 @@ public class Utilisateur {
 	}
 
 	/**
-	 * @return the reunions
-	 */
-	//@ManyToMany(mappedBy = "participants")
-	public Collection<Reunion> getReunions() {
-		return reunions;
-	}
-
-	/**
-	 * @param reunions
-	 *            the reunions to set
-	 */
-	public void setReunions(Collection<Reunion> reunions) {
-		this.reunions = reunions;
-	}
-
-	/**
 	 * @return the role
 	 */
-	@OneToMany
-	@JoinColumn(name ="idUser")
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idUser")
 	public Collection<Role> getRole() {
 		return role;
 	}
@@ -116,7 +141,7 @@ public class Utilisateur {
 	/**
 	 * @return the sondages
 	 */
-	//@ManyToMany
+	@OneToMany(mappedBy="createur", cascade=CascadeType.PERSIST)
 	public Collection<Sondage> getSondages() {
 		return sondages;
 	}
@@ -130,9 +155,57 @@ public class Utilisateur {
 	}
 
 	/**
+	 * @return the Reunions
+	 */
+	@ManyToMany(mappedBy = "participants")
+	public Collection<Reunion> getReunions() {
+		return reunions;
+	}
+
+	/**
+	 * @param reunions
+	 *            the Reunions to set
+	 */
+	public void setReunions(Collection<Reunion> reunions) {
+		this.reunions = reunions;
+	}
+
+	/**
+	 * @return the reponseSondages
+	 */
+	@OneToMany(mappedBy="sondage")
+	public Collection<ReponseSondage> getReponseSondages() {
+		return reponseSondages;
+	}
+
+	/**
+	 * @param reponseSondages the reponseSondages to set
+	 */
+	public void setReponseSondages(Collection<ReponseSondage> reponseSondages) {
+		this.reponseSondages = reponseSondages;
+	}
+
+	/**
+	 * @return the preferences
+	 */
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="userId")
+	public Collection<Preference> getPreferences() {
+		return preferences;
+	}
+
+	/**
+	 * @param preferences the preferences to set
+	 */
+	public void setPreferences(Collection<Preference> preferences) {
+		this.preferences = preferences;
+	}
+
+	/**
 	 * @return the alergies
 	 */
-	@OneToMany(mappedBy = "idUser")
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idUser")
 	public Collection<Alergies> getAlergies() {
 		return alergies;
 	}
@@ -144,5 +217,71 @@ public class Utilisateur {
 	public void setAlergies(Collection<Alergies> alergies) {
 		this.alergies = alergies;
 	}
-
+	
+	/**
+	 * @param role
+	 * 			the role to add
+	 */
+	public void addRole(Role role) {
+		Objects.requireNonNull(role, "Le role ne doit pas être null");
+		this.role.add(role);
+	}
+	
+	/**
+	 * @param reunion
+	 * 			the reunion to add
+	 */
+	public void addReunion(Reunion reunion) {
+		Objects.requireNonNull(reunion, "La reunion ne doit pas être null");
+		this.reunions.add(reunion);
+	}
+	
+	/**
+	 * @param reunion
+	 * 			the sondage to add
+	 */
+	public void addSondage(Sondage sondage) {
+		Objects.requireNonNull(sondage, "Le sondage ne doit pas être null");
+		this.sondages.add(sondage);
+	}
+	
+	/**
+	 * @param alergie
+	 * 			the alergie to add
+	 */
+	public void addAlergie(Alergies alergie) {
+		Objects.requireNonNull(alergie, "Ne doit pas être nul");
+		this.alergies.add(alergie);
+	}
+	/**
+	 * @param alergie
+	 * 			the alergie to remove
+	 */
+	public boolean removeAlergie(Alergies alergie) {
+		Objects.requireNonNull(alergie, "Ne doit pas être nul");
+		if(!this.alergies.contains(alergie)) {
+			return false;
+		}
+		return this.alergies.remove(alergie);
+	}
+	
+	/**
+	 * @param preference
+	 * 			the preference to add
+	 */
+	public void addPreference(Preference preference) {
+		Objects.requireNonNull(preference, "Ne doit pas être nul");
+		this.preferences.add(preference);
+	}
+	/**
+	 * @param preference
+	 * 			the preference to remove
+	 */
+	public boolean removePreference(Preference preference) {
+		Objects.requireNonNull(preference, "Ne doit pas être nul");
+		if(!this.preferences.contains(preference)) {
+			return false;
+		}
+		return this.preferences.remove(preference);
+	}
 }

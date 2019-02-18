@@ -1,7 +1,10 @@
 package jpa;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,18 +14,36 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-//@Entity
+@Entity
 public class Sondage {
 	private long id;
 	private String intitule;
 	private String participatedWebLink;
-	private String chooseFoodWebLink;
+	//private String chooseFoodWebLink;
 	private Collection<ChoixDate> dates;
 	private Reunion reunion;
 	private Utilisateur createur;
 	private Collection<Utilisateur> participants;
+	private Collection<ReponseSondage> reponseSondages;
 
 	public Sondage() {
+		this.participants = new HashSet<Utilisateur>();
+		this.reponseSondages = new HashSet<ReponseSondage>();
+	}
+
+	/**
+	 * @return the reponseSondages
+	 */
+	@OneToMany(mappedBy="sondage")
+	public Collection<ReponseSondage> getReponseSondages() {
+		return reponseSondages;
+	}
+
+	/**
+	 * @param reponseSondages the reponseSondages to set
+	 */
+	public void setReponseSondages(Collection<ReponseSondage> reponseSondages) {
+		this.reponseSondages = reponseSondages;
 	}
 
 	/**
@@ -59,39 +80,38 @@ public class Sondage {
 
 	/**
 	 * @return the chooseFoodWebLink
-	 */
+	 
 	public String getChooseFoodWebLink() {
 		return chooseFoodWebLink;
 	}
-
+*/
 	/**
 	 * @param chooseFoodWebLink
 	 *            the chooseFoodWebLink to set
-	 */
+	 
 	public void setChooseFoodWebLink(String chooseFoodWebLink) {
 		this.chooseFoodWebLink = chooseFoodWebLink;
 	}
-
+*/
+	
 	/**
 	 * @return the participants
 	 */
-	// @OneToMany(mappedBy = "sondages")
-	@ManyToMany
+	@ManyToMany(mappedBy="sondages")
 	public Collection<Utilisateur> getParticipants() {
 		return participants;
 	}
 
 	/**
-	 * @param participants
-	 *            the participants to set
+	 * @param participant the participant to set
 	 */
-	public void setParticipants(Collection<Utilisateur> participants) {
-		this.participants = participants;
+	public void setParticipants(Collection<Utilisateur> participant) {
+		this.participants = participant;
 	}
 
 	/**
 	 * @return the participatedWebLink
-	 */
+	*/ 
 	public String getParticipatedWebLink() {
 		return participatedWebLink;
 	}
@@ -99,30 +119,15 @@ public class Sondage {
 	/**
 	 * @param participatedWebLink
 	 *            the participatedWebLink to set
-	 */
+	*/ 
 	public void setParticipatedWebLink(String participatedWebLink) {
 		this.participatedWebLink = participatedWebLink;
 	}
 
 	/**
-	 * @return the chosseFoodWebLink
-	 */
-	public String getChosseFoodWebLink() {
-		return chooseFoodWebLink;
-	}
-
-	/**
-	 * @param chosseFoodWebLink
-	 *            the chosseFoodWebLink to set
-	 */
-	public void setChosseFoodWebLink(String chosseFoodWebLink) {
-		this.chooseFoodWebLink = chosseFoodWebLink;
-	}
-
-	/**
 	 * @return the dates
 	 */
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="sondage_id")
 	public Collection<ChoixDate> getDates() {
 		return dates;
@@ -139,7 +144,7 @@ public class Sondage {
 	/**
 	 * @return the reunion
 	 */
-	@OneToOne
+	@OneToOne(mappedBy="sondage")
 	public Reunion getReunion() {
 		return reunion;
 	}
@@ -166,5 +171,34 @@ public class Sondage {
 	 */
 	public void setCreateur(Utilisateur createur) {
 		this.createur = createur;
+	}
+	
+	/**
+	 * @param date
+	 * 			the date to add
+	 */
+	public void addChoix(ChoixDate date) {
+		Objects.requireNonNull(date, "La date ne doit pas être nulle");
+		this.dates.add(date);
+	}
+	
+	/**
+	 * @param date
+	 * 			the date to remove
+	 */
+	public boolean removeChoix(ChoixDate date) {
+		Objects.requireNonNull(date, "Ne doit pas être vide");
+		if(!this.dates.contains(date)) {
+			return false;
+		}
+		return this.dates.remove(date);
+	}
+	/**
+	 * @param user
+	 * 			the user to add
+	 */
+	public void addParticipant(Utilisateur user) {
+		Objects.requireNonNull(user, "L'utilisateur ne doit pas être nul");
+		this.participants.add(user);
 	}
 }

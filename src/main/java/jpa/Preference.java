@@ -1,26 +1,13 @@
-/**
- * 
- */
 package jpa;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
-/**
- * @author Mahamadou SYLLA
- *
- */
 @Entity
-public class Alergies {
-
+public class Preference {
 	private long id;
 	private String name;
-
-	public Alergies() {
-	}
-
 	/**
 	 * @return the id
 	 */
@@ -29,28 +16,29 @@ public class Alergies {
 	public long getId() {
 		return id;
 	}
-
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
-
 	/**
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
-
 	/**
-	 * @param name
-	 *            the name to set
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	/**
+	 * Construtor method
+	 */
+	public Preference() {
+	}
+	
+	
 }

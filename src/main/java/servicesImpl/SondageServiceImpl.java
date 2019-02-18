@@ -3,6 +3,7 @@ package servicesImpl;
 import java.sql.Date;
 import java.util.Collection;
 
+import jpa.Sondage;
 import jpa.Utilisateur;
 import services.SondageService;
 
@@ -48,6 +49,31 @@ public class SondageServiceImpl implements SondageService{
 	}
 
 	public Collection<Utilisateur> participants() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void createSondage(Sondage sondage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void dateRetenue(Sondage sondage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void datesProposees(Sondage sondage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createurSondage(Sondage sondage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Collection<Utilisateur> participants(Sondage sondage) {
 		// TODO Auto-generated method stub
 		return null;
 	}

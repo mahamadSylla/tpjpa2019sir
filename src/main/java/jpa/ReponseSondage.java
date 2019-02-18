@@ -2,13 +2,17 @@ package jpa;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-//@Entity
+@Entity
 public class ReponseSondage {
 	private long id;
 	private Utilisateur utilisateur;
@@ -17,10 +21,10 @@ public class ReponseSondage {
 
 	public ReponseSondage() {
 		this.choixDonnes = new HashSet<ChoixDate>();
-
 	}
 
 	/**
+	 * 
 	 * @return the id
 	 */
 	@Id
@@ -40,6 +44,7 @@ public class ReponseSondage {
 	/**
 	 * @return the utilisateur
 	 */
+	@ManyToOne
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
@@ -55,6 +60,7 @@ public class ReponseSondage {
 	/**
 	 * @return the sondage
 	 */
+	@ManyToOne
 	public Sondage getSondage() {
 		return sondage;
 	}
@@ -70,7 +76,8 @@ public class ReponseSondage {
 	/**
 	 * @return the choixDonnes
 	 */
-	@ManyToMany
+	@OneToMany
+	@JoinColumn(name="reponseId")
 	public Collection<ChoixDate> getChoixDonnes() {
 		return choixDonnes;
 	}
@@ -83,4 +90,24 @@ public class ReponseSondage {
 		this.choixDonnes = choixDonnes;
 	}
 
+	/**
+	 * @param date
+	 *            the date to add
+	 */
+	public void addChoix(ChoixDate date) {
+		Objects.requireNonNull(date, "La date ne doit pas être nulle");
+		this.choixDonnes.add(date);
+	}
+
+	/**
+	 * @param date
+	 *            the date to remove
+	 */
+	public boolean removeChoix(ChoixDate date) {
+		Objects.requireNonNull(date, "Ne doit pas être vide");
+		if (!this.choixDonnes.contains(date)) {
+			return false;
+		}
+		return this.choixDonnes.remove(date);
+	}
 }

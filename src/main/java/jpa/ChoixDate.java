@@ -6,14 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class ChoixDate {
 
 	private long id;
 	private Date myDate;
 	private int debut;
 	private int fin;
-	//private Sondage sondage;
 
 	public ChoixDate() {
 	}
@@ -79,21 +78,4 @@ public class ChoixDate {
 	public void setMyDate(Date myDate) {
 		this.myDate = myDate;
 	}
-
-	/**
-	 * @return the sondage
-	 
-	@ManyToOne
-	public Sondage getSondage() {
-		return sondage;
-	}
-*/
-	/**
-	 * @param sondage
-	 *            the sondage to set
-	 
-	public void setSondage(Sondage sondage) {
-		this.sondage = sondage;
-	}
-*/
 }

@@ -1,5 +1,6 @@
 package jpa;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import daoImpl.UtilisateurDaoImpl;
+import servicesImpl.SondageServiceImpl;
 import servicesImpl.UtilisateurServiceImpl;
 
 public class JpaTest {
@@ -24,6 +26,7 @@ public class JpaTest {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
 		EntityManager manager = factory.createEntityManager();
@@ -32,22 +35,76 @@ public class JpaTest {
 		tx.begin();
 
 		try {
+			//Création d'un utilisateur et ses rôles et alergies
 			UtilisateurServiceImpl userServ = new UtilisateurServiceImpl();
-
 			Collection<Role> roles = new ArrayList<Role>();
 			Role r1 = new Role();
 			Role r2 = new Role();
 			r1.setName("createur");
-			r2.setName("participant");
+			r2.setName("role2");
 			roles.add(r1);
 			roles.add(r2);
 
 			Utilisateur ut1 = new Utilisateur();
 			ut1.setName("Sylla");
 			ut1.setFirstName("Mahamadou");
-			ut1.setMail("mahamadsylla5@gmail.com");
+			ut1.setMail("mahamadsla5@gmail.com3");
 			ut1.setRole(roles);
-			userServ.createUtilisateur(ut1);
+		
+
+			Collection<Alergies> alergies = new ArrayList<Alergies>();
+			Alergies alergie = new Alergies();
+			alergie.setName("sucre");
+			alergies.add(alergie);
+			
+			ut1.setAlergies(alergies);
+			//userServ.createUtilisateur(ut1);
+			
+			/*
+			//Création des plages horaires pour le sondage
+			Date date1 = new Date(2019,2,15);
+			Date date2 = new Date(2019,2,15);
+			Date date3 = new Date(2019,2,18);
+			
+			ChoixDate plage1 = new ChoixDate();
+			plage1.setDebut(10);
+			plage1.setFin(12);
+			plage1.setMyDate(date1);
+
+			ChoixDate plage2 = new ChoixDate();
+			plage2.setDebut(10);
+			plage2.setFin(12);
+			plage2.setMyDate(date2);
+			
+			ChoixDate plage3 = new ChoixDate();
+			plage3.setDebut(10);
+			plage3.setFin(12);
+			plage3.setMyDate(date3);
+			Collection<ChoixDate> dates = new ArrayList<ChoixDate>();
+			dates.add(plage1);
+			dates.add(plage2);
+			dates.add(plage3);
+			
+			//Création d'un sondage
+			SondageServiceImpl sondageImp = new SondageServiceImpl();
+			Sondage sondage = new Sondage();
+			sondage.setCreateur(ut1);
+			sondage.setIntitule("Test");
+			sondage.setParticipatedWebLink("lien.php");
+			sondage.setDates(dates);
+			sondageImp.createSondage(sondage);*/
+			
+			Utilisateur user = manager.find(Utilisateur.class, 1L);
+			for(Sondage s : user.getSondages()) {
+				System.out.println("Intulé" + s.getIntitule());
+			}
+			Preference pref = new Preference();
+			pref.setName("Soumbala");
+			user.addRole(r2);
+			//userServ.createUtilisateur(user);
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,5 +114,4 @@ public class JpaTest {
 		EntityManagerHelper.closeEntityManagerFactory();
 		// factory.close();
 	}
-
 }
