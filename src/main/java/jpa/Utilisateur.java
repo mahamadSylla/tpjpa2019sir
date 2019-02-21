@@ -27,14 +27,10 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "find_All_Users",
-			query = "SELECT u FROM Utilisateur u"),
-	@NamedQuery(name = "find_Survey_User",
-				query = "SELECT u.sondages, FROM Utilisateur u"),
-	@NamedQuery(name = "find_Meetings_User",
-	query = "SELECT u.reunions, FROM Utilisateur u"),
-	@NamedQuery(name = "find_Survey_User",
-	query = "SELECT u.sondages, FROM Utilisateur u"),
+	@NamedQuery(name = "find_All_Users", query = "SELECT u FROM Utilisateur u"),
+	@NamedQuery(name = "find_Survey_User", query = "SELECT s FROM Utilisateur u join u.sondages s"),
+	//@NamedQuery(name = "find_Meetings_User", query = "SELECT u.reunions FROM Utilisateur u"),
+	//@NamedQuery(name = "find_Survey_User", query = "SELECT u.sondages, FROM Utilisateur u"),
 })
 public class Utilisateur {
 	private long id;
@@ -173,7 +169,7 @@ public class Utilisateur {
 	/**
 	 * @return the reponseSondages
 	 */
-	@OneToMany(mappedBy="sondage")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="utilisateur")
 	public Collection<ReponseSondage> getReponseSondages() {
 		return reponseSondages;
 	}
@@ -223,7 +219,7 @@ public class Utilisateur {
 	 * 			the role to add
 	 */
 	public void addRole(Role role) {
-		Objects.requireNonNull(role, "Le role ne doit pas être null");
+		Objects.requireNonNull(role, "Le role ne doit pas ï¿½tre null");
 		this.role.add(role);
 	}
 	
@@ -232,7 +228,7 @@ public class Utilisateur {
 	 * 			the reunion to add
 	 */
 	public void addReunion(Reunion reunion) {
-		Objects.requireNonNull(reunion, "La reunion ne doit pas être null");
+		Objects.requireNonNull(reunion, "La reunion ne doit pas ï¿½tre null");
 		this.reunions.add(reunion);
 	}
 	
@@ -241,7 +237,7 @@ public class Utilisateur {
 	 * 			the sondage to add
 	 */
 	public void addSondage(Sondage sondage) {
-		Objects.requireNonNull(sondage, "Le sondage ne doit pas être null");
+		Objects.requireNonNull(sondage, "Le sondage ne doit pas ï¿½tre null");
 		this.sondages.add(sondage);
 	}
 	
@@ -250,7 +246,7 @@ public class Utilisateur {
 	 * 			the alergie to add
 	 */
 	public void addAlergie(Alergies alergie) {
-		Objects.requireNonNull(alergie, "Ne doit pas être nul");
+		Objects.requireNonNull(alergie, "Ne doit pas ï¿½tre nul");
 		this.alergies.add(alergie);
 	}
 	/**
@@ -258,7 +254,7 @@ public class Utilisateur {
 	 * 			the alergie to remove
 	 */
 	public boolean removeAlergie(Alergies alergie) {
-		Objects.requireNonNull(alergie, "Ne doit pas être nul");
+		Objects.requireNonNull(alergie, "Ne doit pas ï¿½tre nul");
 		if(!this.alergies.contains(alergie)) {
 			return false;
 		}
@@ -270,7 +266,7 @@ public class Utilisateur {
 	 * 			the preference to add
 	 */
 	public void addPreference(Preference preference) {
-		Objects.requireNonNull(preference, "Ne doit pas être nul");
+		Objects.requireNonNull(preference, "Ne doit pas ï¿½tre nul");
 		this.preferences.add(preference);
 	}
 	/**
@@ -278,7 +274,7 @@ public class Utilisateur {
 	 * 			the preference to remove
 	 */
 	public boolean removePreference(Preference preference) {
-		Objects.requireNonNull(preference, "Ne doit pas être nul");
+		Objects.requireNonNull(preference, "Ne doit pas ï¿½tre nul");
 		if(!this.preferences.contains(preference)) {
 			return false;
 		}

@@ -61,6 +61,7 @@ public class ReponseSondage {
 	 * @return the sondage
 	 */
 	@ManyToOne
+	@JoinColumn(name="sondage_id")
 	public Sondage getSondage() {
 		return sondage;
 	}
@@ -95,7 +96,7 @@ public class ReponseSondage {
 	 *            the date to add
 	 */
 	public void addChoix(ChoixDate date) {
-		Objects.requireNonNull(date, "La date ne doit pas être nulle");
+		Objects.requireNonNull(date, "La date ne doit pas ï¿½tre nulle");
 		this.choixDonnes.add(date);
 	}
 
@@ -104,7 +105,7 @@ public class ReponseSondage {
 	 *            the date to remove
 	 */
 	public boolean removeChoix(ChoixDate date) {
-		Objects.requireNonNull(date, "Ne doit pas être vide");
+		Objects.requireNonNull(date, "Ne doit pas ï¿½tre vide");
 		if (!this.choixDonnes.contains(date)) {
 			return false;
 		}

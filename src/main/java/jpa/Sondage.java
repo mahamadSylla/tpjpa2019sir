@@ -34,7 +34,7 @@ public class Sondage {
 	/**
 	 * @return the reponseSondages
 	 */
-	@OneToMany(mappedBy="sondage")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="sondage")
 	public Collection<ReponseSondage> getReponseSondages() {
 		return reponseSondages;
 	}
@@ -97,7 +97,7 @@ public class Sondage {
 	/**
 	 * @return the participants
 	 */
-	@ManyToMany(mappedBy="sondages")
+	@ManyToMany()
 	public Collection<Utilisateur> getParticipants() {
 		return participants;
 	}
@@ -178,7 +178,7 @@ public class Sondage {
 	 * 			the date to add
 	 */
 	public void addChoix(ChoixDate date) {
-		Objects.requireNonNull(date, "La date ne doit pas être nulle");
+		Objects.requireNonNull(date, "La date ne doit pas ï¿½tre nulle");
 		this.dates.add(date);
 	}
 	
@@ -187,7 +187,7 @@ public class Sondage {
 	 * 			the date to remove
 	 */
 	public boolean removeChoix(ChoixDate date) {
-		Objects.requireNonNull(date, "Ne doit pas être vide");
+		Objects.requireNonNull(date, "Ne doit pas ï¿½tre vide");
 		if(!this.dates.contains(date)) {
 			return false;
 		}
@@ -198,7 +198,7 @@ public class Sondage {
 	 * 			the user to add
 	 */
 	public void addParticipant(Utilisateur user) {
-		Objects.requireNonNull(user, "L'utilisateur ne doit pas être nul");
+		Objects.requireNonNull(user, "L'utilisateur ne doit pas ï¿½tre nul");
 		this.participants.add(user);
 	}
 }

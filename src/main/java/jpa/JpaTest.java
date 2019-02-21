@@ -35,8 +35,8 @@ public class JpaTest {
 		tx.begin();
 
 		try {
-			//Création d'un utilisateur et ses rôles et alergies
-			UtilisateurServiceImpl userServ = new UtilisateurServiceImpl();
+			//Crï¿½ation d'un utilisateur et ses rï¿½les et alergies
+			/*UtilisateurServiceImpl userServ = new UtilisateurServiceImpl();
 			Collection<Role> roles = new ArrayList<Role>();
 			Role r1 = new Role();
 			Role r2 = new Role();
@@ -57,11 +57,11 @@ public class JpaTest {
 			alergie.setName("sucre");
 			alergies.add(alergie);
 			
-			ut1.setAlergies(alergies);
+			ut1.setAlergies(alergies);*/
 			//userServ.createUtilisateur(ut1);
 			
 			/*
-			//Création des plages horaires pour le sondage
+			//Crï¿½ation des plages horaires pour le sondage
 			Date date1 = new Date(2019,2,15);
 			Date date2 = new Date(2019,2,15);
 			Date date3 = new Date(2019,2,18);
@@ -85,7 +85,7 @@ public class JpaTest {
 			dates.add(plage2);
 			dates.add(plage3);
 			
-			//Création d'un sondage
+			//Crï¿½ation d'un sondage
 			SondageServiceImpl sondageImp = new SondageServiceImpl();
 			Sondage sondage = new Sondage();
 			sondage.setCreateur(ut1);
@@ -94,13 +94,13 @@ public class JpaTest {
 			sondage.setDates(dates);
 			sondageImp.createSondage(sondage);*/
 			
-			Utilisateur user = manager.find(Utilisateur.class, 1L);
+			/*Utilisateur user = manager.find(Utilisateur.class, 1L);
 			for(Sondage s : user.getSondages()) {
-				System.out.println("Intulé" + s.getIntitule());
+				System.out.println("Intulï¿½" + s.getIntitule());
 			}
 			Preference pref = new Preference();
 			pref.setName("Soumbala");
-			user.addRole(r2);
+			user.addRole(r2);*/
 			//userServ.createUtilisateur(user);
 			
 			
