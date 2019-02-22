@@ -8,6 +8,7 @@ import javax.persistence.Id;
 public class Preference {
 	private long id;
 	private String name;
+	
 	/**
 	 * @return the id
 	 */

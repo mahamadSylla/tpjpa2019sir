@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class ReponseSondage {
 	private long id;
-	private Utilisateur utilisateur;
+	private Utilisateur participant;
 	private Sondage sondage;
 	private Collection<ChoixDate> choixDonnes;
 
@@ -42,19 +42,19 @@ public class ReponseSondage {
 	}
 
 	/**
-	 * @return the utilisateur
+	 * @return the participant
 	 */
 	@ManyToOne
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
+	public Utilisateur getParticipant() {
+		return participant;
 	}
 
 	/**
-	 * @param utilisateur
-	 *            the utilisateur to set
+	 * @param participant
+	 *            the participant to set
 	 */
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setParticipant(Utilisateur utilisateur) {
+		this.participant = utilisateur;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class ReponseSondage {
 	 * @return the choixDonnes
 	 */
 	@OneToMany
-	@JoinColumn(name="reponseId")
+	@JoinColumn(name="reponse_id")
 	public Collection<ChoixDate> getChoixDonnes() {
 		return choixDonnes;
 	}

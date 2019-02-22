@@ -3,6 +3,8 @@ package dao;
 import java.util.Collection;
 
 import jpa.Alergies;
+import jpa.Preference;
+import jpa.ReponseSondage;
 import jpa.Reunion;
 import jpa.Role;
 import jpa.Sondage;
@@ -13,18 +15,18 @@ public interface UtilisateurDAO {
 
 	public Collection<Utilisateur> listUtilisateurs();
 
-	public Role role(UtilisateurDAO utilisateur);
+	public void ajouterRole(int userId, Role r);
 
-	public void ajouterRole(UtilisateurDAO utilisateur);
+	public Collection<Sondage> sondagesCrees(int userId);
 
-	public Collection<Sondage> sondagesCrees();
+	public Collection<Alergies> alergies(int userId);
 
-	public Collection<Alergies> alergies(UtilisateurDAO utilisateur);
+	public Collection<Reunion> reunionsAssistees(int userId);
 
-	public Collection<Reunion> reunionsAssistees(UtilisateurDAO utilisateur);
+	public Collection<ReponseSondage> sondagesParticipes(int userId);
 
-	public Collection<Sondage> sondagesParticipes(UtilisateurDAO utilisateur);
-
-	public Collection<String> preferencesAlimentaire(UtilisateurDAO utilisateur, Reunion reunion);
+	public Collection<Preference> preferencesAlimentaire(int userId, int meetingId);
+	
+	public Collection<ReponseSondage> reponseA_unSondage(int userId, int surveyId);
 
 }

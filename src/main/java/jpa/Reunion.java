@@ -43,7 +43,6 @@ public class Reunion {
 	 */
 	@Id
 	@GeneratedValue
-	@Column(name = "idReunion")
 	public long getId() {
 		return id;
 	}
@@ -106,7 +105,7 @@ public class Reunion {
 	 * @return the participants
 	 */
 	@ManyToMany
-	@JoinTable(name = "userReunions", joinColumns = @JoinColumn(name = "idReunion"), inverseJoinColumns = @JoinColumn(name = "idParticipant"))
+	//@JoinTable(name = "userReunions", joinColumns = @JoinColumn(name = "idReunion"), inverseJoinColumns = @JoinColumn(name = "idParticipant"))
 	public Collection<Utilisateur> getParticipants() {
 		return participants;
 	}

@@ -10,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 import dao.UtilisateurDAO;
 import daoImpl.UtilisateurDaoImpl;
 import jpa.Alergies;
+import jpa.Preference;
+import jpa.ReponseSondage;
 import jpa.Reunion;
 import jpa.Role;
 import jpa.Sondage;
@@ -50,39 +52,34 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		
 	}
 
-	public Role role(UtilisateurDAO utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void ajouterRole(UtilisateurDAO utilisateur) {
-		// TODO Auto-generated method stub
+	public void ajouterRole(int userId, Role r) {
+		utilisateurDAO.ajouterRole(userId, r);
 		
 	}
 
-	public Collection<Sondage> sondagesCrees() {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Sondage> sondagesCrees(int userId) {
+		return utilisateurDAO.sondagesCrees(userId);
+	}
+	@Path("/alergies")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Alergies> alergies(int userId) {
+		return utilisateurDAO.alergies(userId);
 	}
 
-	public Collection<Alergies> alergies(UtilisateurDAO utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Reunion> reunionsAssistees(int userId) {
+		return utilisateurDAO.reunionsAssistees(userId);
+	}
+	public Collection<Preference> preferencesAlimentaire(int userId, int meetingId) {
+		return utilisateurDAO.preferencesAlimentaire(userId, meetingId);
 	}
 
-	public Collection<Reunion> reunionsAssistees(UtilisateurDAO utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<ReponseSondage> reponseA_unSondage(int userId, int surveyId) {
+		return utilisateurDAO.reponseA_unSondage(userId, surveyId);
 	}
 
-	public Collection<Sondage> sondagesParticipes(UtilisateurDAO utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Collection<String> preferencesAlimentaire(UtilisateurDAO utilisateur, Reunion reunion) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<ReponseSondage> sondagesParticipes(int userId) {
+		return utilisateurDAO.sondagesParticipes(userId);
 	}
 
 }

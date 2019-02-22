@@ -17,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -51,7 +53,7 @@ public class Utilisateur {
 		this.preferences = new HashSet<Preference>();
 		this.reponseSondages = new ArrayList<ReponseSondage>();
 	}
-	
+
 	/**
 	 * @return the id
 	 */
@@ -62,19 +64,17 @@ public class Utilisateur {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
-
-
 	/**
 	 * @return the mail
 	 */
-	@Column(nullable=false, unique=true)
+	@Column(nullable = false, unique = true)
 	public String getMail() {
 		return mail;
 	}
@@ -120,7 +120,7 @@ public class Utilisateur {
 	/**
 	 * @return the role
 	 */
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "idUser")
 	public Collection<Role> getRole() {
 		return role;
@@ -137,7 +137,7 @@ public class Utilisateur {
 	/**
 	 * @return the sondages
 	 */
-	@OneToMany(mappedBy="createur", cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy = "createur", cascade = CascadeType.PERSIST)
 	public Collection<Sondage> getSondages() {
 		return sondages;
 	}
@@ -169,13 +169,14 @@ public class Utilisateur {
 	/**
 	 * @return the reponseSondages
 	 */
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="utilisateur")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="participant")
 	public Collection<ReponseSondage> getReponseSondages() {
 		return reponseSondages;
 	}
 
 	/**
-	 * @param reponseSondages the reponseSondages to set
+	 * @param reponseSondages
+	 *            the reponseSondages to set
 	 */
 	public void setReponseSondages(Collection<ReponseSondage> reponseSondages) {
 		this.reponseSondages = reponseSondages;
@@ -184,14 +185,15 @@ public class Utilisateur {
 	/**
 	 * @return the preferences
 	 */
-	@OneToMany(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="userId")
+	@OneToMany(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "userId")
 	public Collection<Preference> getPreferences() {
 		return preferences;
 	}
 
 	/**
-	 * @param preferences the preferences to set
+	 * @param preferences
+	 *            the preferences to set
 	 */
 	public void setPreferences(Collection<Preference> preferences) {
 		this.preferences = preferences;
@@ -200,7 +202,7 @@ public class Utilisateur {
 	/**
 	 * @return the alergies
 	 */
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "idUser")
 	public Collection<Alergies> getAlergies() {
 		return alergies;
@@ -213,45 +215,46 @@ public class Utilisateur {
 	public void setAlergies(Collection<Alergies> alergies) {
 		this.alergies = alergies;
 	}
-	
+
 	/**
 	 * @param role
-	 * 			the role to add
+	 *            the role to add
 	 */
 	public void addRole(Role role) {
 		Objects.requireNonNull(role, "Le role ne doit pas �tre null");
 		this.role.add(role);
 	}
-	
+
 	/**
 	 * @param reunion
-	 * 			the reunion to add
+	 *            the reunion to add
 	 */
 	public void addReunion(Reunion reunion) {
 		Objects.requireNonNull(reunion, "La reunion ne doit pas �tre null");
 		this.reunions.add(reunion);
 	}
-	
+
 	/**
 	 * @param reunion
-	 * 			the sondage to add
+	 *            the sondage to add
 	 */
 	public void addSondage(Sondage sondage) {
 		Objects.requireNonNull(sondage, "Le sondage ne doit pas �tre null");
 		this.sondages.add(sondage);
 	}
-	
+
 	/**
 	 * @param alergie
-	 * 			the alergie to add
+	 *            the alergie to add
 	 */
 	public void addAlergie(Alergies alergie) {
 		Objects.requireNonNull(alergie, "Ne doit pas �tre nul");
 		this.alergies.add(alergie);
 	}
+
 	/**
 	 * @param alergie
-	 * 			the alergie to remove
+	 *            the alergie to remove
 	 */
 	public boolean removeAlergie(Alergies alergie) {
 		Objects.requireNonNull(alergie, "Ne doit pas �tre nul");
@@ -260,22 +263,24 @@ public class Utilisateur {
 		}
 		return this.alergies.remove(alergie);
 	}
-	
+
 	/**
 	 * @param preference
-	 * 			the preference to add
+	 *            the preference to add
 	 */
 	public void addPreference(Preference preference) {
 		Objects.requireNonNull(preference, "Ne doit pas �tre nul");
 		this.preferences.add(preference);
 	}
+
 	/**
 	 * @param preference
-	 * 			the preference to remove
+	 *            the preference to remove
 	 */
 	public boolean removePreference(Preference preference) {
 		Objects.requireNonNull(preference, "Ne doit pas �tre nul");
 		if(!this.preferences.contains(preference)) {
+
 			return false;
 		}
 		return this.preferences.remove(preference);

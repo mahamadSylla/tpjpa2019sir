@@ -21,7 +21,7 @@ public class Sondage {
 	private String participatedWebLink;
 	//private String chooseFoodWebLink;
 	private Collection<ChoixDate> dates;
-	private Reunion reunion;
+	//private Reunion reunion;
 	private Utilisateur createur;
 	private Collection<Utilisateur> participants;
 	private Collection<ReponseSondage> reponseSondages;
@@ -41,11 +41,11 @@ public class Sondage {
 
 	/**
 	 * @param reponseSondages the reponseSondages to set
-	 */
+	*/
 	public void setReponseSondages(Collection<ReponseSondage> reponseSondages) {
 		this.reponseSondages = reponseSondages;
 	}
-
+ 
 	/**
 	 * @return the id
 	 */
@@ -143,20 +143,20 @@ public class Sondage {
 
 	/**
 	 * @return the reunion
-	 */
-	@OneToOne(mappedBy="sondage")
+	 
+	@OneToOne
 	public Reunion getReunion() {
 		return reunion;
 	}
-
+*/
 	/**
 	 * @param reunion
 	 *            the reunion to set
-	 */
+	
 	public void setReunion(Reunion reunion) {
 		this.reunion = reunion;
 	}
-
+ */
 	/**
 	 * @return the createur
 	 */
