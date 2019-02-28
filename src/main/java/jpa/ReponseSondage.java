@@ -4,17 +4,19 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 @Entity
 public class ReponseSondage {
-	private long id;
+	private int id;
 	private Utilisateur participant;
 	private Sondage sondage;
 	private Collection<ChoixDate> choixDonnes;
@@ -29,7 +31,7 @@ public class ReponseSondage {
 	 */
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -37,7 +39,7 @@ public class ReponseSondage {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -45,6 +47,7 @@ public class ReponseSondage {
 	 * @return the participant
 	 */
 	@ManyToOne
+	@JsonManagedReference(value="utilisateur_reponse")
 	public Utilisateur getParticipant() {
 		return participant;
 	}
@@ -60,8 +63,9 @@ public class ReponseSondage {
 	/**
 	 * @return the sondage
 	 */
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="sondage_id")
+	@JsonManagedReference(value="sondage_reponse")
 	public Sondage getSondage() {
 		return sondage;
 	}

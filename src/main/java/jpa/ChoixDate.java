@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class ChoixDate {
 
-	private long id;
+	private int id;
 	private Date myDate;
 	private int debut;
 	private int fin;
@@ -22,7 +22,7 @@ public class ChoixDate {
 	 */
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -30,7 +30,7 @@ public class ChoixDate {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

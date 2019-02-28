@@ -6,7 +6,6 @@ package jpa;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  * @author Mahamadou SYLLA
@@ -15,7 +14,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Alergies {
 
-	private long id;
+	private int id;
 	private String name;
 
 	public Alergies() {
@@ -26,7 +25,7 @@ public class Alergies {
 	 */
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -34,7 +33,7 @@ public class Alergies {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

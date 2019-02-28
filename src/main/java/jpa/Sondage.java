@@ -9,25 +9,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
 public class Sondage {
-	private long id;
+	private int id;
 	private String intitule;
 	private String participatedWebLink;
 	//private String chooseFoodWebLink;
 	private Collection<ChoixDate> dates;
 	//private Reunion reunion;
 	private Utilisateur createur;
-	private Collection<Utilisateur> participants;
 	private Collection<ReponseSondage> reponseSondages;
 
 	public Sondage() {
-		this.participants = new HashSet<Utilisateur>();
 		this.reponseSondages = new HashSet<ReponseSondage>();
 	}
 
@@ -35,6 +34,7 @@ public class Sondage {
 	 * @return the reponseSondages
 	 */
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="sondage")
+	@JsonBackReference(value="sondage_reponse")
 	public Collection<ReponseSondage> getReponseSondages() {
 		return reponseSondages;
 	}
@@ -51,7 +51,7 @@ public class Sondage {
 	 */
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -59,7 +59,7 @@ public class Sondage {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -94,21 +94,6 @@ public class Sondage {
 	}
 */
 	
-	/**
-	 * @return the participants
-	 */
-	@ManyToMany()
-	public Collection<Utilisateur> getParticipants() {
-		return participants;
-	}
-
-	/**
-	 * @param participant the participant to set
-	 */
-	public void setParticipants(Collection<Utilisateur> participant) {
-		this.participants = participant;
-	}
-
 	/**
 	 * @return the participatedWebLink
 	*/ 
@@ -161,6 +146,7 @@ public class Sondage {
 	 * @return the createur
 	 */
 	@ManyToOne
+	@JsonManagedReference(value="utilisateur_sondage")
 	public Utilisateur getCreateur() {
 		return createur;
 	}
@@ -178,7 +164,7 @@ public class Sondage {
 	 * 			the date to add
 	 */
 	public void addChoix(ChoixDate date) {
-		Objects.requireNonNull(date, "La date ne doit pas ï¿½tre nulle");
+		Objects.requireNonNull(date, "La date ne doit pas être nulle");
 		this.dates.add(date);
 	}
 	
@@ -187,18 +173,10 @@ public class Sondage {
 	 * 			the date to remove
 	 */
 	public boolean removeChoix(ChoixDate date) {
-		Objects.requireNonNull(date, "Ne doit pas ï¿½tre vide");
+		Objects.requireNonNull(date, "Ne doit pas être vide");
 		if(!this.dates.contains(date)) {
 			return false;
 		}
 		return this.dates.remove(date);
-	}
-	/**
-	 * @param user
-	 * 			the user to add
-	 */
-	public void addParticipant(Utilisateur user) {
-		Objects.requireNonNull(user, "L'utilisateur ne doit pas ï¿½tre nul");
-		this.participants.add(user);
 	}
 }

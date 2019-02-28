@@ -25,8 +25,8 @@ public interface UtilisateurDAO {
 
 	public Collection<ReponseSondage> sondagesParticipes(int userId);
 
-	public Collection<Preference> preferencesAlimentaire(int userId, int meetingId);
+	public Collection<Preference> preferencesAlimentaire(int userId, int idReunion);
 	
-	public Collection<ReponseSondage> reponseA_unSondage(int userId, int surveyId);
+	public Collection<ReponseSondage> reponseA_unSondage(int userId, int idSondage);
 
 }

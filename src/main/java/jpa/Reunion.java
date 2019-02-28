@@ -19,13 +19,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 /**
  * @author Mahamadou SYLLA
+ * @author Linda YAO
  *
  */
 @Entity
 public class Reunion {
-	private long id;
+	private int id;
 	private String intitule;
 	private String resume;
 	private ChoixDate dateReunion;
@@ -43,7 +46,7 @@ public class Reunion {
 	 */
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -51,7 +54,7 @@ public class Reunion {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -105,7 +108,7 @@ public class Reunion {
 	 * @return the participants
 	 */
 	@ManyToMany
-	//@JoinTable(name = "userReunions", joinColumns = @JoinColumn(name = "idReunion"), inverseJoinColumns = @JoinColumn(name = "idParticipant"))
+	@JsonBackReference(value="utilisateur_reunion")
 	public Collection<Utilisateur> getParticipants() {
 		return participants;
 	}

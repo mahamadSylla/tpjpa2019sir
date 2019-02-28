@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Preference {
-	private long id;
+	private int id;
 	private String name;
 	
 	/**
@@ -14,13 +14,13 @@ public class Preference {
 	 */
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	/**

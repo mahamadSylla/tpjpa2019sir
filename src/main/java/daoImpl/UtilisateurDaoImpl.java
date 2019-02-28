@@ -97,15 +97,15 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		}
 	}
 */
-	public Collection<Preference> preferencesAlimentaire(int userId, int meetingId) {
+	public Collection<Preference> preferencesAlimentaire(int userId, int idReunion) {
 		Objects.requireNonNull(userId, "ne dois pas être nul");
-		Objects.requireNonNull(meetingId, "ne dois pas être nul");
+		Objects.requireNonNull(idReunion, "ne dois pas être nul");
 		Utilisateur user = manager.find(Utilisateur.class, userId);
-		Reunion meeting = manager.find(Reunion.class, meetingId);
+		Reunion meeting = manager.find(Reunion.class, idReunion);
 		if(user != null && meeting != null) {
 			return manager.createNamedQuery("find_Preferences_User_meeting")
 					.setParameter("userId", userId)
-					.setParameter("reunionId", meetingId)
+					.setParameter("reunionId", idReunion)
 					.getResultList();
 		}else {
 			return null;
@@ -122,15 +122,15 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		}
 	}
 
-	public Collection<ReponseSondage> reponseA_unSondage(int userId, int surveyId) {
+	public Collection<ReponseSondage> reponseA_unSondage(int userId, int idSondage) {
 		Objects.requireNonNull(userId, "ne dois pas être nul");
-		Objects.requireNonNull(surveyId, "ne dois pas être nul");
+		Objects.requireNonNull(idSondage, "ne dois pas être nul");
 		Utilisateur user = manager.find(Utilisateur.class, userId);
-		Sondage sondage = manager.find(Sondage.class, surveyId);
+		Sondage sondage = manager.find(Sondage.class, idSondage);
 		if(user != null && sondage != null) {
 			return manager.createNamedQuery("find_Answers_User_survey")
 					.setParameter("userId", userId)
-					.setParameter("sondageId", surveyId)
+					.setParameter("sondageId", idSondage)
 					.getResultList();
 		}else {
 			return null;
@@ -138,7 +138,6 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	}
 
 	public Collection<ReponseSondage> sondagesParticipes(int userId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

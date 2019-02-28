@@ -23,6 +23,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 /**
  * @author Mahamadou SYLLA
  *
@@ -35,7 +38,7 @@ import javax.persistence.OneToMany;
 	//@NamedQuery(name = "find_Survey_User", query = "SELECT u.sondages, FROM Utilisateur u"),
 })
 public class Utilisateur {
-	private long id;
+	private int id;
 	private String mail;
 	private String firstName;
 	private String name;
@@ -59,7 +62,7 @@ public class Utilisateur {
 	 */
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -67,7 +70,7 @@ public class Utilisateur {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -120,7 +123,7 @@ public class Utilisateur {
 	/**
 	 * @return the role
 	 */
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "idUser")
 	public Collection<Role> getRole() {
 		return role;
@@ -137,7 +140,8 @@ public class Utilisateur {
 	/**
 	 * @return the sondages
 	 */
-	@OneToMany(mappedBy = "createur", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "createur", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JsonBackReference(value="utilisateur_sondage")
 	public Collection<Sondage> getSondages() {
 		return sondages;
 	}
@@ -146,6 +150,7 @@ public class Utilisateur {
 	 * @param sondages
 	 *            the sondages to set
 	 */
+	
 	public void setSondages(Collection<Sondage> sondages) {
 		this.sondages = sondages;
 	}
@@ -154,6 +159,7 @@ public class Utilisateur {
 	 * @return the Reunions
 	 */
 	@ManyToMany(mappedBy = "participants")
+	@JsonManagedReference(value="utilisateur_reunion")
 	public Collection<Reunion> getReunions() {
 		return reunions;
 	}
@@ -169,7 +175,8 @@ public class Utilisateur {
 	/**
 	 * @return the reponseSondages
 	 */
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="participant")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="participant")
+	@JsonBackReference(value="utilisateur_reponse")
 	public Collection<ReponseSondage> getReponseSondages() {
 		return reponseSondages;
 	}
@@ -185,7 +192,7 @@ public class Utilisateur {
 	/**
 	 * @return the preferences
 	 */
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "userId")
 	public Collection<Preference> getPreferences() {
 		return preferences;
@@ -202,7 +209,7 @@ public class Utilisateur {
 	/**
 	 * @return the alergies
 	 */
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "idUser")
 	public Collection<Alergies> getAlergies() {
 		return alergies;
@@ -239,7 +246,7 @@ public class Utilisateur {
 	 *            the sondage to add
 	 */
 	public void addSondage(Sondage sondage) {
-		Objects.requireNonNull(sondage, "Le sondage ne doit pas ï¿½tre null");
+		Objects.requireNonNull(sondage, "Le sondage ne doit pas être null");
 		this.sondages.add(sondage);
 	}
 
@@ -248,7 +255,7 @@ public class Utilisateur {
 	 *            the alergie to add
 	 */
 	public void addAlergie(Alergies alergie) {
-		Objects.requireNonNull(alergie, "Ne doit pas ï¿½tre nul");
+		Objects.requireNonNull(alergie, "Ne doit pas être nul");
 		this.alergies.add(alergie);
 	}
 
@@ -257,7 +264,7 @@ public class Utilisateur {
 	 *            the alergie to remove
 	 */
 	public boolean removeAlergie(Alergies alergie) {
-		Objects.requireNonNull(alergie, "Ne doit pas ï¿½tre nul");
+		Objects.requireNonNull(alergie, "Ne doit pas être nul");
 		if(!this.alergies.contains(alergie)) {
 			return false;
 		}
@@ -269,7 +276,7 @@ public class Utilisateur {
 	 *            the preference to add
 	 */
 	public void addPreference(Preference preference) {
-		Objects.requireNonNull(preference, "Ne doit pas ï¿½tre nul");
+		Objects.requireNonNull(preference, "Ne doit pas être nul");
 		this.preferences.add(preference);
 	}
 
