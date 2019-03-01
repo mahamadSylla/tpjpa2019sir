@@ -10,8 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import dao.UtilisateurDAO;
 import daoImpl.UtilisateurDaoImpl;
+import daoInterfaces.UtilisateurDAO;
 import jpa.Alergies;
 import jpa.Preference;
 import jpa.ReponseSondage;
@@ -38,64 +38,65 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		this.utilisateurDAO = new UtilisateurDaoImpl();
 	}
 
-	public void createUtilisateur(Utilisateur user) {
-		this.utilisateurDAO.createUtilisateur(user);
-
-	}
-
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Utilisateur> listUtilisateurs() {
 		return utilisateurDAO.listUtilisateurs();
-
 	}
+
+	@POST
+	@Path("/creerUtilisateur")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void creerUtilisateur(Utilisateur user) {
+		this.utilisateurDAO.creerUtilisateur(user);
+	}
+
 	@POST
 	@Path("{id}/ajouterRole")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void ajouterRole(@PathParam("id")int userId, Role r) {
+	public void ajouterRole(@PathParam("id") int userId, Role r) {
 		utilisateurDAO.ajouterRole(userId, r);
-
 	}
 
 	@GET
-	@Path("/creerSondage")
+	@Path("{id}/sondagesCrees")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Sondage> sondagesCrees(int userId) {
+	public Collection<Sondage> sondagesCrees(@PathParam("id") int userId) {
 		return utilisateurDAO.sondagesCrees(userId);
 	}
 
 	@GET
-	@Path("/alergies")
+	@Path("{id}/alergies")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Alergies> alergies(int userId) {
+	public Collection<Alergies> alergies(@PathParam("id") int userId) {
 		return utilisateurDAO.alergies(userId);
 	}
 
 	@GET
-	@Path("/reunions")
+	@Path("/{id}/reunionsAssistees")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Reunion> reunionsAssistees(int userId) {
+	public Collection<Reunion> reunionsAssistees(@PathParam("id") int userId) {
 		return utilisateurDAO.reunionsAssistees(userId);
 	}
-	
+
 	@GET
-	@Path("/preferences")
+	@Path("/{id1}/{id2}/preferences")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Preference> preferencesAlimentaire(int userId, int meetingId) {
+	public Collection<Preference> preferencesAlimentaire(@PathParam("id1") int userId, @PathParam("id2") int meetingId) {
 		return utilisateurDAO.preferencesAlimentaire(userId, meetingId);
 	}
 
 	@GET
-	@Path("/reponsesSondage")
+	@Path("/{id1}/{id2}/reponsesSondage")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<ReponseSondage> reponseA_unSondage(int userId, int surveyId) {
-		return utilisateurDAO.reponseA_unSondage(userId, surveyId);
+	public Collection<ReponseSondage> reponseA_unSondage(@PathParam("id1") int userId, @PathParam("id") int idSondage) {
+		return utilisateurDAO.reponseA_unSondage(userId, idSondage);
 	}
 
 	@GET
-	@Path("/sondageParticipes")
+	@Path("{id}/sondageParticipes")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<ReponseSondage> sondagesParticipes(int userId) {
+	public Collection<ReponseSondage> sondagesParticipes(@PathParam("id") int userId) {
 		return utilisateurDAO.sondagesParticipes(userId);
 	}
 

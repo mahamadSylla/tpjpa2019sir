@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
 public class ReponseSondage {
@@ -47,7 +47,7 @@ public class ReponseSondage {
 	 * @return the participant
 	 */
 	@ManyToOne
-	@JsonManagedReference(value="utilisateur_reponse")
+	@JsonBackReference(value = "utilisateur_reponse")
 	public Utilisateur getParticipant() {
 		return participant;
 	}
@@ -64,8 +64,8 @@ public class ReponseSondage {
 	 * @return the sondage
 	 */
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="sondage_id")
-	@JsonManagedReference(value="sondage_reponse")
+	@JoinColumn(name = "sondage_id")
+	@JsonBackReference(value = "sondage_reponse")
 	public Sondage getSondage() {
 		return sondage;
 	}
@@ -82,7 +82,7 @@ public class ReponseSondage {
 	 * @return the choixDonnes
 	 */
 	@OneToMany
-	@JoinColumn(name="reponse_id")
+	@JoinColumn(name = "reponse_id")
 	public Collection<ChoixDate> getChoixDonnes() {
 		return choixDonnes;
 	}
@@ -100,7 +100,7 @@ public class ReponseSondage {
 	 *            the date to add
 	 */
 	public void addChoix(ChoixDate date) {
-		Objects.requireNonNull(date, "La date ne doit pas ï¿½tre nulle");
+		Objects.requireNonNull(date, "La date ne doit pas être nulle");
 		this.choixDonnes.add(date);
 	}
 
@@ -109,7 +109,7 @@ public class ReponseSondage {
 	 *            the date to remove
 	 */
 	public boolean removeChoix(ChoixDate date) {
-		Objects.requireNonNull(date, "Ne doit pas ï¿½tre vide");
+		Objects.requireNonNull(date, "Ne doit pas être nulle");
 		if (!this.choixDonnes.contains(date)) {
 			return false;
 		}

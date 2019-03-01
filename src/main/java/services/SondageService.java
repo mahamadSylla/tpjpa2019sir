@@ -1,6 +1,6 @@
 package services;
 
-import dao.SondageDAO;
+import daoInterfaces.SondageDAO;
 
 public interface SondageService extends SondageDAO{
 

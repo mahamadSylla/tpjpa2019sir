@@ -1,6 +1,6 @@
 package services;
 
-import dao.ReunionDAO;
+import daoInterfaces.ReunionDAO;
 
 public interface ReunionService extends ReunionDAO{
 

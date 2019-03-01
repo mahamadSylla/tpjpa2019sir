@@ -24,6 +24,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
@@ -31,11 +32,12 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
  *
  */
 @Entity
-@NamedQueries({
-	@NamedQuery(name = "find_All_Users", query = "SELECT u FROM Utilisateur u"),
-	@NamedQuery(name = "find_Survey_User", query = "SELECT s FROM Utilisateur u join u.sondages s"),
-	//@NamedQuery(name = "find_Meetings_User", query = "SELECT u.reunions FROM Utilisateur u"),
-	//@NamedQuery(name = "find_Survey_User", query = "SELECT u.sondages, FROM Utilisateur u"),
+@NamedQueries({ @NamedQuery(name = "find_All_Users", query = "SELECT u FROM Utilisateur u"),
+		@NamedQuery(name = "find_Survey_User", query = "SELECT s FROM Utilisateur u join u.sondages s"),
+		// @NamedQuery(name = "find_Meetings_User", query = "SELECT u.reunions FROM
+		// Utilisateur u"),
+		// @NamedQuery(name = "find_Survey_User", query = "SELECT u.sondages, FROM
+		// Utilisateur u"),
 })
 public class Utilisateur {
 	private int id;
@@ -123,7 +125,7 @@ public class Utilisateur {
 	/**
 	 * @return the role
 	 */
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idUser")
 	public Collection<Role> getRole() {
 		return role;
@@ -140,8 +142,8 @@ public class Utilisateur {
 	/**
 	 * @return the sondages
 	 */
-	@OneToMany(mappedBy = "createur", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JsonBackReference(value="utilisateur_sondage")
+	@OneToMany(mappedBy = "createur", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JsonManagedReference(value = "utilisateur_sondage")
 	public Collection<Sondage> getSondages() {
 		return sondages;
 	}
@@ -150,7 +152,7 @@ public class Utilisateur {
 	 * @param sondages
 	 *            the sondages to set
 	 */
-	
+
 	public void setSondages(Collection<Sondage> sondages) {
 		this.sondages = sondages;
 	}
@@ -159,7 +161,7 @@ public class Utilisateur {
 	 * @return the Reunions
 	 */
 	@ManyToMany(mappedBy = "participants")
-	@JsonManagedReference(value="utilisateur_reunion")
+	@JsonIgnore
 	public Collection<Reunion> getReunions() {
 		return reunions;
 	}
@@ -175,8 +177,8 @@ public class Utilisateur {
 	/**
 	 * @return the reponseSondages
 	 */
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="participant")
-	@JsonBackReference(value="utilisateur_reponse")
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "participant")
+	@JsonManagedReference(value = "utilisateur_reponse")
 	public Collection<ReponseSondage> getReponseSondages() {
 		return reponseSondages;
 	}
@@ -192,7 +194,7 @@ public class Utilisateur {
 	/**
 	 * @return the preferences
 	 */
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "userId")
 	public Collection<Preference> getPreferences() {
 		return preferences;
@@ -209,7 +211,7 @@ public class Utilisateur {
 	/**
 	 * @return the alergies
 	 */
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idUser")
 	public Collection<Alergies> getAlergies() {
 		return alergies;
@@ -265,9 +267,6 @@ public class Utilisateur {
 	 */
 	public boolean removeAlergie(Alergies alergie) {
 		Objects.requireNonNull(alergie, "Ne doit pas être nul");
-		if(!this.alergies.contains(alergie)) {
-			return false;
-		}
 		return this.alergies.remove(alergie);
 	}
 
@@ -285,8 +284,8 @@ public class Utilisateur {
 	 *            the preference to remove
 	 */
 	public boolean removePreference(Preference preference) {
-		Objects.requireNonNull(preference, "Ne doit pas ï¿½tre nul");
-		if(!this.preferences.contains(preference)) {
+		Objects.requireNonNull(preference, "Ne doit pas être nul");
+		if (!this.preferences.contains(preference)) {
 
 			return false;
 		}

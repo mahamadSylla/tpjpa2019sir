@@ -1,4 +1,4 @@
-package dao;
+package daoInterfaces;
 
 import java.util.Collection;
 
@@ -11,7 +11,7 @@ import jpa.Sondage;
 import jpa.Utilisateur;
 
 public interface UtilisateurDAO {
-	public void createUtilisateur(Utilisateur user);
+	public void creerUtilisateur(Utilisateur user);
 
 	public Collection<Utilisateur> listUtilisateurs();
 

@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  * @author Mahamadou SYLLA
@@ -108,7 +109,6 @@ public class Reunion {
 	 * @return the participants
 	 */
 	@ManyToMany
-	@JsonBackReference(value="utilisateur_reunion")
 	public Collection<Utilisateur> getParticipants() {
 		return participants;
 	}

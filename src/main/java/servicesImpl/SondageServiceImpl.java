@@ -10,7 +10,7 @@ import services.SondageService;
 public class SondageServiceImpl implements SondageService{
 
 	public SondageServiceImpl() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public void sondage() {
@@ -53,7 +53,7 @@ public class SondageServiceImpl implements SondageService{
 		return null;
 	}
 
-	public void createSondage(Sondage sondage) {
+	public void creerSondage(Sondage sondage) {
 		// TODO Auto-generated method stub
 		
 	}

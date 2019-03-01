@@ -9,7 +9,7 @@ import java.util.Objects;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import dao.UtilisateurDAO;
+import daoInterfaces.UtilisateurDAO;
 import jpa.Alergies;
 import jpa.EntityManagerHelper;
 import jpa.Preference;
@@ -40,7 +40,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	}
 
-	public void createUtilisateur(Utilisateur user) {
+	public void creerUtilisateur(Utilisateur user) {
 		EntityManagerHelper.beginTransaction();
 		this.manager.persist(user);
 		EntityManagerHelper.commit();
@@ -53,8 +53,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		Objects.requireNonNull(userId, "ne doit pas être nul");
 		Objects.requireNonNull(r, "ne doit pas être nul");
 		Utilisateur user = manager.find(Utilisateur.class, userId);
-		Role role = manager.find(Role.class, r);
-		if(user != null && role != null) {
+		if(user != null) {
 			EntityManagerHelper.beginTransaction();
 			user.addRole(r);
 			this.manager.persist(user);

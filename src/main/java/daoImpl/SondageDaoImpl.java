@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.EntityManager;
 
-import dao.SondageDAO;
+import daoInterfaces.SondageDAO;
 import jpa.EntityManagerHelper;
 import jpa.Sondage;
 import jpa.Utilisateur;
@@ -22,7 +22,7 @@ public class SondageDaoImpl implements SondageDAO {
 		// TODO Auto-generated method stub
 		
 	}
-	public void createSondage(Sondage sondage) {
+	public void creerSondage(Sondage sondage) {
 		EntityManagerHelper.beginTransaction();
 		this.manager.persist(sondage);
 		EntityManagerHelper.commit();
@@ -45,10 +45,6 @@ public class SondageDaoImpl implements SondageDAO {
 	public void validerUneDate(Date date) {
 		// TODO Auto-generated method stub
 		
-	}
-	public Collection<Utilisateur> participants(Sondage sondage) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 

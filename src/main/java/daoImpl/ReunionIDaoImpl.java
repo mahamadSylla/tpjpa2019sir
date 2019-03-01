@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.EntityManager;
 
-import dao.ReunionDAO;
+import daoInterfaces.ReunionDAO;
 import jpa.Sondage;
 import jpa.Utilisateur;
 

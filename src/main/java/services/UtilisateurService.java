@@ -1,6 +1,6 @@
 package services;
 
-import dao.UtilisateurDAO;
+import daoInterfaces.UtilisateurDAO;
 
 public interface UtilisateurService  extends UtilisateurDAO{
 

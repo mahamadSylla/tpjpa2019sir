@@ -23,6 +23,7 @@ public class Sondage {
 	//private String chooseFoodWebLink;
 	private Collection<ChoixDate> dates;
 	//private Reunion reunion;
+	//private ChoixDate dateRetenue;
 	private Utilisateur createur;
 	private Collection<ReponseSondage> reponseSondages;
 
@@ -33,8 +34,8 @@ public class Sondage {
 	/**
 	 * @return the reponseSondages
 	 */
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="sondage")
-	@JsonBackReference(value="sondage_reponse")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="sondage")
+	@JsonManagedReference(value="sondage_reponse")
 	public Collection<ReponseSondage> getReponseSondages() {
 		return reponseSondages;
 	}
@@ -112,7 +113,7 @@ public class Sondage {
 	/**
 	 * @return the dates
 	 */
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="sondage_id")
 	public Collection<ChoixDate> getDates() {
 		return dates;
@@ -146,7 +147,7 @@ public class Sondage {
 	 * @return the createur
 	 */
 	@ManyToOne
-	@JsonManagedReference(value="utilisateur_sondage")
+	@JsonBackReference(value="utilisateur_sondage")
 	public Utilisateur getCreateur() {
 		return createur;
 	}

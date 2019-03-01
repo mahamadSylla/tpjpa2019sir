@@ -70,7 +70,7 @@ public class ChoixDate {
 	public Date getMyDate() {
 		return myDate;
 	}
-
+	
 	/**
 	 * @param myDate
 	 *            the myDate to set
