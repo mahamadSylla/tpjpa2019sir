@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
@@ -22,8 +23,7 @@ public class Sondage {
 	private String participatedWebLink;
 	//private String chooseFoodWebLink;
 	private Collection<ChoixDate> dates;
-	//private Reunion reunion;
-	//private ChoixDate dateRetenue;
+	private ChoixDate dateRetenue;
 	private Utilisateur createur;
 	private Collection<ReponseSondage> reponseSondages;
 
@@ -31,22 +31,6 @@ public class Sondage {
 		this.reponseSondages = new HashSet<ReponseSondage>();
 	}
 
-	/**
-	 * @return the reponseSondages
-	 */
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="sondage")
-	@JsonManagedReference(value="sondage_reponse")
-	public Collection<ReponseSondage> getReponseSondages() {
-		return reponseSondages;
-	}
-
-	/**
-	 * @param reponseSondages the reponseSondages to set
-	*/
-	public void setReponseSondages(Collection<ReponseSondage> reponseSondages) {
-		this.reponseSondages = reponseSondages;
-	}
- 
 	/**
 	 * @return the id
 	 */
@@ -63,7 +47,15 @@ public class Sondage {
 	public void setId(int id) {
 		this.id = id;
 	}
+	@OneToOne
+	public ChoixDate getDateRetenue() {
+		return dateRetenue;
+	}
 
+	public void setDateRetenue(ChoixDate dateRetenue) {
+		this.dateRetenue = dateRetenue;
+	}
+	
 	/**
 	 * @return the intitule
 	 */
@@ -128,21 +120,21 @@ public class Sondage {
 	}
 
 	/**
-	 * @return the reunion
-	 
-	@OneToOne
-	public Reunion getReunion() {
-		return reunion;
+	 * @return the reponseSondages
+	 */
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="sondage")
+	@JsonManagedReference(value="sondage_reponse")
+	public Collection<ReponseSondage> getReponseSondages() {
+		return reponseSondages;
 	}
-*/
+
 	/**
-	 * @param reunion
-	 *            the reunion to set
-	
-	public void setReunion(Reunion reunion) {
-		this.reunion = reunion;
+	 * @param reponseSondages the reponseSondages to set
+	*/
+	public void setReponseSondages(Collection<ReponseSondage> reponseSondages) {
+		this.reponseSondages = reponseSondages;
 	}
- */
+ 
 	/**
 	 * @return the createur
 	 */
@@ -180,4 +172,5 @@ public class Sondage {
 		}
 		return this.dates.remove(date);
 	}
+
 }

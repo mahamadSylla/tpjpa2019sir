@@ -3,6 +3,7 @@ package daoInterfaces;
 import java.util.Collection;
 
 import jpa.Alergies;
+import jpa.ChoixDate;
 import jpa.Preference;
 import jpa.ReponseSondage;
 import jpa.Reunion;
@@ -23,10 +24,12 @@ public interface UtilisateurDAO {
 
 	public Collection<Reunion> reunionsAssistees(int userId);
 
+	public Collection<Reunion> reunionsManquees(int userId);
+
 	public Collection<ReponseSondage> sondagesParticipes(int userId);
 
 	public Collection<Preference> preferencesAlimentaire(int userId, int idReunion);
-	
-	public Collection<ReponseSondage> reponseA_unSondage(int userId, int idSondage);
+
+	public Collection<ChoixDate> reponseA_unSondage(int userId, int idSondage);
 
 }

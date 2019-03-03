@@ -1,23 +1,23 @@
 package daoInterfaces;
 
-import java.sql.Date;
 import java.util.Collection;
 
+import jpa.ChoixDate;
+import jpa.ReponseSondage;
 import jpa.Sondage;
 import jpa.Utilisateur;
 
 public interface SondageDAO {
-	public void sondage();
+	public Collection<Sondage> listSondage();
+	
+	public Sondage sondage(int idSondage);
 
-	public void listSondage();
+	public void creerSondage(int idUser, Sondage sondage);
 
-	public void creerSondage(Sondage sondage);
+	public Utilisateur createurSondage(int idSondage);
 
-	public void dateRetenue(Sondage sondage);
+	public void validerUneDate(int idSondage, ChoixDate date);
+	
+	public Collection<ReponseSondage> datesProposees(int idSondage);
 
-	public void datesProposees(Sondage sondage);
-
-	public void createurSondage(Sondage sondage);
-
-	public void validerUneDate(Date date);
 }

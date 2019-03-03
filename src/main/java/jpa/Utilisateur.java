@@ -32,30 +32,27 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
  *
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "find_All_Users", query = "SELECT u FROM Utilisateur u"),
-		@NamedQuery(name = "find_Survey_User", query = "SELECT s FROM Utilisateur u join u.sondages s"),
-		// @NamedQuery(name = "find_Meetings_User", query = "SELECT u.reunions FROM
-		// Utilisateur u"),
-		// @NamedQuery(name = "find_Survey_User", query = "SELECT u.sondages, FROM
-		// Utilisateur u"),
+@NamedQueries({ @NamedQuery(name = "find_All_Users", query = "SELECT u FROM Utilisateur u")
 })
 public class Utilisateur {
 	private int id;
 	private String mail;
 	private String firstName;
 	private String name;
-	private Collection<Reunion> reunions;
+	private Collection<Reunion> presences;
+	private Collection<Reunion> absences;
 	private Collection<Sondage> sondages;
 	private Collection<Role> role;
 	private Collection<Alergies> alergies;
-	private Collection<Preference> preferences;
+	//private Collection<Preference> preferences;
 	private Collection<ReponseSondage> reponseSondages;
 
 	public Utilisateur() {
-		this.reunions = new HashSet<Reunion>();
+		this.absences = new HashSet<Reunion>();
+		this.presences = new HashSet<Reunion>();
 		this.sondages = new HashSet<Sondage>();
 		this.alergies = new HashSet<Alergies>();
-		this.preferences = new HashSet<Preference>();
+		//this.preferences = new HashSet<Preference>();
 		this.reponseSondages = new ArrayList<ReponseSondage>();
 	}
 
@@ -126,7 +123,7 @@ public class Utilisateur {
 	 * @return the role
 	 */
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name = "idUser")
+	@JoinColumn(name = "utilisateur_id")
 	public Collection<Role> getRole() {
 		return role;
 	}
@@ -158,22 +155,50 @@ public class Utilisateur {
 	}
 
 	/**
-	 * @return the Reunions
+	 * @return the presences
 	 */
-	@ManyToMany(mappedBy = "participants")
+	@ManyToMany 
+	@JoinTable(name="les_presences",
+		        joinColumns = @JoinColumn (name="utilisateur_id"),
+		        inverseJoinColumns = @JoinColumn (name="reunion_id")
+	)
+	@JsonManagedReference(value = "utilisateur_present")
 	@JsonIgnore
-	public Collection<Reunion> getReunions() {
-		return reunions;
+	public Collection<Reunion> getPresences() {
+		return presences;
 	}
 
 	/**
 	 * @param reunions
-	 *            the Reunions to set
+	 *            the presence to set
 	 */
-	public void setReunions(Collection<Reunion> reunions) {
-		this.reunions = reunions;
+	public void setPresences(Collection<Reunion> presences) {
+		this.presences = presences;
 	}
 
+	/**
+	 * @return the absences
+	*/
+	@ManyToMany
+	@JoinTable(name = "les_absences",
+			joinColumns = @JoinColumn (name="utilisateur_id"),
+	        inverseJoinColumns = @JoinColumn (name="reunion_id")
+	)
+	@JsonManagedReference(value = "utilisateur_absent")
+	@JsonIgnore
+	public Collection<Reunion> getAbsences() {
+		return absences;
+	} 
+
+	/**
+	 * @param reunions
+	 *            the absences to set
+	 */
+	public void setAbsences(Collection<Reunion> absences) {
+		this.absences = absences;
+	}
+
+	
 	/**
 	 * @return the reponseSondages
 	 */
@@ -193,21 +218,21 @@ public class Utilisateur {
 
 	/**
 	 * @return the preferences
-	 */
+	 
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "userId")
 	public Collection<Preference> getPreferences() {
 		return preferences;
 	}
-
+*/
 	/**
 	 * @param preferences
 	 *            the preferences to set
-	 */
+	 
 	public void setPreferences(Collection<Preference> preferences) {
 		this.preferences = preferences;
 	}
-
+	*/
 	/**
 	 * @return the alergies
 	 */
@@ -240,7 +265,7 @@ public class Utilisateur {
 	 */
 	public void addReunion(Reunion reunion) {
 		Objects.requireNonNull(reunion, "La reunion ne doit pas ï¿½tre null");
-		this.reunions.add(reunion);
+		this.presences.add(reunion);
 	}
 
 	/**
@@ -271,18 +296,27 @@ public class Utilisateur {
 	}
 
 	/**
+	 * @param reponse
+	 *            the reponse to add
+	 */
+	public void addReponse(ReponseSondage reponse) {
+		Objects.requireNonNull(reponse, "Ne doit pas être nul");
+		this.reponseSondages.add(reponse);
+	}
+	
+	/**
 	 * @param preference
 	 *            the preference to add
-	 */
+	 
 	public void addPreference(Preference preference) {
 		Objects.requireNonNull(preference, "Ne doit pas être nul");
 		this.preferences.add(preference);
 	}
-
+*/
 	/**
 	 * @param preference
 	 *            the preference to remove
-	 */
+	 
 	public boolean removePreference(Preference preference) {
 		Objects.requireNonNull(preference, "Ne doit pas être nul");
 		if (!this.preferences.contains(preference)) {
@@ -290,5 +324,5 @@ public class Utilisateur {
 			return false;
 		}
 		return this.preferences.remove(preference);
-	}
+	}*/
 }

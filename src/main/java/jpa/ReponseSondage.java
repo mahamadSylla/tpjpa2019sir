@@ -10,11 +10,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
+@NamedQueries({ 
+	@NamedQuery(name = "findAnswersOfsurveyByUser", query = "SELECT r FROM ReponseSondage r WHERE r.participant.id = :participantId AND r.sondage.id = :sondageId")
+	})
+
 public class ReponseSondage {
 	private int id;
 	private Utilisateur participant;

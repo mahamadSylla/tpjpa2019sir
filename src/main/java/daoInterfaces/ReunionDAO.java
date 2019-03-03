@@ -3,16 +3,19 @@ package daoInterfaces;
 import java.util.Collection;
 
 import jpa.Utilisateur;
+import jpa.Reunion;
 import jpa.Sondage;;
 
 public interface ReunionDAO {
-	public void reunion();
+	public Reunion reunion(int idReunion);
 
-	public Sondage sondage();
+	public Sondage sondage(int idReunion);
 
-	public void listReunion();
+	public Collection<Reunion> listReunion();
 
-	public void createReunion();
-	
-	public Collection<Utilisateur> participants();
+	public void creerReunion(Reunion reunion);
+
+	public Collection<Utilisateur> presents(int idReunion);
+
+	public Collection<Utilisateur> absents(int idReunion);
 }

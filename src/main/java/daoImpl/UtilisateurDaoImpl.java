@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import daoInterfaces.UtilisateurDAO;
 import jpa.Alergies;
+import jpa.ChoixDate;
 import jpa.EntityManagerHelper;
 import jpa.Preference;
 import jpa.ReponseSondage;
@@ -80,13 +81,23 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		Objects.requireNonNull(userId, "ne dois pas être nul");
 		Utilisateur user = manager.find(Utilisateur.class, userId);
 		if(user != null) {
-			return user.getReunions();
+			return user.getPresences();
+		}else {
+			return null;
+		}
+	}
+	
+	public Collection<Reunion> reunionsManquees(int userId) {
+		Objects.requireNonNull(userId, "ne dois pas être nul");
+		Utilisateur user = manager.find(Utilisateur.class, userId);
+		if(user != null) {
+			return user.getAbsences();
 		}else {
 			return null;
 		}
 	}
 
-	/*public Collection<ReponseSondage> sondagesParticipes(int userId) {
+	public Collection<ReponseSondage> sondagesParticipes1(int userId) {
 		Objects.requireNonNull(userId, "ne dois pas être nul");
 		Utilisateur user = manager.find(Utilisateur.class, userId);
 		if(user != null) {
@@ -95,7 +106,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			return null;
 		}
 	}
-*/
+
 	public Collection<Preference> preferencesAlimentaire(int userId, int idReunion) {
 		Objects.requireNonNull(userId, "ne dois pas être nul");
 		Objects.requireNonNull(idReunion, "ne dois pas être nul");
@@ -121,19 +132,21 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		}
 	}
 
-	public Collection<ReponseSondage> reponseA_unSondage(int userId, int idSondage) {
-		Objects.requireNonNull(userId, "ne dois pas être nul");
-		Objects.requireNonNull(idSondage, "ne dois pas être nul");
-		Utilisateur user = manager.find(Utilisateur.class, userId);
-		Sondage sondage = manager.find(Sondage.class, idSondage);
+	public Collection<ChoixDate> reponseA_unSondage(int participantId, int sondageId) {
+		Objects.requireNonNull(participantId, "ne dois pas être nul");
+		Objects.requireNonNull(sondageId, "ne dois pas être nul");
+		Utilisateur user = manager.find(Utilisateur.class, participantId);
+		Sondage sondage = manager.find(Sondage.class, sondageId);
+		
 		if(user != null && sondage != null) {
-			return manager.createNamedQuery("find_Answers_User_survey")
-					.setParameter("userId", userId)
-					.setParameter("sondageId", idSondage)
-					.getResultList();
+			ReponseSondage r =  (ReponseSondage) manager.createNamedQuery("findAnswersOfsurveyByUser")
+					.setParameter("participantId", participantId)
+					.setParameter("sondageId", sondageId)
+					.getSingleResult();
+			return r.getChoixDonnes();
 		}else {
 			return null;
-		}
+		} 
 	}
 
 	public Collection<ReponseSondage> sondagesParticipes(int userId) {
