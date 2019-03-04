@@ -21,10 +21,10 @@ public class PreferenceId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "idParticipant")
-	private Utilisateur participant;
+	private int idParticipant;
 
 	@Column(name = "idReunion")
-	private Reunion reunion;
+	private int idReunion;
 
 	/**
 	 * construtor method
@@ -33,43 +33,42 @@ public class PreferenceId implements Serializable {
 	}
 
 	/**
-	 * @param participant
-	 * @param reunion
+	 * @param participantId
+	 * @param reunionId
 	 */
-	public PreferenceId(Utilisateur participant, Reunion reunion) {
-		super();
-		this.participant = participant;
-		this.reunion = reunion;
+	public PreferenceId(int idParticipant, int idReunion) {
+		this.idParticipant = idParticipant;
+		this.idReunion = idReunion;
 	}
 
 	/**
-	 * @return the participant
+	 * @return the participantId
 	 */
-	public Utilisateur getParticipant() {
-		return participant;
+	public int getParticipantId() {
+		return idParticipant;
 	}
 
 	/**
-	 * @param participant
+	 * @param idParticipant
 	 *            the participant to set
 	 */
-	public void setParticipant(Utilisateur participant) {
-		this.participant = participant;
+	public void setParticipantId(int idParticipant) {
+		this.idParticipant = idParticipant;
 	}
 
 	/**
 	 * @return the reunion
 	 */
-	public Reunion getReunion() {
-		return reunion;
+	public int getReunionId() {
+		return idReunion;
 	}
 
 	/**
-	 * @param reunion
-	 *            the reunion to set
+	 * @param reunionId
+	 *            the reunionId to set
 	 */
-	public void setReunion(Reunion reunion) {
-		this.reunion = reunion;
+	public void setReunionId(int reunionId) {
+		this.idReunion = reunionId;
 	}
 
 	@Override
@@ -79,13 +78,13 @@ public class PreferenceId implements Serializable {
 		if (!(o instanceof PreferenceId))
 			return false;
 		PreferenceId that = (PreferenceId) o;
-		return Objects.equals(getParticipant(), that.getParticipant())
-				&& Objects.equals(getReunion(), that.getReunion());
+		return Objects.equals(getParticipantId(), that.getParticipantId())
+				&& Objects.equals(getReunionId(), that.getReunionId());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getParticipant(), getReunion());
+		return Objects.hash(getParticipantId(), getReunionId());
 	}
 
 }

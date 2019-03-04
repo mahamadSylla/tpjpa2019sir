@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -17,6 +19,8 @@ import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "findAllSurvey", query = "SELECT s FROM Sondage s"),
+})
 public class Sondage {
 	private int id;
 	private String intitule;
@@ -171,6 +175,14 @@ public class Sondage {
 			return false;
 		}
 		return this.dates.remove(date);
+	}
+	/**
+	 * @param reponse
+	 *            the reponse to add
+	 */
+	public void addReponse(ReponseSondage reponse) {
+		Objects.requireNonNull(reponse, "Ne doit pas être nul");
+		this.reponseSondages.add(reponse);
 	}
 
 }

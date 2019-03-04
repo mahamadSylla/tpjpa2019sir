@@ -54,10 +54,10 @@ public class SondageServiceImpl implements SondageService {
 	}
 
 	@POST
-	@Path("{id}/valider")
+	@Path("{id1}/{id2}/valider")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void validerUneDate(@PathParam("id") int idSondage, ChoixDate date) {
-		sondageDAO.validerUneDate(idSondage, date);
+	public void validerUneDate(@PathParam("id1") int idSondage, @PathParam("id2") int idChoixDate) {
+		sondageDAO.validerUneDate(idSondage, idChoixDate);
 	}
 	
 	@GET
@@ -65,6 +65,13 @@ public class SondageServiceImpl implements SondageService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<ReponseSondage> datesProposees(@PathParam("id") int idSondage) {
 		return sondageDAO.datesProposees(idSondage);
+	}
+
+	@POST
+	@Path("{id1}/{id2}/repondre")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void repondreSondage(@PathParam("id1") int idUser, @PathParam("id2") int idSondage, ReponseSondage reponse) {
+		sondageDAO.repondreSondage(idUser, idSondage, reponse);
 	}
 
 }

@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import daoInterfaces.SondageDAO;
 import jpa.ChoixDate;
 import jpa.EntityManagerHelper;
@@ -32,20 +30,12 @@ public class SondageDaoImpl implements SondageDAO {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Collection<Sondage> listSondage() {
-		try {
-			String query = "SELECT s FROM sonagde s";
-			Query q = manager.createQuery(query);
-			return q.getResultList();
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return null;
+		return this.manager.createNamedQuery("findAllSurvey", Sondage.class).getResultList();
 	}
 
 	public void creerSondage(int idUser, Sondage sondage) {
+		Objects.requireNonNull(sondage, "ne peut pas être null");
 		EntityManagerHelper.beginTransaction();
 		Utilisateur u = manager.find(Utilisateur.class, idUser);
 		if(u == null) {return ;}
@@ -55,7 +45,25 @@ public class SondageDaoImpl implements SondageDAO {
 		EntityManagerHelper.closeEntityManager();
 		System.out.println("Le sondage a été crée!");
 		
-
+	}
+	
+	public void repondreSondage(int idUser, int idSondage, ReponseSondage reponse) {
+		Objects.requireNonNull(reponse, "ne peut pas être null");
+		Objects.requireNonNull(idUser, "ne peut pas être null");
+		Objects.requireNonNull(idSondage, "ne peut pas être null");
+		EntityManagerHelper.beginTransaction();
+		Utilisateur u = manager.find(Utilisateur.class, idUser);
+		Sondage  s = manager.find(Sondage.class, idSondage);
+		if(u == null || s == null) {return;}
+		reponse.setSondage(s);
+		u.addReponse(reponse);
+		s.addReponse(reponse);
+		this.manager.persist(u);
+		this.manager.persist(s);
+		EntityManagerHelper.commit();
+		EntityManagerHelper.closeEntityManager();
+		System.out.println("La réponse a été ajoutée!");
+		
 	}
 
 	public Collection<ReponseSondage> datesProposees(int idSondage) {
@@ -79,15 +87,21 @@ public class SondageDaoImpl implements SondageDAO {
 		return null;
 	}
 
-	public void validerUneDate(int idSondage, ChoixDate date) {
+	public void validerUneDate(int idSondage, int idChoixDate) {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
-		Objects.requireNonNull(date, "ne peut pas être null");
+		Objects.requireNonNull(idChoixDate, "ne peut pas être null");
 		try {
 			Sondage sondage = manager.find(Sondage.class, idSondage);
-			Reunion reunion = (Reunion) manager.createNamedQuery("findSurveyOfmeetingById")
+			ChoixDate date = manager.find(ChoixDate.class, idChoixDate);
+			Reunion reunion = manager.createNamedQuery("findSurveyOfmeetingById", Reunion.class)
 					.setParameter("sondageId", idSondage).getSingleResult();
 			sondage.setDateRetenue(date);
 			reunion.setDateReunion(date);
+			EntityManagerHelper.beginTransaction();
+			this.manager.persist(sondage);
+			this.manager.persist(reunion);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
 		} catch (Exception e) {
 		}
 	}

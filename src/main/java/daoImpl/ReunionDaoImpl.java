@@ -4,16 +4,16 @@ import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import daoInterfaces.ReunionDAO;
 import jpa.EntityManagerHelper;
+import jpa.PreferenceAlimentaire;
 import jpa.Reunion;
 import jpa.Sondage;
 import jpa.Utilisateur;
 
-public class ReunionDaoImpl implements ReunionDAO{
+public class ReunionDaoImpl implements ReunionDAO {
 	EntityManager manager;
+
 	/**
 	 * 
 	 */
@@ -24,8 +24,7 @@ public class ReunionDaoImpl implements ReunionDAO{
 	public Reunion reunion(int idReunion) {
 		Objects.requireNonNull(idReunion, "ne peut pas être null");
 		try {
-			Reunion reunion = manager.find(Reunion.class, idReunion);
-			return reunion;
+			return manager.find(Reunion.class, idReunion);
 		} catch (Exception e) {
 			e.getMessage();
 		}
@@ -43,26 +42,26 @@ public class ReunionDaoImpl implements ReunionDAO{
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Collection<Reunion> listReunion() {
 		try {
-			String query = "SELECT r FROM reunon r";
-			Query q = manager.createQuery(query);
-			return q.getResultList();
-
+			return this.manager.createNamedQuery("findAllMeeting", Reunion.class).getResultList();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		return null;
 	}
 
-	public void creerReunion(Reunion reunion) {
+	public void creerReunion(int idSondage, Reunion reunion) {
+		Objects.requireNonNull(reunion, "ne peut pas être null");
+		Objects.requireNonNull(idSondage, "ne peut pas être null");
+		Sondage sondage = manager.find(Sondage.class, idSondage);
+		reunion.setSondage(sondage);
+		reunion.setDateReunion(sondage.getDateRetenue());
 		EntityManagerHelper.beginTransaction();
 		this.manager.persist(reunion);
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 		System.out.println("La reunion a été créée!");
-		
+
 	}
 
 	public Collection<Utilisateur> presents(int idReunion) {
@@ -86,5 +85,16 @@ public class ReunionDaoImpl implements ReunionDAO{
 		}
 		return null;
 	}
-	
+
+	public Collection<PreferenceAlimentaire> preferencesAlimentaire(int idReunion) {
+		Objects.requireNonNull(idReunion, "ne dois pas être nul");
+		Reunion meeting = manager.find(Reunion.class, idReunion);
+		if (meeting != null) {
+			return manager.createNamedQuery("findPreferencesByMeeting", PreferenceAlimentaire.class)
+					.setParameter("idReunion", idReunion).getResultList();
+		} else {
+			return null;
+		}
+	}
+
 }

@@ -32,7 +32,7 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
  *
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "find_All_Users", query = "SELECT u FROM Utilisateur u")
+@NamedQueries({ @NamedQuery(name = "findAllUsers", query = "SELECT u FROM Utilisateur u"),
 })
 public class Utilisateur {
 	private int id;

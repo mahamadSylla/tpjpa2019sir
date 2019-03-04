@@ -15,6 +15,7 @@ import daoInterfaces.UtilisateurDAO;
 import jpa.Alergies;
 import jpa.ChoixDate;
 import jpa.Preference;
+import jpa.PreferenceAlimentaire;
 import jpa.ReponseSondage;
 import jpa.Reunion;
 import jpa.Role;
@@ -75,7 +76,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@GET
 	@Path("/{id1}/{id2}/preferences")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Preference> preferencesAlimentaire(@PathParam("id1") int userId, @PathParam("id2") int meetingId) {
+	public Collection<PreferenceAlimentaire> preferencesAlimentaire(@PathParam("id1") int userId, @PathParam("id2") int meetingId) {
 		return utilisateurDAO.preferencesAlimentaire(userId, meetingId);
 	}
 
@@ -98,6 +99,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Reunion> reunionsManquees(@PathParam("id") int userId) {
 		return utilisateurDAO.reunionsManquees(userId);
+	}
+
+	@POST
+	@Path("{id1}/{id2}/ajouterPreference")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void ajouterPreference(@PathParam("id1")int userId, @PathParam("id2") int reunionId, PreferenceAlimentaire p) {
+		utilisateurDAO.ajouterPreference(userId, reunionId, p);
 	}
 
 }

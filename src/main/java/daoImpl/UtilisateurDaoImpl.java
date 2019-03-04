@@ -14,6 +14,8 @@ import jpa.Alergies;
 import jpa.ChoixDate;
 import jpa.EntityManagerHelper;
 import jpa.Preference;
+import jpa.PreferenceAlimentaire;
+import jpa.PreferenceId;
 import jpa.ReponseSondage;
 import jpa.Reunion;
 import jpa.Role;
@@ -35,10 +37,11 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	}
 
 	public Collection<Utilisateur> listUtilisateurs() {
-		String query = "SELECT u FROM Utilisateur u";
-		Query q = manager.createQuery(query);
-		return q.getResultList();
-
+		try {
+			return this.manager.createNamedQuery("findAllUsers", Utilisateur.class).getResultList();
+		} catch (Exception e) {
+		}
+		return null;
 	}
 
 	public void creerUtilisateur(Utilisateur user) {
@@ -97,7 +100,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		}
 	}
 
-	public Collection<ReponseSondage> sondagesParticipes1(int userId) {
+	public Collection<ReponseSondage> sondagesParticipes(int userId) {
 		Objects.requireNonNull(userId, "ne dois pas être nul");
 		Utilisateur user = manager.find(Utilisateur.class, userId);
 		if(user != null) {
@@ -107,15 +110,15 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		}
 	}
 
-	public Collection<Preference> preferencesAlimentaire(int userId, int idReunion) {
-		Objects.requireNonNull(userId, "ne dois pas être nul");
+	public Collection<PreferenceAlimentaire> preferencesAlimentaire(int idParticipant, int idReunion) {
+		Objects.requireNonNull(idParticipant, "ne dois pas être nul");
 		Objects.requireNonNull(idReunion, "ne dois pas être nul");
-		Utilisateur user = manager.find(Utilisateur.class, userId);
+		Utilisateur user = manager.find(Utilisateur.class, idParticipant);
 		Reunion meeting = manager.find(Reunion.class, idReunion);
 		if(user != null && meeting != null) {
-			return manager.createNamedQuery("find_Preferences_User_meeting")
-					.setParameter("userId", userId)
-					.setParameter("reunionId", idReunion)
+			return manager.createNamedQuery("findPreferencesByUserAndMeeting", PreferenceAlimentaire.class)
+					.setParameter("idParticipant", idParticipant)
+					.setParameter("idReunion", idReunion)
 					.getResultList();
 		}else {
 			return null;
@@ -149,8 +152,20 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		} 
 	}
 
-	public Collection<ReponseSondage> sondagesParticipes(int userId) {
-		return null;
-	}
-
+	public void ajouterPreference(int userId, int reunionId, PreferenceAlimentaire preferenceA) {
+		Objects.requireNonNull(userId, "ne dois pas être nul");
+		Objects.requireNonNull(reunionId, "ne dois pas être nul");
+		Objects.requireNonNull(preferenceA, "ne dois pas être nul");
+		Utilisateur user = manager.find(Utilisateur.class, userId);
+		Reunion reunion = manager.find(Reunion.class, reunionId);
+		if(user != null && reunion != null) {
+			PreferenceId p = new PreferenceId(userId, reunionId);
+			EntityManagerHelper.beginTransaction();
+			preferenceA.setId(p);
+			manager.persist(preferenceA);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("La préference "+preferenceA.getPreference()+ " a été ajouté à aux préferences de "+ user.getFirstName());
+		}
+	}	
 }

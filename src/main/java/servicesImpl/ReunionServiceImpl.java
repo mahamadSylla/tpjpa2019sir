@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import daoImpl.ReunionDaoImpl;
 import daoInterfaces.ReunionDAO;
+import jpa.PreferenceAlimentaire;
 import jpa.Reunion;
 import jpa.Sondage;
 import jpa.Utilisateur;
@@ -46,10 +47,10 @@ public class ReunionServiceImpl implements ReunionService {
 	}
 
 	@POST
-	@Path("/creer")
+	@Path("{id}/creer")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void creerReunion(Reunion reunion) {
-		reunionDAO.creerReunion(reunion);
+	public void creerReunion(@PathParam("id") int idSondage, Reunion reunion) {
+		reunionDAO.creerReunion(idSondage, reunion);
 
 	}
 
@@ -65,6 +66,13 @@ public class ReunionServiceImpl implements ReunionService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Utilisateur> absents(@PathParam("id") int idReunion) {
 		return reunionDAO.absents(idReunion);
+	}
+
+	@GET
+	@Path("/{id}/preferences")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<PreferenceAlimentaire> preferencesAlimentaire(@PathParam("id") int idReunion) {
+		return reunionDAO.preferencesAlimentaire(idReunion);
 	}
 
 }
