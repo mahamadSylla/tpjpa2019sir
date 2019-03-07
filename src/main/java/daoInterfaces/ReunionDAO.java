@@ -20,5 +20,5 @@ public interface ReunionDAO {
 	public Collection<Utilisateur> absents(int idReunion);
 
 	public Collection<PreferenceAlimentaire> preferencesAlimentaire(int idReunion);
-
+	
 }

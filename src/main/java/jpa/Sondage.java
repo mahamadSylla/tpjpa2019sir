@@ -19,7 +19,9 @@ import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "findAllSurvey", query = "SELECT s FROM Sondage s"),
+@NamedQueries({ 
+	@NamedQuery(name = "findAllSurvey", query = "SELECT s FROM Sondage s"),
+	@NamedQuery(name = "findSurveyById", query = "SELECT s FROM Sondage s WHERE s.id = :idSondage")
 })
 public class Sondage {
 	private int id;

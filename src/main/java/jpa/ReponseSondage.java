@@ -15,6 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @NamedQueries({ 
@@ -87,7 +88,7 @@ public class ReponseSondage {
 	/**
 	 * @return the choixDonnes
 	 */
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "reponse_id")
 	public Collection<ChoixDate> getChoixDonnes() {
 		return choixDonnes;

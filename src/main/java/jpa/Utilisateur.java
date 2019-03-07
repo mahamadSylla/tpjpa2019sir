@@ -263,9 +263,17 @@ public class Utilisateur {
 	 * @param reunion
 	 *            the reunion to add
 	 */
-	public void addReunion(Reunion reunion) {
-		Objects.requireNonNull(reunion, "La reunion ne doit pas ï¿½tre null");
+	public void addPresence(Reunion reunion) {
+		Objects.requireNonNull(reunion, "La reunion ne doit pas être null");
 		this.presences.add(reunion);
+	}
+	/**
+	 * @param reunion
+	 *            the reunion to add
+	 */
+	public void addAbsence(Reunion reunion) {
+		Objects.requireNonNull(reunion, "La reunion ne doit pas être null");
+		this.absences.add(reunion);
 	}
 
 	/**

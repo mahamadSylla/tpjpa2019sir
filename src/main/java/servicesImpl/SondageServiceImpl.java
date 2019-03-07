@@ -55,7 +55,7 @@ public class SondageServiceImpl implements SondageService {
 
 	@POST
 	@Path("{id1}/{id2}/valider")
-	@Consumes(MediaType.APPLICATION_JSON)
+	//@Consumes(MediaType.APPLICATION_JSON)
 	public void validerUneDate(@PathParam("id1") int idSondage, @PathParam("id2") int idChoixDate) {
 		sondageDAO.validerUneDate(idSondage, idChoixDate);
 	}
@@ -74,4 +74,30 @@ public class SondageServiceImpl implements SondageService {
 		sondageDAO.repondreSondage(idUser, idSondage, reponse);
 	}
 
+	@POST
+	@Path("/creerPlageHoraire")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void creerUnePlageHoraire(ChoixDate plageHoraire) {
+		sondageDAO.creerUnePlageHoraire(plageHoraire);
+		
+	}
+
+	@POST
+	@Path("{id1}/{id2}/ajouterUneDate")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void ajouterUneDate_A_UnSondage(@PathParam("id1") int idSondage, @PathParam("id2") int idChoixDate) {
+		sondageDAO.ajouterUneDate_A_UnSondage(idSondage, idChoixDate);
+		
+	}
+	/**
+	 * Permet de choisir une plage horaire, ajouter à sa réponse
+	 */
+	@POST
+	@Path("{id1}/{id2}/choisir")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void choisirUneDate(@PathParam("id1") int idReponseSondage, @PathParam("id2") int idChoixDate) {
+		sondageDAO.choisirUneDate(idReponseSondage, idChoixDate);
+	}
+	
+		
 }

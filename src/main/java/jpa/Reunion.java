@@ -7,9 +7,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -95,6 +98,7 @@ public class Reunion {
 	 * @return the dateReunion
 	 */
 	@OneToOne
+	@JoinColumn(unique=true)
 	public ChoixDate getDateReunion() {
 		return dateReunion;
 	}
@@ -144,6 +148,7 @@ public class Reunion {
 	 * @return the sondage
 	 */
 	@OneToOne
+	@JoinColumn(unique=true)
 	public Sondage getSondage() {
 		return sondage;
 	}
@@ -201,5 +206,11 @@ public class Reunion {
 		}
 		return this.preferences.remove(preference);
 	}*/
+	
+	public void participation(int idSondage) {
+		Objects.requireNonNull(idSondage, "ne dois pas être nul");
+		
+	}
+
 
 }

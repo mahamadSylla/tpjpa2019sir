@@ -5,8 +5,13 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	//@NamedQuery(name = "findAllChoixDateBySurveyId", query = "SELECT c FROM Choixdate c WHERE c.sondage_id = :idSondage")
+})
 public class ChoixDate {
 
 	private int id;

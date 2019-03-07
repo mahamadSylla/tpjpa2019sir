@@ -38,23 +38,27 @@ public class SondageDaoImpl implements SondageDAO {
 		Objects.requireNonNull(sondage, "ne peut pas être null");
 		EntityManagerHelper.beginTransaction();
 		Utilisateur u = manager.find(Utilisateur.class, idUser);
-		if(u == null) {return ;}
+		if (u == null) {
+			return;
+		}
 		u.addSondage(sondage);
 		this.manager.persist(u);
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 		System.out.println("Le sondage a été crée!");
-		
+
 	}
-	
+
 	public void repondreSondage(int idUser, int idSondage, ReponseSondage reponse) {
 		Objects.requireNonNull(reponse, "ne peut pas être null");
 		Objects.requireNonNull(idUser, "ne peut pas être null");
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		EntityManagerHelper.beginTransaction();
 		Utilisateur u = manager.find(Utilisateur.class, idUser);
-		Sondage  s = manager.find(Sondage.class, idSondage);
-		if(u == null || s == null) {return;}
+		Sondage s = manager.find(Sondage.class, idSondage);
+		if (u == null || s == null) {
+			return;
+		}
 		reponse.setSondage(s);
 		u.addReponse(reponse);
 		s.addReponse(reponse);
@@ -63,7 +67,7 @@ public class SondageDaoImpl implements SondageDAO {
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 		System.out.println("La réponse a été ajoutée!");
-		
+
 	}
 
 	public Collection<ReponseSondage> datesProposees(int idSondage) {
@@ -91,19 +95,100 @@ public class SondageDaoImpl implements SondageDAO {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		Objects.requireNonNull(idChoixDate, "ne peut pas être null");
 		try {
+			System.out.println("--------11111----");
 			Sondage sondage = manager.find(Sondage.class, idSondage);
 			ChoixDate date = manager.find(ChoixDate.class, idChoixDate);
 			Reunion reunion = manager.createNamedQuery("findSurveyOfmeetingById", Reunion.class)
 					.setParameter("sondageId", idSondage).getSingleResult();
+			
+			System.out.println("la réunion" + reunion.getIntitule());
 			sondage.setDateRetenue(date);
 			reunion.setDateReunion(date);
+			Collection<ReponseSondage> reponses = sondage.getReponseSondages();
+			System.out.println("------------");
+			for (ReponseSondage r : reponses) {
+				int idUser = r.getParticipant().getId();
+				ajouterPresenceOuAbsence(idUser, idSondage, date, reunion);
+			}
+			System.out.println("_iiiii");
 			EntityManagerHelper.beginTransaction();
 			this.manager.persist(sondage);
 			this.manager.persist(reunion);
 			EntityManagerHelper.commit();
 			EntityManagerHelper.closeEntityManager();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+	}
+
+	public void ajouterPresenceOuAbsence(int idUser, int idSondage, ChoixDate dateRetenue, Reunion reunion) {
+		Utilisateur user = manager.find(Utilisateur.class, idUser);
+		ReponseSondage reponse = manager.createNamedQuery("findAnswersOfsurveyByUser", ReponseSondage.class)
+				.setParameter("participantId", idUser).setParameter("sondageId", idSondage).getSingleResult();
+		Collection<ChoixDate> choix = reponse.getChoixDonnes();
+		if (choix.contains(dateRetenue)) {
+			user.addPresence(reunion);
+		} else {
+			user.addAbsence(reunion);
+		}
+		EntityManagerHelper.beginTransaction();
+		this.manager.persist(user);
+		EntityManagerHelper.commit();
+		EntityManagerHelper.closeEntityManager();
+	}
+
+	public void creerUnePlageHoraire(ChoixDate plageHoraire) {
+		try {
+			Objects.requireNonNull(plageHoraire, "ne peut pas être null");
+			EntityManagerHelper.beginTransaction();
+			this.manager.persist(plageHoraire);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("La plage horaire a été crée!");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
+	public void ajouterUneDate_A_UnSondage(int idSondage, int idChoixDate) {
+		Objects.requireNonNull(idSondage, "ne peut pas être null");
+		try {
+			Sondage sondage = manager.find(Sondage.class, idSondage);
+			ChoixDate date = manager.find(ChoixDate.class, idChoixDate);
+			if (sondage == null && date == null) {
+				return;
+			}
+			sondage.addChoix(date);
+			EntityManagerHelper.beginTransaction();
+			this.manager.persist(sondage);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("La date a été ajoutée au sondage");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	public void choisirUneDate(int idReponseSondage, int idChoixDate) {
+		try {
+			ReponseSondage reponse = manager.find(ReponseSondage.class, idReponseSondage);
+			ChoixDate date = manager.find(ChoixDate.class, idChoixDate);
+			if (reponse == null && date == null) {
+				return;
+			}
+			reponse.addChoix(date);
+			EntityManagerHelper.beginTransaction();
+			this.manager.persist(reponse);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("La date a été ajoutée à la réponse");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 
 }
