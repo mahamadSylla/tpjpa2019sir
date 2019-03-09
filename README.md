@@ -22,7 +22,8 @@ Pour exécuter l'application il faut : </br>
 1- faire un back up du fichier sql de la base de données : jpa.sql</br>
 2- Lancer le conteneur web tomcat : mvn tomcat7:run ou importer et lancer à l'aide d'un IDE(projet maven) </br>
 ### Information complementaire  
-Le fichier postman se trouve à la racine pour simplifier la vérification des REST : SIR requests REST.postman_collection.json
+- Le fichier postman se trouve à la racine pour simplifier la vérification des REST : SIR requests REST.postman_collection.json
+- Le dossier Documentation contient quelques illustrations (en image) pour mieux comprendre l'architecture de l'application
 ## Technologies
 Java, Jersey, MyQSL, Tomcat, Hibernate, JPA
 
