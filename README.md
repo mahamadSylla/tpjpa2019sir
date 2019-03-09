@@ -21,6 +21,8 @@ Pour exécuter l'application il faut : </br>
 1- un serveur smtp : fake SMPT, on peut avoir le zar ici : http://nilhcem.com/FakeSMTP/download.html </br>
 1- faire un back up du fichier sql de la base de données : jpa.sql</br>
 2- Lancer le conteneur web tomcat : mvn tomcat7:run ou importer et lancer à l'aide d'un IDE(projet maven) </br>
+### Information complementaire  
+Le fichier postman se trouve à la racine pour simplifier la vérification des REST
 ## Technologies
 Java, Jersey, MyQSL, Tomcat, Hibernate, JPA
 
