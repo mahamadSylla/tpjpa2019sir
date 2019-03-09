@@ -12,10 +12,10 @@ Chaque service contient une annotation du genre @Path("/nomServices") qui tombe 
 
 ## Quelques grands points de la modélisation et du mapping
 - La classe Utilisateur est reliée à la classe :
-	\t- Sondage par un OneToMany qui permet de retrouver les sondages crées par un utilisateur
-	\t- Alergies par un @OneToMany qui permet de retrouver les alergies d'un utilisateur
-	\t- Rôle par un OneToMany, un utilisateur peut avoir plusieurs (participant, créateur)
-	\t- Réunion par un @ManyToMany avec @JoinTable(name="les_presences") qui pemet de retrouver les reunoins assistées par un utilisateur, 
+	\t - Sondage par un OneToMany qui permet de retrouver les sondages crées par un utilisateur
+	\t - Alergies par un @OneToMany qui permet de retrouver les alergies d'un utilisateur
+	\t - Rôle par un OneToMany, un utilisateur peut avoir plusieurs (participant, créateur)
+	\t - Réunion par un @ManyToMany avec @JoinTable(name="les_presences") qui pemet de retrouver les reunoins assistées par un utilisateur, 
 	l'annotation @JsonManagedReference(value = "utilisateur_present") pour éviter à jersey de faire une boucle infinie entre utilisateur et réunion
 	\t  @ManyToMany </br>
 	@JoinTable(name = "les_absences", joinColumns = @JoinColumn (name="utilisateur_id"), inverseJoinColumns = @JoinColumn (name="reunion_id")) </br>
