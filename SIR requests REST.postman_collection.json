@@ -1,0 +1,627 @@
+{
+	"info": {
+		"_postman_id": "c4b8cf49-8261-4fd1-a8af-639353b89e50",
+		"name": "SIR requests REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/sondages",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n\t{\n\t\t\"myDate\": \"2012-12-12\",\n\t\t\"debut\" : 16,\n\t\t\"fin\" : 17\n\t}\n"
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/creerPlageHoraire",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"creerPlageHoraire"
+					]
+				},
+				"description": "Pour voir la liste des sondages"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/utilisateurs/1/1/preferences",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/utilisateurs/1/1/preferences",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utilisateurs",
+						"1",
+						"1",
+						"preferences"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/1/reponses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/1/reponses",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"1",
+						"reponses"
+					]
+				},
+				"description": "Pour avoir les réponses d'un sondage"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/utilisateurs/1/reunionsAssistees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/utilisateurs/1/reunionsAssistees",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utilisateurs",
+						"1",
+						"reunionsAssistees"
+					]
+				},
+				"description": "Pour avoir les réunions assistées par un utilisateur donné"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/utilisateurs/1/1/reponsesSondage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/utilisateurs/1/1/reponsesSondage",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utilisateurs",
+						"1",
+						"1",
+						"reponsesSondage"
+					]
+				},
+				"description": "Pour avoir les réponses d'un participant à un sondage donné"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/utilisateurs/creerUtilisateur",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"toto\",\n\t\"name\" : \"titi\",\n\t\"mail\" : \"m1@m.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/utilisateurs/creerUtilisateur",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utilisateurs",
+						"creerUtilisateur"
+					]
+				},
+				"description": "Pour créer un utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/utilisateurs/2/sondagesCrees",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/utilisateurs/2/sondagesCrees",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utilisateurs",
+						"2",
+						"sondagesCrees"
+					]
+				},
+				"description": "Pour avoir les sondages crées par un utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/utilisateurs/1/ajouterRole",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"role2\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/utilisateurs/1/ajouterRole",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utilisateurs",
+						"1",
+						"ajouterRole"
+					]
+				},
+				"description": "Attribuer un rôle à un user"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/utilisateurs/2/alergies",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/utilisateurs/2/alergies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utilisateurs",
+						"2",
+						"alergies"
+					]
+				},
+				"description": "Pou avoir les alergies d'un utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/utilisateurs",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/utilisateurs",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utilisateurs"
+					]
+				},
+				"description": "Pour avoir la liste des users\n"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/1/1/valider",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/1/1/valider",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"1",
+						"1",
+						"valider"
+					]
+				},
+				"description": "Pour valider la date retenue après le sondage c'est à dire celle de la réunion"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/reunions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"intitule\": \"int1\",\n\t\"resume\" : \"resumeeeeeeee\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/reunions/creer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reunions",
+						"creer"
+					]
+				},
+				"description": "Pour avoir la liste des reunions"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/reunions/creer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"intitule\": \"int1 du test\",\n\t\"resume\" : \"resumeeeeeeee du test :)\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/reunions/1/preferences",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reunions",
+						"1",
+						"preferences"
+					]
+				},
+				"description": "Pour créer une réunion"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/reunions/1/preferences",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"intitule\": \"int1 du test\",\n\t\"resume\" : \"resumeeeeeeee du test :)\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/reunions/1/sondage",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reunions",
+						"1",
+						"sondage"
+					]
+				},
+				"description": "Pour avoir les préferences données par les participants lors d'une réunion\n"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/reunions/1/sondage",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"intitule\": \"int1 du test\",\n\t\"resume\" : \"resumeeeeeeee du test :)\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/reunions/1/sondage",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reunions",
+						"1",
+						"sondage"
+					]
+				},
+				"description": "Pour avoir le sondage fait pour la réunion dont l'Id est passé en param\n"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/reunions/1/presents",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"intitule\": \"int1 du test\",\n\t\"resume\" : \"resumeeeeeeee du test :)\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/reunions/1/presents",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reunions",
+						"1",
+						"presents"
+					]
+				},
+				"description": "Retourne la liste de présence à une réunion donnée"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/reunions/1/absents",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"intitule\": \"int1 du test\",\n\t\"resume\" : \"resumeeeeeeee du test :)\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/reunions/1/absents",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reunions",
+						"1",
+						"absents"
+					]
+				},
+				"description": "Pour avoir la liste d'absence à une réunion donnée"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/creerPlageHoraire",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n\t{\n\t\t\"myDate\": \"2012-12-12\",\n\t\t\"debut\" : 16,\n\t\t\"fin\" : 17\n\t}\n"
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/creerPlageHoraire",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"creerPlageHoraire"
+					]
+				},
+				"description": "Pour créer une plage horaire et pour l'ajouter un sondage donné ulterieurement "
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/2/6/ajouterUneDate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n\t{\n\t\t\"myDate\": \"2012-12-12\",\n\t\t\"debut\" : 16,\n\t\t\"fin\" : 17\n\t}\n"
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/2/6/ajouterUneDate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"2",
+						"6",
+						"ajouterUneDate"
+					]
+				},
+				"description": "Pour ajouter une plage horaire à un sondage donné"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/1/creer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"intitule\":\"reunion test\",\n\t\"participatedWebLink\":\"link12\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/1/creer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"1",
+						"creer"
+					]
+				},
+				"description": "Pour créer un sondage avec l'id du créateur "
+			},
+			"response": []
+		}
+	]
+}

@@ -15,7 +15,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
-import org.hibernate.annotations.Cascade;
 
 @Entity
 @NamedQueries({ 

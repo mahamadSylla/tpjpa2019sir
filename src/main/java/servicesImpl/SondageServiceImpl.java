@@ -55,7 +55,6 @@ public class SondageServiceImpl implements SondageService {
 
 	@POST
 	@Path("{id1}/{id2}/valider")
-	//@Consumes(MediaType.APPLICATION_JSON)
 	public void validerUneDate(@PathParam("id1") int idSondage, @PathParam("id2") int idChoixDate) {
 		sondageDAO.validerUneDate(idSondage, idChoixDate);
 	}

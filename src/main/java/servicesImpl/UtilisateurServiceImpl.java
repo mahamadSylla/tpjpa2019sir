@@ -14,7 +14,6 @@ import daoImpl.UtilisateurDaoImpl;
 import daoInterfaces.UtilisateurDAO;
 import jpa.Alergies;
 import jpa.ChoixDate;
-import jpa.Preference;
 import jpa.PreferenceAlimentaire;
 import jpa.ReponseSondage;
 import jpa.Reunion;

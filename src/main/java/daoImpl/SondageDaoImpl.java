@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import daoInterfaces.SondageDAO;
 import jpa.ChoixDate;
 import jpa.EntityManagerHelper;
+import jpa.MailSender;
 import jpa.ReponseSondage;
 import jpa.Reunion;
 import jpa.Sondage;
@@ -25,7 +26,7 @@ public class SondageDaoImpl implements SondageDAO {
 			Sondage sondage = manager.find(Sondage.class, idSondage);
 			return sondage;
 		} catch (Exception e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return null;
 	}
@@ -76,6 +77,7 @@ public class SondageDaoImpl implements SondageDAO {
 			Sondage sondage = manager.find(Sondage.class, idSondage);
 			return sondage.getReponseSondages();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return null;
 
@@ -87,6 +89,7 @@ public class SondageDaoImpl implements SondageDAO {
 			Sondage sondage = manager.find(Sondage.class, idSondage);
 			return sondage.getCreateur();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return null;
 	}
@@ -95,22 +98,17 @@ public class SondageDaoImpl implements SondageDAO {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		Objects.requireNonNull(idChoixDate, "ne peut pas être null");
 		try {
-			System.out.println("--------11111----");
 			Sondage sondage = manager.find(Sondage.class, idSondage);
 			ChoixDate date = manager.find(ChoixDate.class, idChoixDate);
 			Reunion reunion = manager.createNamedQuery("findSurveyOfmeetingById", Reunion.class)
 					.setParameter("sondageId", idSondage).getSingleResult();
-			
-			System.out.println("la réunion" + reunion.getIntitule());
 			sondage.setDateRetenue(date);
 			reunion.setDateReunion(date);
 			Collection<ReponseSondage> reponses = sondage.getReponseSondages();
-			System.out.println("------------");
 			for (ReponseSondage r : reponses) {
 				int idUser = r.getParticipant().getId();
 				ajouterPresenceOuAbsence(idUser, idSondage, date, reunion);
 			}
-			System.out.println("_iiiii");
 			EntityManagerHelper.beginTransaction();
 			this.manager.persist(sondage);
 			this.manager.persist(reunion);
@@ -121,12 +119,17 @@ public class SondageDaoImpl implements SondageDAO {
 		}
 	}
 
-	public void ajouterPresenceOuAbsence(int idUser, int idSondage, ChoixDate dateRetenue, Reunion reunion) {
+	private void ajouterPresenceOuAbsence(int idUser, int idSondage, ChoixDate dateRetenue, Reunion reunion) {
 		Utilisateur user = manager.find(Utilisateur.class, idUser);
 		ReponseSondage reponse = manager.createNamedQuery("findAnswersOfsurveyByUser", ReponseSondage.class)
 				.setParameter("participantId", idUser).setParameter("sondageId", idSondage).getSingleResult();
 		Collection<ChoixDate> choix = reponse.getChoixDonnes();
+		int idChoixDate = dateRetenue.getId();
 		if (choix.contains(dateRetenue)) {
+			if (isPause(idChoixDate)) {
+				// MailSender mailsender = new MailSender();
+				// mailsender.sendMail(user.getMail(), "Dooble");
+			}
 			user.addPresence(reunion);
 		} else {
 			user.addAbsence(reunion);
@@ -135,6 +138,20 @@ public class SondageDaoImpl implements SondageDAO {
 		this.manager.persist(user);
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
+	}
+
+	private boolean isPause(int idChoixDate) {
+		Objects.requireNonNull(idChoixDate, "ne peut pas être null");
+		try {
+			ChoixDate date = manager.find(ChoixDate.class, idChoixDate);
+			if (date.getDebut() >= 12 && date.getDebut() <= 14) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
 	}
 
 	public void creerUnePlageHoraire(ChoixDate plageHoraire) {
@@ -146,9 +163,8 @@ public class SondageDaoImpl implements SondageDAO {
 			EntityManagerHelper.closeEntityManager();
 			System.out.println("La plage horaire a été crée!");
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
-
 	}
 
 	public void ajouterUneDate_A_UnSondage(int idSondage, int idChoixDate) {
@@ -167,7 +183,7 @@ public class SondageDaoImpl implements SondageDAO {
 			System.out.println("La date a été ajoutée au sondage");
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -186,9 +202,8 @@ public class SondageDaoImpl implements SondageDAO {
 			System.out.println("La date a été ajoutée à la réponse");
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 
 	}
-
 }

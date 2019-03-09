@@ -7,13 +7,10 @@ import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import daoInterfaces.UtilisateurDAO;
 import jpa.Alergies;
 import jpa.ChoixDate;
 import jpa.EntityManagerHelper;
-import jpa.Preference;
 import jpa.PreferenceAlimentaire;
 import jpa.PreferenceId;
 import jpa.ReponseSondage;

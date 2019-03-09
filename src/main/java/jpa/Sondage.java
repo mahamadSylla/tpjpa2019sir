@@ -1,5 +1,6 @@
 package jpa;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,7 +22,8 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @NamedQueries({ 
 	@NamedQuery(name = "findAllSurvey", query = "SELECT s FROM Sondage s"),
-	@NamedQuery(name = "findSurveyById", query = "SELECT s FROM Sondage s WHERE s.id = :idSondage")
+	@NamedQuery(name = "findSurveyById", query = "SELECT s FROM Sondage s WHERE s.id = :idSondage"),
+	@NamedQuery(name = "findSurveyByDateRetenue", query = "SELECT s FROM Sondage s WHERE s.dateRetenue = :dateRetenue")
 })
 public class Sondage {
 	private int id;
@@ -35,6 +37,7 @@ public class Sondage {
 
 	public Sondage() {
 		this.reponseSondages = new HashSet<ReponseSondage>();
+		this.dates = new ArrayList<ChoixDate>();
 	}
 
 	/**

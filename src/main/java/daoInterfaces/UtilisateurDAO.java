@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import jpa.Alergies;
 import jpa.ChoixDate;
-import jpa.Preference;
 import jpa.PreferenceAlimentaire;
 import jpa.ReponseSondage;
 import jpa.Reunion;

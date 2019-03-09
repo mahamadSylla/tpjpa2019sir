@@ -34,11 +34,7 @@ public class JpaTest {
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
-		try {
-			Reunion reunion = manager.createNamedQuery("findSurveyOfmeetingById", Reunion.class)
-					.setParameter("sondageId", 1).getSingleResult();
-			System.out.println("la réunion" + reunion.getIntitule());
-			
+		try {			
 			//Crï¿½ation d'un utilisateur et ses rï¿½les et alergies
 			/*UtilisateurServiceImpl userServ = new UtilisateurServiceImpl();
 			Collection<Role> roles = new ArrayList<Role>();

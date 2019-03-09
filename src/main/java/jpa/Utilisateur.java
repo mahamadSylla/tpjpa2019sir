@@ -14,16 +14,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
@@ -44,7 +40,6 @@ public class Utilisateur {
 	private Collection<Sondage> sondages;
 	private Collection<Role> role;
 	private Collection<Alergies> alergies;
-	//private Collection<Preference> preferences;
 	private Collection<ReponseSondage> reponseSondages;
 
 	public Utilisateur() {
@@ -52,7 +47,6 @@ public class Utilisateur {
 		this.presences = new HashSet<Reunion>();
 		this.sondages = new HashSet<Sondage>();
 		this.alergies = new HashSet<Alergies>();
-		//this.preferences = new HashSet<Preference>();
 		this.reponseSondages = new ArrayList<ReponseSondage>();
 	}
 
@@ -216,23 +210,6 @@ public class Utilisateur {
 		this.reponseSondages = reponseSondages;
 	}
 
-	/**
-	 * @return the preferences
-	 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name = "userId")
-	public Collection<Preference> getPreferences() {
-		return preferences;
-	}
-*/
-	/**
-	 * @param preferences
-	 *            the preferences to set
-	 
-	public void setPreferences(Collection<Preference> preferences) {
-		this.preferences = preferences;
-	}
-	*/
 	/**
 	 * @return the alergies
 	 */
