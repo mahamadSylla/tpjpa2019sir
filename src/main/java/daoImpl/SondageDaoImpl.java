@@ -105,11 +105,11 @@ public class SondageDaoImpl implements SondageDAO {
 			sondage.setDateRetenue(date);
 			reunion.setDateReunion(date);
 			Collection<ReponseSondage> reponses = sondage.getReponseSondages();
+			EntityManagerHelper.beginTransaction();
 			for (ReponseSondage r : reponses) {
 				int idUser = r.getParticipant().getId();
 				ajouterPresenceOuAbsence(idUser, idSondage, date, reunion);
 			}
-			EntityManagerHelper.beginTransaction();
 			this.manager.persist(sondage);
 			this.manager.persist(reunion);
 			EntityManagerHelper.commit();
@@ -127,17 +127,14 @@ public class SondageDaoImpl implements SondageDAO {
 		int idChoixDate = dateRetenue.getId();
 		if (choix.contains(dateRetenue)) {
 			if (isPause(idChoixDate)) {
-				// MailSender mailsender = new MailSender();
-				// mailsender.sendMail(user.getMail(), "Dooble");
+				MailSender mailsender = new MailSender();
+				 mailsender.sendMail(user.getMail(), "Dooble");
 			}
 			user.addPresence(reunion);
 		} else {
 			user.addAbsence(reunion);
 		}
-		EntityManagerHelper.beginTransaction();
 		this.manager.persist(user);
-		EntityManagerHelper.commit();
-		EntityManagerHelper.closeEntityManager();
 	}
 
 	private boolean isPause(int idChoixDate) {
