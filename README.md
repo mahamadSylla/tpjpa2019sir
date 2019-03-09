@@ -19,10 +19,10 @@ de présents et d'absents et un sondage qui a été fait pour planifier la réunion.
 ## Lancement de l'application
 Pour exécuter l'application il faut : </br>
 1- un serveur smtp : fake SMPT, on peut avoir le zar ici : http://nilhcem.com/FakeSMTP/download.html </br>
-1- faire un back up du fichier sql de la base de données </br>
+1- faire un back up du fichier sql de la base de données : jpa.sql</br>
 2- Lancer le conteneur web tomcat : mvn tomcat7:run ou importer et lancer à l'aide d'un IDE(projet maven) </br>
 ## Technologies
-Java, Jersey, MyQSL, Tomcat, Hibernate
+Java, Jersey, MyQSL, Tomcat, Hibernate, JPA
 
 
 
