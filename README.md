@@ -13,7 +13,7 @@ de présents et d'absents et un sondage qui a été fait pour planifier la réunion.
 - Avoir la liste de présences et d'absences d'une réunion, de réponses à un sondage ou d'un utilisateur, des alergies et les sondages participés par un utilisateur
 - Avoir la liste des réunions, utilisateurs et sondages
 - Valider une date d'une réunion
-- Envoyer le mail au participant
+- Envoyer le mail aux participants
 ## Fonctionnalités à développer	
 - Integration d'un PAD
 ## Lancement de l'application

@@ -23,7 +23,7 @@ public class MailSender {
 			message.setFrom(new InternetAddress(from));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject("Subject");
-			message.setContent("<h1>Hello</h1>", "text/html");
+			message.setContent("<h1>Doodle : </h1>", "text/html");
 			Transport.send(message);
 			System.out.println("Sent message successfully....");
 		} catch (Exception ex) {
