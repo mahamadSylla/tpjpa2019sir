@@ -31,23 +31,30 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Utilisateur utilisateur(@PathParam("id") int userId) {
+		return utilisateurDAO.utilisateur(userId);
+	}
+
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Utilisateur> listUtilisateurs() {
 		return utilisateurDAO.listUtilisateurs();
 	}
 
 	@POST
-	@Path("/creerUtilisateur")
+	@Path("/creer")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void creerUtilisateur(Utilisateur user) {
-		this.utilisateurDAO.creerUtilisateur(user);
+	public Utilisateur creerUtilisateur(Utilisateur user) {
+		return this.utilisateurDAO.creerUtilisateur(user);
 	}
 
 	@POST
 	@Path("{id}/ajouterRole")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void ajouterRole(@PathParam("id") int userId, Role r) {
-		utilisateurDAO.ajouterRole(userId, r);
+	public Role ajouterRole(@PathParam("id") int userId, Role r) {
+		return utilisateurDAO.ajouterRole(userId, r);
 	}
 
 	@GET
@@ -64,7 +71,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return utilisateurDAO.alergies(userId);
 	}
 
-	
 	@GET
 	@Path("/{id}/reunionsAssistees")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -75,7 +81,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@GET
 	@Path("/{id1}/{id2}/preferences")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<PreferenceAlimentaire> preferencesAlimentaire(@PathParam("id1") int userId, @PathParam("id2") int meetingId) {
+	public Collection<PreferenceAlimentaire> preferencesAlimentaire(@PathParam("id1") int userId,
+			@PathParam("id2") int meetingId) {
 		return utilisateurDAO.preferencesAlimentaire(userId, meetingId);
 	}
 
@@ -103,8 +110,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@POST
 	@Path("{id1}/{id2}/ajouterPreference")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void ajouterPreference(@PathParam("id1")int userId, @PathParam("id2") int reunionId, PreferenceAlimentaire p) {
-		utilisateurDAO.ajouterPreference(userId, reunionId, p);
+	public PreferenceAlimentaire ajouterPreference(@PathParam("id1") int userId, @PathParam("id2") int reunionId,
+			PreferenceAlimentaire p) {
+		return utilisateurDAO.ajouterPreference(userId, reunionId, p);
 	}
 
 }

@@ -15,15 +15,15 @@ public interface SondageDAO {
 
 	public Utilisateur createurSondage(int idSondage);
 
-	public void creerSondage(int idUser, Sondage sondage);
+	public Sondage creerSondage(int idUser, Sondage sondage);
 
-	public void creerUnePlageHoraire(ChoixDate plageHoraire);
+	public ChoixDate creerUnePlageHoraire(ChoixDate plageHoraire);
 
-	public void validerUneDate(int idSondage, int IdChoixDate);
+	public Sondage validerUneDate(int idSondage, int IdChoixDate);
 
 	public Collection<ReponseSondage> datesProposees(int idSondage);
 
-	public void ajouterUneDate_A_UnSondage(int idSondage, int idChoixDate);
+	public ChoixDate ajouterUneDate_A_UnSondage(int idSondage, int idChoixDate);
 
 	public void choisirUneDate(int idReponseSondage, int idChoixDate);
 

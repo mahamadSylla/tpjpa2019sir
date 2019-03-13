@@ -42,8 +42,8 @@ public class SondageServiceImpl implements SondageService {
 	@POST
 	@Path("{id}/creer")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void creerSondage(@PathParam("id") int idUser, Sondage sondage) {
-		sondageDAO.creerSondage(idUser, sondage);
+	public Sondage creerSondage(@PathParam("id") int idUser, Sondage sondage) {
+		return sondageDAO.creerSondage(idUser, sondage);
 	}
 
 	@GET
@@ -55,8 +55,8 @@ public class SondageServiceImpl implements SondageService {
 
 	@POST
 	@Path("{id1}/{id2}/valider")
-	public void validerUneDate(@PathParam("id1") int idSondage, @PathParam("id2") int idChoixDate) {
-		sondageDAO.validerUneDate(idSondage, idChoixDate);
+	public Sondage validerUneDate(@PathParam("id1") int idSondage, @PathParam("id2") int idChoixDate) {
+		return sondageDAO.validerUneDate(idSondage, idChoixDate);
 	}
 	
 	@GET
@@ -76,16 +76,16 @@ public class SondageServiceImpl implements SondageService {
 	@POST
 	@Path("/creerPlageHoraire")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void creerUnePlageHoraire(ChoixDate plageHoraire) {
-		sondageDAO.creerUnePlageHoraire(plageHoraire);
+	public ChoixDate creerUnePlageHoraire(ChoixDate plageHoraire) {
+		return sondageDAO.creerUnePlageHoraire(plageHoraire);
 		
 	}
 
 	@POST
 	@Path("{id1}/{id2}/ajouterUneDate")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void ajouterUneDate_A_UnSondage(@PathParam("id1") int idSondage, @PathParam("id2") int idChoixDate) {
-		sondageDAO.ajouterUneDate_A_UnSondage(idSondage, idChoixDate);
+	public ChoixDate ajouterUneDate_A_UnSondage(@PathParam("id1") int idSondage, @PathParam("id2") int idChoixDate) {
+		return sondageDAO.ajouterUneDate_A_UnSondage(idSondage, idChoixDate);
 		
 	}
 	/**

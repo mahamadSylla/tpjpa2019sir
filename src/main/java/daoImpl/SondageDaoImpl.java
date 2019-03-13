@@ -35,18 +35,19 @@ public class SondageDaoImpl implements SondageDAO {
 		return this.manager.createNamedQuery("findAllSurvey", Sondage.class).getResultList();
 	}
 
-	public void creerSondage(int idUser, Sondage sondage) {
+	public Sondage creerSondage(int idUser, Sondage sondage) {
 		Objects.requireNonNull(sondage, "ne peut pas être null");
 		EntityManagerHelper.beginTransaction();
 		Utilisateur u = manager.find(Utilisateur.class, idUser);
 		if (u == null) {
-			return;
+			return null;
 		}
 		u.addSondage(sondage);
 		this.manager.persist(u);
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 		System.out.println("Le sondage a été crée!");
+		return sondage;
 
 	}
 
@@ -94,7 +95,7 @@ public class SondageDaoImpl implements SondageDAO {
 		return null;
 	}
 
-	public void validerUneDate(int idSondage, int idChoixDate) {
+	public Sondage validerUneDate(int idSondage, int idChoixDate) {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		Objects.requireNonNull(idChoixDate, "ne peut pas être null");
 		try {
@@ -114,9 +115,11 @@ public class SondageDaoImpl implements SondageDAO {
 			this.manager.persist(reunion);
 			EntityManagerHelper.commit();
 			EntityManagerHelper.closeEntityManager();
+			return sondage;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return null;
 	}
 
 	private void ajouterPresenceOuAbsence(int idUser, int idSondage, ChoixDate dateRetenue, Reunion reunion) {
@@ -151,7 +154,7 @@ public class SondageDaoImpl implements SondageDAO {
 		return false;
 	}
 
-	public void creerUnePlageHoraire(ChoixDate plageHoraire) {
+	public ChoixDate creerUnePlageHoraire(ChoixDate plageHoraire) {
 		try {
 			Objects.requireNonNull(plageHoraire, "ne peut pas être null");
 			EntityManagerHelper.beginTransaction();
@@ -159,18 +162,20 @@ public class SondageDaoImpl implements SondageDAO {
 			EntityManagerHelper.commit();
 			EntityManagerHelper.closeEntityManager();
 			System.out.println("La plage horaire a été crée!");
+			return plageHoraire;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return null;
 	}
 
-	public void ajouterUneDate_A_UnSondage(int idSondage, int idChoixDate) {
+	public ChoixDate ajouterUneDate_A_UnSondage(int idSondage, int idChoixDate) {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		try {
 			Sondage sondage = manager.find(Sondage.class, idSondage);
 			ChoixDate date = manager.find(ChoixDate.class, idChoixDate);
 			if (sondage == null && date == null) {
-				return;
+				return null;
 			}
 			sondage.addChoix(date);
 			EntityManagerHelper.beginTransaction();
@@ -178,10 +183,12 @@ public class SondageDaoImpl implements SondageDAO {
 			EntityManagerHelper.commit();
 			EntityManagerHelper.closeEntityManager();
 			System.out.println("La date a été ajoutée au sondage");
+			return date;
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return null;
 	}
 
 	public void choisirUneDate(int idReponseSondage, int idChoixDate) {

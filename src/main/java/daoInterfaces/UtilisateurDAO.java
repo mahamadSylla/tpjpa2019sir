@@ -12,13 +12,15 @@ import jpa.Sondage;
 import jpa.Utilisateur;
 
 public interface UtilisateurDAO {
-	public void creerUtilisateur(Utilisateur user);
+	public Utilisateur utilisateur(int userId);
+
+	public Utilisateur creerUtilisateur(Utilisateur user);
 
 	public Collection<Utilisateur> listUtilisateurs();
 
-	public void ajouterRole(int userId, Role r);
+	public Role ajouterRole(int userId, Role r);
 
-	public void ajouterPreference(int userId, int reunionId, PreferenceAlimentaire p);
+	public PreferenceAlimentaire ajouterPreference(int userId, int reunionId, PreferenceAlimentaire p);
 
 	public Collection<Sondage> sondagesCrees(int userId);
 

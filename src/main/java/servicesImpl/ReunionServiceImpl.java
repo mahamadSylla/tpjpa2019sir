@@ -49,8 +49,8 @@ public class ReunionServiceImpl implements ReunionService {
 	@POST
 	@Path("{id}/creer")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void creerReunion(@PathParam("id") int idSondage, Reunion reunion) {
-		reunionDAO.creerReunion(idSondage, reunion);
+	public Reunion creerReunion(@PathParam("id") int idSondage, Reunion reunion) {
+		return reunionDAO.creerReunion(idSondage, reunion);
 
 	}
 

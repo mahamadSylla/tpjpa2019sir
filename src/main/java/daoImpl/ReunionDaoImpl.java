@@ -50,7 +50,7 @@ public class ReunionDaoImpl implements ReunionDAO {
 		return null;
 	}
 
-	public void creerReunion(int idSondage, Reunion reunion) {
+	public Reunion creerReunion(int idSondage, Reunion reunion) {
 		Objects.requireNonNull(reunion, "ne peut pas être null");
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		Sondage sondage = manager.find(Sondage.class, idSondage);
@@ -61,7 +61,7 @@ public class ReunionDaoImpl implements ReunionDAO {
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 		System.out.println("La reunion a été créée!");
-
+		return reunion;
 	}
 
 	public Collection<Utilisateur> presents(int idReunion) {

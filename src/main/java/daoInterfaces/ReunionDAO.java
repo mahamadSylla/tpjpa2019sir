@@ -13,7 +13,7 @@ public interface ReunionDAO {
 
 	public Collection<Reunion> listReunion();
 
-	public void creerReunion(int idSondage, Reunion reunion);
+	public Reunion creerReunion(int idSondage, Reunion reunion);
 
 	public Collection<Utilisateur> presents(int idReunion);
 
