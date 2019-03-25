@@ -1,0 +1,7 @@
+0:0:0:0:0:0:0:1 - - [23/Feb/2019:01:05:15 +0100] "GET /utilisateurs HTTP/1.1" 200 12 http-bio-8080-exec-2 2790
+0:0:0:0:0:0:0:1 - - [23/Feb/2019:01:05:25 +0100] "GET /utilisateurs/alergies HTTP/1.1" 415 - http-bio-8080-exec-3 7
+0:0:0:0:0:0:0:1 - - [23/Feb/2019:01:25:40 +0100] "GET /utilisateurs/alergies HTTP/1.1" 415 - http-bio-8080-exec-6 4
+0:0:0:0:0:0:0:1 - - [23/Feb/2019:01:25:50 +0100] "GET /utilisateurs HTTP/1.1" 200 131982 http-bio-8080-exec-7 545
+0:0:0:0:0:0:0:1 - - [23/Feb/2019:01:39:47 +0100] "GET /utilisateurs HTTP/1.1" 200 131982 http-bio-8080-exec-2 2593
+0:0:0:0:0:0:0:1 - - [23/Feb/2019:01:40:00 +0100] "GET /utilisateurs/alergies HTTP/1.1" 415 - http-bio-8080-exec-3 6
+0:0:0:0:0:0:0:1 - - [23/Feb/2019:01:52:02 +0100] "GET /utilisateurs HTTP/1.1" 200 131982 http-bio-8080-exec-6 97

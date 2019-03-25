@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [27/Feb/2019:15:45:57 +0100] "GET /utilisateurs HTTP/1.1" 200 131982 http-bio-8080-exec-5 224
+0:0:0:0:0:0:0:1 - - [27/Feb/2019:15:48:56 +0100] "POST /utilisateurs/addRole HTTP/1.1" 415 - http-bio-8080-exec-2 3789
+0:0:0:0:0:0:0:1 - - [27/Feb/2019:15:52:23 +0100] "POST /utilisateurs/addRole HTTP/1.1" 500 5137 http-bio-8080-exec-5 230
+0:0:0:0:0:0:0:1 - - [27/Feb/2019:15:55:58 +0100] "POST /utilisateurs/1/addRole HTTP/1.1" 500 6555 http-bio-8080-exec-2 3228

@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [08/Mar/2019:14:25:07 +0100] "GET /sondages/1/creer HTTP/1.1" 405 - http-bio-8080-exec-8 3195
+0:0:0:0:0:0:0:1 - - [08/Mar/2019:14:25:40 +0100] "POST /sondages/1/creer HTTP/1.1" 500 17860 http-bio-8080-exec-9 7735
+0:0:0:0:0:0:0:1 - - [08/Mar/2019:14:27:43 +0100] "POST /sondages/1/creer HTTP/1.1" 500 9700 http-bio-8080-exec-2 3945
+0:0:0:0:0:0:0:1 - - [08/Mar/2019:14:29:11 +0100] "POST /sondages/1/creer HTTP/1.1" 500 9700 http-bio-8080-exec-2 2454
+0:0:0:0:0:0:0:1 - - [08/Mar/2019:14:30:54 +0100] "POST /sondages/1/creer HTTP/1.1" 204 - http-bio-8080-exec-2 3204

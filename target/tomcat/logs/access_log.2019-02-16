@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:17:31:22 +0100] "GET /utilisateurs HTTP/1.1" 404 975 http-bio-8080-exec-1 103
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:17:32:01 +0100] "GET /utilisateurs HTTP/1.1" 404 975 http-bio-8080-exec-2 2
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:17:34:22 +0100] "GET /utilisateurs HTTP/1.1" 200 787 http-bio-8080-exec-1 3132
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:17:44:50 +0100] "GET /utilisateurs HTTP/1.1" 200 12 http-bio-8080-exec-1 21231
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:17:52:09 +0100] "GET /utilisateurs HTTP/1.1" 200 12 http-bio-8080-exec-1 21417
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:17:55:30 +0100] "GET /utilisateurs HTTP/1.1" 200 12 http-bio-8080-exec-1 10288
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:17:58:37 +0100] "GET /utilisateurs HTTP/1.1" 200 12 http-bio-8080-exec-1 22865
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:19:11:40 +0100] "GET /utilisateurs HTTP/1.1" 200 280 http-bio-8080-exec-3 315
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:19:12:18 +0100] "GET /utilisateurs HTTP/1.1" 200 280 http-bio-8080-exec-4 20
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:19:13:25 +0100] "GET /utilisateurs HTTP/1.1" 200 310 http-bio-8080-exec-6 19
+0:0:0:0:0:0:0:1 - - [16/Feb/2019:19:35:35 +0100] "GET /utilisateurs HTTP/1.1" 500 12582 http-bio-8080-exec-8 133
