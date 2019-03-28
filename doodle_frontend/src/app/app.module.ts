@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,7 @@ import { ReunionComponent } from './reunion/reunion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { EditerComponent } from './editer/editer.component';
 import { ParticipantsComponent } from './participants/participants.component';
+import { CreersondageComponent } from './creersondage/creersondage.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { ParticipantsComponent } from './participants/participants.component';
     ReunionComponent,
     InscriptionComponent,
     EditerComponent,
-    ParticipantsComponent
+    ParticipantsComponent,
+    CreersondageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
