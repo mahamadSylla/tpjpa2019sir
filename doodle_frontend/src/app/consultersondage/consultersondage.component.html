@@ -1,0 +1,24 @@
+<div *ngIf="sondage">
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Intitule</th>
+    <th scope="col">Lien de participation</th>
+    <th scope="col">Date retenue</th>
+    <th scope="col">Créateur</th>
+    <th>Réunion</th>
+    <th>Participants</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{sondage.intutile}}</td>
+    <td>{{sondage.participatedWebLink}}</td>
+    <td *ngIf="sondage.dateRetenue"> {{sondage.dateRetenue}}</td>
+    <td>Issa</td>
+    <td><a href=""><i class="fa fa-handshake-o fa-2x"></i></a></td>
+    <td><a href=""><i class="fa fa-2x fa-users"></i></a></td>
+  </tr>
+  </tbody>
+</table>
+</div>

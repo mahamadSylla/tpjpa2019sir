@@ -14,6 +14,7 @@ import daoImpl.SondageDaoImpl;
 import daoInterfaces.SondageDAO;
 import jpa.ChoixDate;
 import jpa.ReponseSondage;
+import jpa.Reunion;
 import jpa.Sondage;
 import jpa.Utilisateur;
 import services.SondageService;
@@ -69,8 +70,8 @@ public class SondageServiceImpl implements SondageService {
 	@POST
 	@Path("{id1}/{id2}/repondre")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void repondreSondage(@PathParam("id1") int idUser, @PathParam("id2") int idSondage, ReponseSondage reponse) {
-		sondageDAO.repondreSondage(idUser, idSondage, reponse);
+	public ReponseSondage repondreSondage(ReponseSondage reponse) {
+		return sondageDAO.repondreSondage(reponse);
 	}
 
 	@POST
@@ -90,12 +91,22 @@ public class SondageServiceImpl implements SondageService {
 	}
 	/**
 	 * Permet de choisir une plage horaire, ajouter à sa réponse
-	 */
+	 
 	@POST
 	@Path("{id1}/{id2}/choisir")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void choisirUneDate(@PathParam("id1") int idReponseSondage, @PathParam("id2") int idChoixDate) {
 		sondageDAO.choisirUneDate(idReponseSondage, idChoixDate);
+	}*/
+
+	public Collection<Utilisateur> getParticipantsByIdSondage(int idSondage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Reunion getReunionByIdSondage(int idSondage) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 		

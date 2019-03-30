@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,8 +26,8 @@ import org.codehaus.jackson.annotate.JsonBackReference;
  */
 @Entity
 @NamedQueries({ 
-	@NamedQuery(name = "findSurveyOfmeetingById", query = "SELECT r FROM Reunion r WHERE r.sondage.id = :sondageId"),
-	@NamedQuery(name = "findAllMeeting", query = "SELECT r FROM Reunion r")
+	@NamedQuery(name = "findAllMeeting", query = "SELECT r FROM Reunion r"),
+	@NamedQuery(name = "finMeetingByIdSondage", query = "SELECT r FROM Reunion r WHERE r.sondage.id = :idSondage")
 })
 
 public class Reunion {
@@ -95,7 +96,7 @@ public class Reunion {
 	/**
 	 * @return the dateReunion
 	 */
-	@OneToOne
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(unique=true)
 	public ChoixDate getDateReunion() {
 		return dateReunion;

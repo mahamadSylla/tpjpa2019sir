@@ -69,7 +69,7 @@ public class ReponseSondage {
 	/**
 	 * @return the sondage
 	 */
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "sondage_id")
 	@JsonBackReference(value = "sondage_reponse")
 	public Sondage getSondage() {
@@ -87,7 +87,7 @@ public class ReponseSondage {
 	/**
 	 * @return the choixDonnes
 	 */
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany
 	@JoinColumn(name = "reponse_id")
 	public Collection<ChoixDate> getChoixDonnes() {
 		return choixDonnes;

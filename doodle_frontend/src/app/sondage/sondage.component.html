@@ -1,30 +1,23 @@
+<app-navigation></app-navigation>
+<div *ngIf="sondages">
 <table class="table">
   <thead>
   <tr>
-    <th scope="col">Intitule</th>
-    <th scope="col">Lien de participation</th>
-    <th scope="col">Date retenue</th>
-    <th scope="col">Créateur</th>
+    <th scope="col">Intitulé du Sondage</th>
+    <th scope="col">Consulter</th>
+    <th scope="col">Participer</th>
+    <th scope="col">Editer</th>
+    <th scope="col">Supprimer</th>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-  </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-  </tr>
-  <tr>
-    <th scope="row">3</th>
-    <td>Larry</td>
-    <td>the Bird</td>
-    <td>@twitter</td>
+  <tr *ngFor="let s of sondages">
+    <td>{{s.intitule}}</td>
+    <td><a [routerLink]="['/sondage/consulter', s.id]"><i class="fa fa-eye fa-2x"></i></a></td>
+    <td><a href=""><i class="fa fa-comment fa-2x"></i></a></td>
+    <td><a href=""><i class="fa fa-edit fa-2x"></i></a></td>
+    <td><a href=""><i class="fa fa-cut fa-2x"></i></a></td>
   </tr>
   </tbody>
 </table>
+</div>

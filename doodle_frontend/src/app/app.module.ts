@@ -15,6 +15,10 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { EditerComponent } from './editer/editer.component';
 import { ParticipantsComponent } from './participants/participants.component';
 import { CreersondageComponent } from './creersondage/creersondage.component';
+import { CreerdatessondagesComponent } from './creerdatessondages/creerdatessondages.component';
+import { ConsultersondageComponent } from './consultersondage/consultersondage.component';
+import { HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -27,13 +31,16 @@ import { CreersondageComponent } from './creersondage/creersondage.component';
     InscriptionComponent,
     EditerComponent,
     ParticipantsComponent,
-    CreersondageComponent
+    CreersondageComponent,
+    CreerdatessondagesComponent,
+    ConsultersondageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

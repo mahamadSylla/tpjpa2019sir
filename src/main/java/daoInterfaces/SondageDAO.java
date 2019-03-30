@@ -14,6 +14,8 @@ public interface SondageDAO {
 	public Sondage sondage(int idSondage);
 
 	public Utilisateur createurSondage(int idSondage);
+	
+	public Reunion getReunionByIdSondage(int idSondage);
 
 	public Sondage creerSondage(int idUser, Sondage sondage);
 
@@ -22,11 +24,12 @@ public interface SondageDAO {
 	public Sondage validerUneDate(int idSondage, int IdChoixDate);
 
 	public Collection<ReponseSondage> datesProposees(int idSondage);
+	
+	public ReponseSondage repondreSondage(ReponseSondage reponse);
 
 	public ChoixDate ajouterUneDate_A_UnSondage(int idSondage, int idChoixDate);
 
-	public void choisirUneDate(int idReponseSondage, int idChoixDate);
+	public Collection<Utilisateur> getParticipantsByIdSondage(int idSondage);
 
-	public void repondreSondage(int idUser, int idSondage, ReponseSondage reponse);
 
 }

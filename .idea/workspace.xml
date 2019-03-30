@@ -2,16 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37715dcc-e38c-4e7d-b6fd-a3446dfec98c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/doodle_frontend/proxy.config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doodle_frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doodle_frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doodle_frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/login/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/login/login.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/creersondage/creersondage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/creersondage/creersondage.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/navigation/navigation.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/navigation/navigation.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/navigation/navigation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/sondage/sondage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/sondage/sondage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doodle_frontend/src/app/sondage/sondage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/doodle_frontend/src/app/sondage/sondage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/daoImpl/SondageDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/daoImpl/SondageDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/daoInterfaces/SondageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/daoInterfaces/SondageDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jpa/ReponseSondage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jpa/ReponseSondage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jpa/Reunion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jpa/Reunion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servicesImpl/SondageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servicesImpl/SondageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/daoInterfaces/SondageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/daoInterfaces/SondageDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,9 +72,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -122,16 +130,19 @@
       <workItem from="1551090254726" duration="1539000" />
       <workItem from="1553263507785" duration="1268000" />
       <workItem from="1553520838663" duration="589000" />
+      <workItem from="1553848409865" duration="1199000" />
+      <workItem from="1553854825586" duration="830000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4175000" />
+    <option name="totallyTimeSpent" value="6204000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2596401" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22943445" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -141,7 +152,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32884097" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32884097" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

@@ -1,5 +1,6 @@
 package daoImpl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -48,27 +49,6 @@ public class SondageDaoImpl implements SondageDAO {
 		EntityManagerHelper.closeEntityManager();
 		System.out.println("Le sondage a été crée!");
 		return sondage;
-
-	}
-
-	public void repondreSondage(int idUser, int idSondage, ReponseSondage reponse) {
-		Objects.requireNonNull(reponse, "ne peut pas être null");
-		Objects.requireNonNull(idUser, "ne peut pas être null");
-		Objects.requireNonNull(idSondage, "ne peut pas être null");
-		EntityManagerHelper.beginTransaction();
-		Utilisateur u = manager.find(Utilisateur.class, idUser);
-		Sondage s = manager.find(Sondage.class, idSondage);
-		if (u == null || s == null) {
-			return;
-		}
-		reponse.setSondage(s);
-		u.addReponse(reponse);
-		s.addReponse(reponse);
-		this.manager.persist(u);
-		this.manager.persist(s);
-		EntityManagerHelper.commit();
-		EntityManagerHelper.closeEntityManager();
-		System.out.println("La réponse a été ajoutée!");
 
 	}
 
@@ -131,7 +111,7 @@ public class SondageDaoImpl implements SondageDAO {
 		if (choix.contains(dateRetenue)) {
 			if (isPause(idChoixDate)) {
 				MailSender mailsender = new MailSender();
-				 mailsender.sendMail(user.getMail(), "Dooble");
+				mailsender.sendMail(user.getMail(), "Dooble");
 			}
 			user.addPresence(reunion);
 		} else {
@@ -191,23 +171,62 @@ public class SondageDaoImpl implements SondageDAO {
 		return null;
 	}
 
-	public void choisirUneDate(int idReponseSondage, int idChoixDate) {
-		try {
-			ReponseSondage reponse = manager.find(ReponseSondage.class, idReponseSondage);
-			ChoixDate date = manager.find(ChoixDate.class, idChoixDate);
-			if (reponse == null && date == null) {
-				return;
-			}
-			reponse.addChoix(date);
-			EntityManagerHelper.beginTransaction();
-			this.manager.persist(reponse);
-			EntityManagerHelper.commit();
-			EntityManagerHelper.closeEntityManager();
-			System.out.println("La date a été ajoutée à la réponse");
+	public ReponseSondage repondreSondage(ReponseSondage reponse) {
+		Objects.requireNonNull(reponse, "ne peut pas être null");
+		Utilisateur u = reponse.getParticipant();
+		Sondage s = reponse.getSondage();
+		EntityManagerHelper.beginTransaction();
+		u.addReponse(reponse);
+		s.addReponse(reponse);
+		this.manager.persist(u);
+		this.manager.persist(s);
+		EntityManagerHelper.commit();
+		EntityManagerHelper.closeEntityManager();
+		System.out.println("La réponse a été ajoutée!");
+		return reponse;
 
+	}
+
+	/**
+	 * public void choisirUneDate(int idReponseSondage, int idChoixDate) { try {
+	 * ReponseSondage reponse = manager.find(ReponseSondage.class,
+	 * idReponseSondage); ChoixDate date = manager.find(ChoixDate.class,
+	 * idChoixDate); if (reponse == null && date == null) { return; }
+	 * reponse.addChoix(date); EntityManagerHelper.beginTransaction();
+	 * this.manager.persist(reponse); EntityManagerHelper.commit();
+	 * EntityManagerHelper.closeEntityManager(); System.out.println("La date a été
+	 * ajoutée à la réponse");
+	 * 
+	 * } catch (Exception e) { System.out.println(e.getMessage()); }
+	 * 
+	 * }
+	 */
+
+	public Collection<Utilisateur> getParticipantsByIdSondage(int idSondage) {
+		Objects.requireNonNull(idSondage, "ne peut pas être null");
+		try {
+			Collection<ReponseSondage> reponses = this.datesProposees(idSondage);
+			Collection<Utilisateur> participants = new ArrayList<Utilisateur>();
+
+			for (ReponseSondage reponse : reponses) {
+				participants.add(reponse.getParticipant());
+			}
+			return participants;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
+		return null;
+	}
+
+	public Reunion getReunionByIdSondage(int idSondage) {
+		Objects.requireNonNull(idSondage, "ne peut pas être null");
+		try {
+			return this.manager.createNamedQuery("finMeetingByIdSondage", Reunion.class)
+			.setParameter("idSondage", idSondage).getSingleResult();
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 }
