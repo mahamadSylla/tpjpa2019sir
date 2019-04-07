@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.jboss.logging.annotations.Param;
+
 import daoImpl.SondageDaoImpl;
 import daoInterfaces.SondageDAO;
 import jpa.ChoixDate;
@@ -99,12 +101,17 @@ public class SondageServiceImpl implements SondageService {
 		sondageDAO.choisirUneDate(idReponseSondage, idChoixDate);
 	}*/
 
-	public Collection<Utilisateur> getParticipantsByIdSondage(int idSondage) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("/{id}/participants")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Collection<Utilisateur> getParticipantsByIdSondage(@PathParam("id") int idSondage) {
+		return sondageDAO.getParticipantsByIdSondage(idSondage);
 	}
 
-	public Reunion getReunionByIdSondage(int idSondage) {
+	@GET
+	@Path("/{id}/reunion")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Reunion getReunionByIdSondage(@PathParam("id") int idSondage) {
 		// TODO Auto-generated method stub
 		return null;
 	}

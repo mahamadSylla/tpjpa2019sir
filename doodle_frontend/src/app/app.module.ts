@@ -18,6 +18,13 @@ import { CreersondageComponent } from './creersondage/creersondage.component';
 import { CreerdatessondagesComponent } from './creerdatessondages/creerdatessondages.component';
 import { ConsultersondageComponent } from './consultersondage/consultersondage.component';
 import { HttpClientModule} from '@angular/common/http';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { AlergiesComponent } from './alergies/alergies.component';
+import { RoleComponent } from './role/role.component';
+import { SondagecreeComponent } from './sondagecree/sondagecree.component';
+import { ReunionmanqueesComponent } from './reunionmanquees/reunionmanquees.component';
+import { ReunionassisteesComponent } from './reunionassistees/reunionassistees.component';
+import { ConsultereunionComponent } from './consultereunion/consultereunion.component';
 
 
 @NgModule({
@@ -33,7 +40,14 @@ import { HttpClientModule} from '@angular/common/http';
     ParticipantsComponent,
     CreersondageComponent,
     CreerdatessondagesComponent,
-    ConsultersondageComponent
+    ConsultersondageComponent,
+    UtilisateurComponent,
+    AlergiesComponent,
+    RoleComponent,
+    SondagecreeComponent,
+    ReunionmanqueesComponent,
+    ReunionassisteesComponent,
+    ConsultereunionComponent
   ],
   imports: [
     BrowserModule,

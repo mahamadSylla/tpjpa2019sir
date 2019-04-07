@@ -8,10 +8,7 @@ import {SondageService} from '../services/sondage-service';
   styleUrls: ['./consultersondage.component.css']
 })
 export class ConsultersondageComponent implements OnInit {
-
   sondage;
-
-
   constructor(private route: ActivatedRoute, private sondageService: SondageService) {
     let id = route.snapshot.paramMap.get('id');
     sondageService.getSondageById(id).subscribe((monSondage) => this.sondage = monSondage);

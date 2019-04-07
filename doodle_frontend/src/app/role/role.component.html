@@ -1,0 +1,17 @@
+<div *ngIf="roles">
+  <h4>Rôles</h4>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Rôle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let r of roles">
+      <td>{{r.id}}</td>
+      <td>{{r.name}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

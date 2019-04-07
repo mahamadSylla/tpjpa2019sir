@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ReunionService} from '../services/reunion.service';
 
 @Component({
   selector: 'app-reunion',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reunion.component.css']
 })
 export class ReunionComponent implements OnInit {
-
-  constructor() { }
+reunions;
+  constructor(private reunionService: ReunionService) { }
 
   ngOnInit() {
+    this.reunionService.getAll().subscribe((resultat) => {
+      this.reunions = resultat;
+      console.log('resultat = ' + JSON.stringify(resultat));
+    });
   }
 
 }

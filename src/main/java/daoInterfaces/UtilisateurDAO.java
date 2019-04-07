@@ -19,6 +19,8 @@ public interface UtilisateurDAO {
 	public Collection<Utilisateur> listUtilisateurs();
 
 	public Role ajouterRole(int userId, Role r);
+	
+	public Collection<Role> roles(int userId);
 
 	public PreferenceAlimentaire ajouterPreference(int userId, int reunionId, PreferenceAlimentaire p);
 

@@ -1,0 +1,19 @@
+<div *ngIf="reunionAssistees">
+  <h4>Réunions assistées</h4>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">intitule</th>
+      <th scope="col">Résumé</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let r of reunionAssistees">
+      <td>{{r.id}}</td>
+      <td>{{r.intitule}}</td>
+      <td>{{r.resume}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

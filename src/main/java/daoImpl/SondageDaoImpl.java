@@ -206,6 +206,7 @@ public class SondageDaoImpl implements SondageDAO {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		try {
 			Collection<ReponseSondage> reponses = this.datesProposees(idSondage);
+			System.out.println("hoooooooooooo");
 			Collection<Utilisateur> participants = new ArrayList<Utilisateur>();
 
 			for (ReponseSondage reponse : reponses) {

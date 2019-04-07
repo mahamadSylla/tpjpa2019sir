@@ -1,3 +1,23 @@
-<p>
-  reunion works!
-</p>
+<div *ngIf="reunions">
+  <div class="row card-header bg-info"><h2>Réunions</h2></div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Intitulé</th>
+      <th scope="col">Résumé</th>
+      <th scope="col">Consulter</th>
+      <th scope="col">Editer</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let r of reunions">
+      <td>{{r.intitule}}</td>
+      <td>{{r.resume}}</td>
+      <td><a [routerLink]="['/reunion/consulter', r.id]"><i class="fa fa-eye fa-2x"></i></a></td>
+      <td><a href=""><i class="fa fa-edit fa-2x"></i></a></td>
+      <td><a href=""><i class="fa fa-cut fa-2x"></i></a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

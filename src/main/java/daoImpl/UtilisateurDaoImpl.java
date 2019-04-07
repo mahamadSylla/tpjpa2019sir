@@ -199,4 +199,15 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	}
 
+	public Collection<Role> roles(int userId) {
+		Objects.requireNonNull(userId, "ne doit pas être nul");
+		try {
+			Utilisateur user = manager.find(Utilisateur.class, userId);
+			return user.getRole();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
 }

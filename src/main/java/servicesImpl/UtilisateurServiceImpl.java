@@ -115,4 +115,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return utilisateurDAO.ajouterPreference(userId, reunionId, p);
 	}
 
+	@GET
+	@Path("/{id}/roles")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Role> roles(@PathParam("id") int userId) {
+		return utilisateurDAO.roles(userId);
+	}
+
 }

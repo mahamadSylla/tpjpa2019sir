@@ -1,0 +1,22 @@
+<div *ngIf="sondageCree">
+  <h5>Sondages</h5>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Intutilé</th>
+      <th scope="col">Date retenue</th>
+      <th scope="col">Lien de participation</th>
+      <th scope="col">Date retenue</th>
+      <th scope="col">Créateur</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let s of sondageCree">
+      <td>{{s.intutile}}</td>
+      <td>{{s.dateRetenue}}</td>
+      <td>{{s.participatedWebLink}}</td>
+      <td>{{s.createur}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

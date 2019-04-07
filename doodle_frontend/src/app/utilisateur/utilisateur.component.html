@@ -1,0 +1,48 @@
+<div class="row card-header bg-info"><h2>Utilisateurs</h2></div>
+<div class="row" *ngIf="utilisateurs">
+  <table class="table col-md-7 table-hover table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Mail</th>
+      <th scope="col">Alergies</th>
+      <th scope="col">Rôle</th>
+      <th scope="col">Réunions assistées</th>
+      <th scope="col">Réunions manquées</th>
+      <th scope="col">Sondages</th>
+      <th scope="col">Editer</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let u of utilisateurs">
+      <td>{{u.name}}</td>
+      <td>{{u.firstName}}</td>
+      <td>{{u.mail}}</td>
+      <td><a (click)="onGetAlergie(u.id)"><i class="fa fa-eye fa-2x"></i></a></td>
+      <td><a (click)="onGetRole(u.id)"><i class="fa fa-eye fa-2x"></i></a></td>
+      <td><a (click)="onGetReunionAssistees(u.id)"><i class="fa fa-eye fa-2x"></i></a></td>
+      <td><a (click)="onGetReunionManquees(u.id)"><i class="fa fa-eye fa-2x"></i></a></td>
+      <td><a (click)="onGetSondage(u.id)"><i class="fa fa-book fa-2x"></i></a></td>
+      <td><a href=""><i class="fa fa-edit fa-2x"></i></a></td>
+      <td><a href=""><i class="fa fa-cut fa-2x"></i></a></td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="alergies" class="=col-md-3 offset-sm-1">
+    <app-alergies [alergies]="alergies"></app-alergies>
+  </div>
+  <div *ngIf="roles" class="=col-md-3 offset-sm-1">
+    <app-role [roles]="roles"></app-role>
+  </div>
+  <div *ngIf="sondageCree" class="=col-md-3 offset-sm-1">
+    <app-sondagecree [sondageCree]="sondageCree"></app-sondagecree>
+  </div>
+  <div *ngIf="reunionManquees" class="=col-md-3 offset-sm-1">
+    <app-reunionmanquees [reunionManquees]="reunionManquees"></app-reunionmanquees>
+  </div>
+  <div *ngIf="reunionAssistees"  class="=col-md-3 offset-sm-1">
+    <app-reunionassistees [reunionAssistees]="reunionAssistees"></app-reunionassistees>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div *ngIf="alergies">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Alergie</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let a of alergies">
+      <td>{{a.id}}</td>
+      <td>{{a.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

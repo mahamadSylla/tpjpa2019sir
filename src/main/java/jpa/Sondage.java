@@ -24,7 +24,7 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
 	@NamedQuery(name = "findAllSurvey", query = "SELECT s FROM Sondage s"),
 	@NamedQuery(name = "findSurveyById", query = "SELECT s FROM Sondage s WHERE s.id = :idSondage"),
 	@NamedQuery(name = "findSurveyByDateRetenue", query = "SELECT s FROM Sondage s WHERE s.dateRetenue.id = :idDateRetenue"),
-	@NamedQuery(name = "findAllChoixDateBySurveyId", query = "SELECT c FROM Choixdate c WHERE c.sondage_id = :idSondage")
+	//@NamedQuery(name = "findAllChoixDateBySurveyId", query = "SELECT c FROM Choixdate c WHERE c.sondage_id = :idSondage")
 })
 public class Sondage {
 	private int id;
