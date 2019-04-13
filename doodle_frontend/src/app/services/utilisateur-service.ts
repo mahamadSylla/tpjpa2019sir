@@ -1,11 +1,12 @@
 import {Injectable, Input} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
   url: string = 'api/utilisateurs';
+  headers = new HttpHeaders({ 'Content-Type': 'application/json'});
   constructor(private http: HttpClient) { }
   getAll() {
     return this.http.get(this.url);
@@ -34,4 +35,7 @@ export class UtilisateurService {
   getSondage(id: string) {
     return this.http.get(this.url + '/' + id + '/' + 'sondageParticipes');
   }
+   putUser(user){
+     return this.http.post(this.url + '/' + 'creer',user, {headers: this.headers});
+   }
 }

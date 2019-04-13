@@ -46,6 +46,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@POST
 	@Path("/creer")
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Utilisateur creerUtilisateur(Utilisateur user) {
 		return this.utilisateurDAO.creerUtilisateur(user);
 	}

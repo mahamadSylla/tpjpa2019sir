@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { SondagecreeComponent } from './sondagecree/sondagecree.component';
 import { ReunionmanqueesComponent } from './reunionmanquees/reunionmanquees.component';
 import { ReunionassisteesComponent } from './reunionassistees/reunionassistees.component';
 import { ConsultereunionComponent } from './consultereunion/consultereunion.component';
+import { CreationUserComponent } from './creation-user/creation-user.component';
 
 
 @NgModule({
@@ -47,14 +49,16 @@ import { ConsultereunionComponent } from './consultereunion/consultereunion.comp
     SondagecreeComponent,
     ReunionmanqueesComponent,
     ReunionassisteesComponent,
-    ConsultereunionComponent
+    ConsultereunionComponent,
+    CreationUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

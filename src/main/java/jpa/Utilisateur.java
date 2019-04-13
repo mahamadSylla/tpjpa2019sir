@@ -35,6 +35,7 @@ public class Utilisateur {
 	private String mail;
 	private String firstName;
 	private String name;
+	private String password;
 	private Collection<Reunion> presences;
 	private Collection<Reunion> absences;
 	private Collection<Sondage> sondages;
@@ -82,7 +83,19 @@ public class Utilisateur {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
 
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	/**
 	 * @return the firstName
 	 */
