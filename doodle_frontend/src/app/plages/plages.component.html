@@ -1,0 +1,26 @@
+<div *ngIf="plages">
+  <div class="row card-header bg-info"><h2>Plages horaires disponiles</h2></div>
+<table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">Jour</th>
+    <th scope="col">Heure de début </th>
+    <th scope="col">Heure de fin</th>
+    <th scope="col">sondage</th>
+    <th scope="col">Ajouter à un sondage</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of plages">
+    <td>{{p.myDate}}</td>
+    <td>{{p.debut}}</td>
+    <td>{{p.fin}}</td>
+    <td>{{p.sondage_id}}</td>
+    <td><a (click)="addToSurvey(p.id)"><i class="fa fa-edit fa-2x"></i></a></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<div *ngIf="timeSlot" class="col-md-3 offset-sm-1">
+  <app-addtimeslottosondage [timeSlot]="timeSlot"></app-addtimeslottosondage>
+</div>

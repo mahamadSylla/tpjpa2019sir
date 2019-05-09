@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+
 @Entity
 @NamedQueries({
-	//@NamedQuery(name = "findAllChoixDateBySurveyId", query = "SELECT c FROM Choixdate c WHERE c.sondage_id = :idSondage")
+	@NamedQuery(name = "findAllChoixDate", query = "SELECT c FROM ChoixDate c")
 })
 public class ChoixDate {
 
@@ -72,6 +74,7 @@ public class ChoixDate {
 	/**
 	 * @return the myDate
 	 */
+	@JsonDeserialize(using=CustomDateDeserializer.class)
 	public Date getMyDate() {
 		return myDate;
 	}

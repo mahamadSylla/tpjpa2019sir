@@ -9,6 +9,11 @@ import {ConsultereunionComponent} from './consultereunion/consultereunion.compon
 import { InscriptionComponent } from './inscription/inscription.component';
 import { LoginComponent } from './login/login.component';
 import { CreationUserComponent } from './creation-user/creation-user.component';
+import { SondagecreeComponent } from './sondagecree/sondagecree.component';
+import { CreerdatessondagesComponent } from './creerdatessondages/creerdatessondages.component';
+import { CreersondageComponent } from './creersondage/creersondage.component';
+import { PlagesComponent } from './plages/plages.component';
+import { EditerComponent } from './editer/editer.component';
 
 const routes: Routes = [
   {
@@ -16,8 +21,24 @@ const routes: Routes = [
     component : ConsultersondageComponent
   },
   {
+    path : 'utilisateur/editer/:id',
+    component : EditerComponent
+  },
+  {
     path : 'sondages',
     component : SondageComponent
+  },
+  {
+    path : 'sondage/creer',
+    component : CreersondageComponent
+  },
+  {
+    path : 'sondage/plages',
+    component :CreerdatessondagesComponent
+  },
+  {
+    path : 'plagesHoraire',
+    component :PlagesComponent
   },
   {
     path : 'utilisateurs',

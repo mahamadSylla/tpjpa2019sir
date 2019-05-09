@@ -3,8 +3,10 @@ package servicesImpl;
 import java.util.Collection;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -54,6 +56,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@POST
 	@Path("{id}/ajouterRole")
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Role ajouterRole(@PathParam("id") int userId, Role r) {
 		return utilisateurDAO.ajouterRole(userId, r);
 	}
@@ -121,6 +124,55 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Role> roles(@PathParam("id") int userId) {
 		return utilisateurDAO.roles(userId);
+	}
+
+	@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Utilisateur updateUtilisateur(Utilisateur user) {
+		return utilisateurDAO.updateUtilisateur(user);
+	}
+
+	@DELETE
+	@Path("/{id}/delete")
+//	@Produces(MediaType.APPLICATION_JSON)
+	public void supprimerUtilisateur(@PathParam("id") int userId) {
+		 utilisateurDAO.supprimerUtilisateur(userId);
+	}
+
+	@DELETE
+	@Path("/role/{id}/delete")
+	public void supprimerRole(@PathParam("id") int roleId) {
+		utilisateurDAO.supprimerRole(roleId);
+	}
+
+	@PUT
+	@Path("/update/role")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateRole(Role role) {
+		utilisateurDAO.updateRole(role);		
+	}
+
+	@POST
+	@Path("/alergies/{id}/add")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void ajouterAlergie(@PathParam("id") int userId, Alergies a) {
+		utilisateurDAO.ajouterAlergie(userId, a);
+	}
+
+	@DELETE
+	@Path("/alergie/{id}/delete")
+	public void supprimerAlergie(@PathParam("id")int userId, int alergieId) {
+		utilisateurDAO.supprimerAlergie(userId, alergieId);
+		
+	}
+
+	@PUT
+	@Path("/update/alergies")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateAlergie(Alergies alergie) {
+		utilisateurDAO.updateAlergie(alergie);
 	}
 
 }

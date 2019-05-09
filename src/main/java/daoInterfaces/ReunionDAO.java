@@ -16,6 +16,10 @@ public interface ReunionDAO {
 	public Reunion creerReunion(int idSondage, Reunion reunion);
 
 	public Collection<Utilisateur> presents(int idReunion);
+	
+	public void supprimerReunion(int idReunion);
+	
+	public Reunion updateReunion(Reunion reunion);
 
 	public Collection<Utilisateur> absents(int idReunion);
 

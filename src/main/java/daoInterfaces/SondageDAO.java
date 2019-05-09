@@ -18,8 +18,14 @@ public interface SondageDAO {
 	public Reunion getReunionByIdSondage(int idSondage);
 
 	public Sondage creerSondage(int idUser, Sondage sondage);
+	
+	public void supprimerSondage(int idSondage);
+	
+	public Sondage updateSondage(Sondage sondage);
 
 	public ChoixDate creerUnePlageHoraire(ChoixDate plageHoraire);
+	
+	public ChoixDate getChoixDateById(int idChoixDate);
 
 	public Sondage validerUneDate(int idSondage, int IdChoixDate);
 
@@ -31,5 +37,6 @@ public interface SondageDAO {
 
 	public Collection<Utilisateur> getParticipantsByIdSondage(int idSondage);
 
+	public Collection<ChoixDate> plages();
 
 }

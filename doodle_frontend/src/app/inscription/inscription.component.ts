@@ -9,16 +9,18 @@ import { UtilisateurService } from '../services/utilisateur-service';
 })
 export class InscriptionComponent implements OnInit {
   utilisateur = { 
-    name:'a',
-    firstName:'b',
-    mail:'c',
-    password:'d'
+    name:'',
+    firstName:'',
+    mail:'',
+    password:''
   }
+   state = false;
   constructor(private route: Router, private serviceUtilisateur : UtilisateurService) { }
 
   put(){
     this.serviceUtilisateur.putUser(this.utilisateur).subscribe((myUser : any) => { this.utilisateur = myUser;
-      this.route.navigateByUrl('/creationuser');
+      this.state = true;
+      console.log(JSON.stringify(this.utilisateur));
     });
 
   }

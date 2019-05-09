@@ -210,4 +210,105 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		return null;
 	}
 
+	public Utilisateur updateUtilisateur(Utilisateur user) {
+		Objects.requireNonNull(user, "ne peut pas être null");
+		try {
+			EntityManagerHelper.beginTransaction();
+			this.manager.merge(user);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("L'utilisateur a été bien modifié");
+			return user;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
+	public void supprimerUtilisateur(int userId) {
+		Objects.requireNonNull(userId, "ne peut pas être null");
+		try {
+			Utilisateur user = manager.find(Utilisateur.class, userId);
+			EntityManagerHelper.beginTransaction();
+			this.manager.remove(user);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("L'utilisateur a été bien supprimé");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void supprimerRole(int roleId) {
+		Objects.requireNonNull(roleId, "ne peut pas être null");
+		try {
+			Role role = manager.find(Role.class, roleId);
+			EntityManagerHelper.beginTransaction();
+			this.manager.remove(role);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("Le rôle a été bien supprimé");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void updateRole(Role role) {
+		Objects.requireNonNull(role, "ne peut pas être null");
+		try {
+			EntityManagerHelper.beginTransaction();
+			this.manager.merge(role);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("Le rôle a été bien modifié");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void ajouterAlergie(int userId, Alergies a) {
+		Objects.requireNonNull(userId, "ne peut pas être null");
+		try {
+			Utilisateur user = manager.find(Utilisateur.class, userId);
+			user.addAlergie(a);
+			EntityManagerHelper.beginTransaction();
+			this.manager.merge(user);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("L'utilisateur a été bien modifié");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void updateAlergie(Alergies alergie) {
+		Objects.requireNonNull(alergie, "ne peut pas être null");
+		try {
+			EntityManagerHelper.beginTransaction();
+			this.manager.merge(alergie);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("L'alergie a été bien modifiée");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void supprimerAlergie(int userId, int alergieId) {
+		Objects.requireNonNull(userId, "ne peut pas être null");
+		Objects.requireNonNull(alergieId, "ne peut pas être null");
+		try {
+			Utilisateur user = manager.find(Utilisateur.class, userId);
+			Alergies alergie = manager.find(Alergies.class, alergieId);
+			user.removeAlergie(alergie);
+			EntityManagerHelper.beginTransaction();
+			this.manager.merge(user);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("Le rôle a été bien supprimé");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
 }

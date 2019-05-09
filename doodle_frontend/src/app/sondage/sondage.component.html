@@ -1,6 +1,8 @@
 <div *ngIf="sondages">
-  <div class="row card-header bg-info"><h2>Sondages</h2></div>
-<table class="table">
+  <div class="row card-header bg-info"><h2>Sondages</h2>
+    <div><button  [routerLink]="['/sondage/creer']" class="btn btn-success" style="margin-left:90%" >+</button></div>
+</div>
+<table class="table table-hover table-bordered">
   <thead>
   <tr>
     <th scope="col">Intitulé du Sondage</th>

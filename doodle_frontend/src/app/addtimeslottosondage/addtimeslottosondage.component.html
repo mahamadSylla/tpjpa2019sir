@@ -1,0 +1,21 @@
+<div *ngIf="timeSlot">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Jour</th>
+      <th scope="col">Début</th>
+      <th scope="col">Fin</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{timeSlot.id}}</td>
+      <td>{{timeSlot.myDate}}</td>
+      <td>{{timeSlot.debut}}</td>
+      <td>{{timeSlot.fin}}</td>
+
+    </tr> 
+    </tbody>
+  </table>
+</div>

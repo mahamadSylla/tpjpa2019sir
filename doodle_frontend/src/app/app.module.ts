@@ -14,7 +14,6 @@ import { SondageComponent } from './sondage/sondage.component';
 import { ReunionComponent } from './reunion/reunion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { EditerComponent } from './editer/editer.component';
-import { ParticipantsComponent } from './participants/participants.component';
 import { CreersondageComponent } from './creersondage/creersondage.component';
 import { CreerdatessondagesComponent } from './creerdatessondages/creerdatessondages.component';
 import { ConsultersondageComponent } from './consultersondage/consultersondage.component';
@@ -27,6 +26,10 @@ import { ReunionmanqueesComponent } from './reunionmanquees/reunionmanquees.comp
 import { ReunionassisteesComponent } from './reunionassistees/reunionassistees.component';
 import { ConsultereunionComponent } from './consultereunion/consultereunion.component';
 import { CreationUserComponent } from './creation-user/creation-user.component';
+import { PlagesComponent } from './plages/plages.component';
+import { AddtimeslottosondageComponent } from './addtimeslottosondage/addtimeslottosondage.component';
+import { SondageReunionComponent } from './sondage-reunion/sondage-reunion.component';
+import { SondageParticipantsComponent } from './sondage-participants/sondage-participants.component';
 
 
 @NgModule({
@@ -39,7 +42,6 @@ import { CreationUserComponent } from './creation-user/creation-user.component';
     ReunionComponent,
     InscriptionComponent,
     EditerComponent,
-    ParticipantsComponent,
     CreersondageComponent,
     CreerdatessondagesComponent,
     ConsultersondageComponent,
@@ -50,7 +52,11 @@ import { CreationUserComponent } from './creation-user/creation-user.component';
     ReunionmanqueesComponent,
     ReunionassisteesComponent,
     ConsultereunionComponent,
-    CreationUserComponent
+    CreationUserComponent,
+    PlagesComponent,
+    AddtimeslottosondageComponent,
+    SondageReunionComponent,
+    SondageParticipantsComponent
   ],
   imports: [
     BrowserModule,

@@ -3,14 +3,14 @@ package servicesImpl;
 import java.util.Collection;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import org.jboss.logging.annotations.Param;
 
 import daoImpl.SondageDaoImpl;
 import daoInterfaces.SondageDAO;
@@ -103,17 +103,46 @@ public class SondageServiceImpl implements SondageService {
 
 	@GET
 	@Path("/{id}/participants")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Utilisateur> getParticipantsByIdSondage(@PathParam("id") int idSondage) {
 		return sondageDAO.getParticipantsByIdSondage(idSondage);
 	}
 
 	@GET
 	@Path("/{id}/reunion")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Reunion getReunionByIdSondage(@PathParam("id") int idSondage) {
-		// TODO Auto-generated method stub
-		return null;
+		return sondageDAO.getReunionByIdSondage(idSondage);
+	}
+
+	@GET
+	@Path("/allPlages")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<ChoixDate> plages() {
+		return sondageDAO.plages();
+	}
+
+	@DELETE
+	@Path("{id}/delete")
+	//@Produces(MediaType.APPLICATION_JSON)
+	public void supprimerSondage(@PathParam("id") int idSondage) {
+		 this.sondageDAO.supprimerSondage(idSondage);
+		
+	}
+
+	@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Sondage updateSondage(Sondage sondage) {
+		return this.sondageDAO.updateSondage(sondage);
+	}
+
+	@GET
+	@Path("/choixDate/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ChoixDate getChoixDateById(int idChoixDate) {
+		return sondageDAO.getChoixDateById(idChoixDate);
 	}
 	
 		

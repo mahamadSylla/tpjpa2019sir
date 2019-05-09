@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 @Entity
 @NamedQueries({ 

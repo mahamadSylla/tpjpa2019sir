@@ -1,25 +1,38 @@
-<div *ngIf="sondage">
-  <div class="row card-header bg-info"><h3>Sondage :{{sondage.id}} </h3></div>
-<table class="table table-bordered">
-  <thead>
-  <tr>
-    <th scope="col">Intitule</th>
-    <th scope="col">Lien de participation</th>
-    <th scope="col">Date retenue</th>
-    <th scope="col">Créateur</th>
-    <th>Réunion</th>
-    <th>Participants</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>{{sondage.intutile}}</td>
-    <td>{{sondage.participatedWebLink}}</td>
-    <td *ngIf="sondage.dateRetenue"> {{sondage.dateRetenue}}</td>
-    <td>Issa</td>
-    <td><a href=""><i class="fa fa-handshake-o fa-2x"></i></a></td>
-    <td><a href=""><i class="fa fa-2x fa-users"></i></a></td>
-  </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  
+    <div class=" row card-header bg-info">
+      <h3>Sondage :{{sondage.id}} </h3>
+    </div>
+    <div *ngIf="sondage">
+    <div class="row">
+      <table class="table table-bordered col-md-7">
+        <thead>
+          <tr>
+            <th scope="col">Intutile</th>
+            <th scope="col">Lien de participation</th>
+            <th scope="col">Date retenue</th>
+            <th scope="col">Créateur</th>
+            <th>Réunion</th>
+            <th>Participants</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{sondage.intitule}}</td>
+            <td>{{sondage.participatedWebLink}}</td>
+            <td *ngIf="sondage.dateRetenue"> {{sondage.dateRetenue}}</td>
+            <td>Issa</td>
+            <td><a (click)="onGetMeeting(sondage.id)"><i class="fa fa-handshake-o fa-2x"></i></a></td>
+            <td><a (click)="onGetParticipant(sondage.id)"><i class="fa fa-2x fa-users"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="reunion && r" class="col-md-3 offset-sm-1">
+        <app-sondage-reunion [reunion]="reunion"></app-sondage-reunion>
+      </div>
+      <div *ngIf="participants && p" class="col-md-5 ">
+        <app-sondage-participants [participants]="participants"></app-sondage-participants>
+      </div>
+    </div>
+  </div>
 </div>

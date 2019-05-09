@@ -1,6 +1,6 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
-<div class="container-fluid">
+<div *ngIf="state == false " class="container-fluid">
   <div class="row">
     <div class="col-md-4 offset-md-4 card border-primary mb-3" style="margin-top: 2%;">
       <div class="card-header"><h3>Inscription</h3></div>
@@ -63,3 +63,6 @@
 <!-- End footer -->
 <!-- ============================================================== -->
 </div>
+<div *ngIf="state == true " class="=col-md-3 offset-sm-1">
+    <app-creation-user [utilisateur] = 'utilisateur'></app-creation-user>
+  </div>

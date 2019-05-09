@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SondageService } from '../services/sondage-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-creersondage',
@@ -7,7 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreersondageComponent implements OnInit {
 
-  constructor() { }
+  sondage = {
+    'intutile':'',
+
+  }
+  constructor(private sondageService: SondageService, private route: Router) { }
+
+  put(){
+    this.sondageService.creerPlage(this.sondage).subscribe((sondage : any) => { 
+      this.route.navigateByUrl('sondages')
+      console.log(JSON.stringify(this.sondage));
+    });
+  }
 
   ngOnInit() {
   }

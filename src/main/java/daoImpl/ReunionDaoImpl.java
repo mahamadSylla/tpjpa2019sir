@@ -97,4 +97,33 @@ public class ReunionDaoImpl implements ReunionDAO {
 		}
 	}
 
+	public void supprimerReunion(int idReunion) {
+		Objects.requireNonNull(idReunion, "ne peut pas être null");
+		try {
+			Reunion reunion = manager.find(Reunion.class, idReunion);
+			EntityManagerHelper.beginTransaction();
+			this.manager.remove(reunion);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("La réunion a été bien supprimée");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public Reunion updateReunion(Reunion reunion) {
+		Objects.requireNonNull(reunion, "ne peut pas être null");
+		try {
+			EntityManagerHelper.beginTransaction();
+			this.manager.merge(reunion);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("La réunion a été bien modifiée");
+			return reunion;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
 }

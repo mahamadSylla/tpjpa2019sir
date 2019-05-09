@@ -36,6 +36,10 @@ export class UtilisateurService {
     return this.http.get(this.url + '/' + id + '/' + 'sondageParticipes');
   }
    putUser(user){
-     return this.http.post(this.url + '/' + 'creer',user, {headers: this.headers});
+     return this.http.put(this.url + '/' + 'update',user, {headers: this.headers});
    }
+   deleteUser(id: string){
+     return this.http.delete(this.url + '/' + id + '/' + 'delete');
+   }
+
 }

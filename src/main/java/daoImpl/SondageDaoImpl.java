@@ -141,7 +141,7 @@ public class SondageDaoImpl implements SondageDAO {
 			this.manager.persist(plageHoraire);
 			EntityManagerHelper.commit();
 			EntityManagerHelper.closeEntityManager();
-			System.out.println("La plage horaire a été crée!");
+			System.out.println("La plage horaire a été créée!");
 			return plageHoraire;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -206,7 +206,6 @@ public class SondageDaoImpl implements SondageDAO {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		try {
 			Collection<ReponseSondage> reponses = this.datesProposees(idSondage);
-			System.out.println("hoooooooooooo");
 			Collection<Utilisateur> participants = new ArrayList<Utilisateur>();
 
 			for (ReponseSondage reponse : reponses) {
@@ -226,6 +225,50 @@ public class SondageDaoImpl implements SondageDAO {
 			return this.manager.createNamedQuery("finMeetingByIdSondage", Reunion.class)
 			.setParameter("idSondage", idSondage).getSingleResult();
 		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
+	public Collection<ChoixDate> plages() {
+		return this.manager.createNamedQuery("findAllChoixDate", ChoixDate.class).getResultList();
+	}
+
+	public void supprimerSondage(int idSondage) {
+		Objects.requireNonNull(idSondage, "ne peut pas être null");
+		try {
+			Sondage sondage = manager.find(Sondage.class, idSondage);
+			EntityManagerHelper.beginTransaction();
+			this.manager.remove(sondage);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("Le sondage a été bien supprimé");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public Sondage updateSondage(Sondage sondage) {
+		Objects.requireNonNull(sondage, "ne peut pas être null");
+		try {
+			EntityManagerHelper.beginTransaction();
+			this.manager.merge(sondage);
+			EntityManagerHelper.commit();
+			EntityManagerHelper.closeEntityManager();
+			System.out.println("Le sondage a été bien modifié");
+			return sondage;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
+	public ChoixDate getChoixDateById(int idChoixDate) {
+		Objects.requireNonNull(idChoixDate, "ne peut pas être null");
+		try {
+			ChoixDate choixDate = manager.find(ChoixDate.class, idChoixDate);
+			return choixDate;
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return null;

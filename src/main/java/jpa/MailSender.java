@@ -22,7 +22,7 @@ public class MailSender {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			message.setSubject("Subject");
+			message.setSubject("Sondage pour la prochaine réunion");
 			message.setContent("<h1>Doodle : </h1>", "text/html");
 			Transport.send(message);
 			System.out.println("Sent message successfully....");

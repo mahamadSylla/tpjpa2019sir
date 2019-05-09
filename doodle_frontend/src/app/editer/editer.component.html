@@ -1,3 +1,32 @@
-<p>
-  editer works!
-</p>
+<div *ngIf="user" class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 card border-primary mb-3" style="margin-top: 8%;">
+      <div class="card-header">
+        <h3 align="center">Modification</h3>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="form-group">
+            <label for="nom ">Nom</label>
+            <input type="text" class="form-control" id="nom"  name="nom " [(ngModel)]="user.name" />              
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="user.firstName" />
+          </div>
+          <div class="form-group">
+            <label for="mail">Mail</label>
+            <input type="email" class="form-control" id="mail" name="mail" [(ngModel)]="user.mail" />
+          </div>
+          <button type="submit" class="btn btn-success" (click)="put()">Modifier</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer class="footer text-center">
+    All Rights Reserved by admin. Designed and Developed by
+    <a href="#">Doodle YAOSYL</a>.
+  </footer>
+</div>
+
+{{utilisateur|json}}

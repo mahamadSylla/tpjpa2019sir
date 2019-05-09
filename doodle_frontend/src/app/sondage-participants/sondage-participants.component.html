@@ -1,0 +1,22 @@
+<div *ngIf="participants">
+  <div class="card-header bg-info" id="b"><h3>Les participants </h3></div>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">Nom</th>
+    <th scope="col">Prénom</th>
+    <th scope="col">Mail </th>
+    <th scope="col">Réponses </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor = "let participant of participants">
+    <td>{{participant.name}}</td>
+    <td>{{participant.firstName}}</td>
+    <td>{{participant.mail}}</td>
+    <td><a (click)="onGetReunionManquees(u.id)"><i class="fa fa-eye fa-2x"></i></a></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+  

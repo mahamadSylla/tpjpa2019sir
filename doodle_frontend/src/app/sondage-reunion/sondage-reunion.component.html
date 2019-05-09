@@ -1,0 +1,19 @@
+<div *ngIf="reunion">
+  <div class="card-header bg-info" id="b"><h3>Réunion :{{reunion.id}} </h3></div>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">Intutile</th>
+    <th scope="col">Résumé</th>
+    <th scope="col">Date </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{reunion.intitule}}</td>
+    <td>{{reunion.resume}}</td>
+    <td *ngIf="reunion.dateRetenue"> {{reunion.dateReunion}}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
