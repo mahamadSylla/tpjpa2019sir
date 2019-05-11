@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  sam. 09 mars 2019 à 01:57
+-- Généré le :  Dim 12 mai 2019 à 00:33
 -- Version du serveur :  10.1.31-MariaDB
 -- Version de PHP :  7.2.4
 
@@ -63,13 +63,19 @@ CREATE TABLE `choixdate` (
 
 INSERT INTO `choixdate` (`id`, `debut`, `fin`, `myDate`, `reponse_id`, `sondage_id`) VALUES
 (1, 12, 13, '2019-03-06', 1, 1),
-(2, 15, 17, '2019-03-06', 1, 2),
+(2, 15, 17, '2019-03-06', 2, 2),
 (3, 12, 13, '2019-03-06', 3, 1),
 (4, 14, 17, '2019-03-04', 3, 1),
 (5, 12, 13, '2012-12-12', 1, 1),
 (6, 16, 17, '2012-12-12', 1, 2),
-(7, 15, 19, '2012-12-12', NULL, NULL),
-(8, 13, 19, '2012-12-12', NULL, NULL);
+(7, 15, 19, '2012-12-12', 5, 1),
+(8, 13, 19, '2012-12-12', NULL, 3),
+(9, 0, 0, NULL, NULL, 3),
+(10, 1, 3, '2019-05-02', NULL, 3),
+(11, 2, 3, '2019-05-01', NULL, 3),
+(12, 1, 3, '2019-05-08', NULL, NULL),
+(13, 15, 17, '2012-05-02', NULL, NULL),
+(14, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -87,7 +93,7 @@ CREATE TABLE `les_absences` (
 --
 
 INSERT INTO `les_absences` (`utilisateur_id`, `reunion_id`) VALUES
-(1, 1);
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -99,6 +105,13 @@ CREATE TABLE `les_presences` (
   `utilisateur_id` int(11) NOT NULL,
   `reunion_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `les_presences`
+--
+
+INSERT INTO `les_presences` (`utilisateur_id`, `reunion_id`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -136,9 +149,14 @@ CREATE TABLE `reponsesondage` (
 --
 
 INSERT INTO `reponsesondage` (`id`, `participant_id`, `sondage_id`) VALUES
-(1, 2, 1),
-(2, 2, 2),
-(3, 1, 1);
+(1, 2, NULL),
+(2, 2, NULL),
+(3, 1, 1),
+(5, 2, NULL),
+(6, 18, NULL),
+(7, 24, NULL),
+(8, 1, 2),
+(9, 24, NULL);
 
 -- --------------------------------------------------------
 
@@ -160,7 +178,7 @@ CREATE TABLE `reunion` (
 
 INSERT INTO `reunion` (`id`, `intitule`, `resume`, `dateReunion_id`, `sondage_id`) VALUES
 (1, 'r1', 'resume', 5, 1),
-(2, 'int1', 'resumeeeeeeee', NULL, NULL);
+(2, 'int1', 'resumeeeeeeee', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -202,9 +220,15 @@ CREATE TABLE `sondage` (
 --
 
 INSERT INTO `sondage` (`id`, `intitule`, `participatedWebLink`, `createur_id`, `dateRetenue_id`) VALUES
-(1, 'test1', 'Link1', 2, 5),
-(2, 'TEST2', 'link2', 2, NULL),
-(3, 'reunion test', 'link12', NULL, NULL);
+(1, 'test1', 'Link1', 1, 1),
+(2, 'TEST2', 'link2', 1, 2),
+(3, 'reunion test', 'link12', 2, NULL),
+(4, 'La dernière ligne droite', NULL, NULL, NULL),
+(5, 'L\'avant dernier gout ', 'lien sécurisé ', NULL, NULL),
+(6, 'Venez assister  aux derniers moment du Doodle.', 'aller venez', NULL, NULL),
+(7, 'Venez assister  aux derniers moment du Doodle. Derniers Détails ', 'aller venez', NULL, NULL),
+(8, 'Les amis imaginaires', 'lien sécurisé par amitié', NULL, NULL),
+(9, 'attention à la prochaine', 'attention', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -216,17 +240,20 @@ CREATE TABLE `utilisateur` (
   `id` int(11) NOT NULL,
   `firstName` varchar(255) DEFAULT NULL,
   `mail` varchar(255) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `firstName`, `mail`, `name`) VALUES
-(1, 'Mahamadou', 'mahamadsylla5@gmail.com', 'sylla'),
-(2, 'kiko', 'linda@l.com', 'Yao'),
-(3, 'toto', 'm1@m.com', 'titi');
+INSERT INTO `utilisateur` (`id`, `firstName`, `mail`, `name`, `password`) VALUES
+(1, 'Mahamadou', 'mahamadsylla5@gmail.com', 'SYLLA', NULL),
+(2, 'kiko', 'linda@liko.com', 'Yao', NULL),
+(18, 'toto', 'mimo@m.com2', 'titi', 'abcdef'),
+(23, 'Mahamadou', 'mahamadsylla5@gmail.comO', 'ali', 'az'),
+(24, 'mama', 'mamma@edite.com', 'Koita', '1234');
 
 --
 -- Index pour les tables déchargées
@@ -280,8 +307,8 @@ ALTER TABLE `reponsesondage`
 --
 ALTER TABLE `reunion`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_b1jd6oyyjnucymfvxrqliacln` (`dateReunion_id`),
-  ADD KEY `FK_tb3aely09goj5nv9h3x0d0e9f` (`sondage_id`);
+  ADD UNIQUE KEY `UK_b1jd6oyyjnucymfvxrqliacln` (`dateReunion_id`),
+  ADD UNIQUE KEY `UK_tb3aely09goj5nv9h3x0d0e9f` (`sondage_id`);
 
 --
 -- Index pour la table `role`
@@ -319,19 +346,19 @@ ALTER TABLE `alergies`
 -- AUTO_INCREMENT pour la table `choixdate`
 --
 ALTER TABLE `choixdate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `reponsesondage`
 --
 ALTER TABLE `reponsesondage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `reunion`
 --
 ALTER TABLE `reunion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `role`
@@ -343,13 +370,13 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `sondage`
 --
 ALTER TABLE `sondage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Contraintes pour les tables déchargées

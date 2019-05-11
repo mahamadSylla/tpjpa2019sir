@@ -10,6 +10,12 @@ export class SondageComponent implements OnInit {
 
   constructor(private sondageService: SondageService) { }
 
+  delete(id){
+    this.sondageService.deleteSondage(id).subscribe((surveyToDelete: any)=>{
+      this.ngOnInit();
+    });
+  }
+  
   ngOnInit() {
     this.sondageService.getAll().subscribe((resultat) => {
       this.sondages = resultat;

@@ -136,7 +136,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@DELETE
 	@Path("/{id}/delete")
-//	@Produces(MediaType.APPLICATION_JSON)
 	public void supprimerUtilisateur(@PathParam("id") int userId) {
 		 utilisateurDAO.supprimerUtilisateur(userId);
 	}

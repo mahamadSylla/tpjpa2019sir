@@ -12,7 +12,6 @@ import javax.persistence.Column;
  * @author Mahamadou SYLLA
  *
  */
-//@Embeddable
 public class PreferenceId implements Serializable {
 	/**
 	 * 

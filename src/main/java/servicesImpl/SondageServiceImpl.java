@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import daoImpl.SondageDaoImpl;
 import daoInterfaces.SondageDAO;
 import jpa.ChoixDate;
+import jpa.Reponse;
 import jpa.ReponseSondage;
 import jpa.Reunion;
 import jpa.Sondage;
@@ -65,8 +66,8 @@ public class SondageServiceImpl implements SondageService {
 	@GET
 	@Path("{id}/reponses")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<ReponseSondage> datesProposees(@PathParam("id") int idSondage) {
-		return sondageDAO.datesProposees(idSondage);
+	public Collection<ReponseSondage> reponses(@PathParam("id") int idSondage) {
+		return sondageDAO.reponses(idSondage);
 	}
 
 	@POST
@@ -91,16 +92,6 @@ public class SondageServiceImpl implements SondageService {
 		return sondageDAO.ajouterUneDate_A_UnSondage(idSondage, idChoixDate);
 		
 	}
-	/**
-	 * Permet de choisir une plage horaire, ajouter à sa réponse
-	 
-	@POST
-	@Path("{id1}/{id2}/choisir")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void choisirUneDate(@PathParam("id1") int idReponseSondage, @PathParam("id2") int idChoixDate) {
-		sondageDAO.choisirUneDate(idReponseSondage, idChoixDate);
-	}*/
-
 	@GET
 	@Path("/{id}/participants")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -124,12 +115,11 @@ public class SondageServiceImpl implements SondageService {
 
 	@DELETE
 	@Path("{id}/delete")
-	//@Produces(MediaType.APPLICATION_JSON)
 	public void supprimerSondage(@PathParam("id") int idSondage) {
 		 this.sondageDAO.supprimerSondage(idSondage);
 		
 	}
-
+	
 	@PUT
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -141,9 +131,23 @@ public class SondageServiceImpl implements SondageService {
 	@GET
 	@Path("/choixDate/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ChoixDate getChoixDateById(int idChoixDate) {
+	public ChoixDate getChoixDateById(@PathParam("id") int idChoixDate) {
 		return sondageDAO.getChoixDateById(idChoixDate);
 	}
-	
+
+	@GET
+	@Path("{id}/datesProposees")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<ChoixDate> datesProposees(@PathParam("id") int idSondage) {
+		return this.sondageDAO.datesProposees(idSondage);
+	}
+
+	@PUT
+	@Path("/mesReponses")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public ReponseSondage reponse(Reponse reponse) {
+		return this.sondageDAO.reponse(reponse);
+	}
 		
 }

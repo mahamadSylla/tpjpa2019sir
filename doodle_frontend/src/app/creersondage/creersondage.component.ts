@@ -9,14 +9,15 @@ import { Router } from '@angular/router';
 })
 export class CreersondageComponent implements OnInit {
 
+  id = 1;
   sondage = {
-    'intutile':'',
-
+    'intitule':'',
+    'participatedWebLink':''
   }
   constructor(private sondageService: SondageService, private route: Router) { }
 
   put(){
-    this.sondageService.creerPlage(this.sondage).subscribe((sondage : any) => { 
+    this.sondageService.creerSondage(this.id, this.sondage).subscribe((sondage : any) => { 
       this.route.navigateByUrl('sondages')
       console.log(JSON.stringify(this.sondage));
     });

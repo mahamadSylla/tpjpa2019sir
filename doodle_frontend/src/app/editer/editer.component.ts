@@ -15,7 +15,7 @@ export class EditerComponent implements OnInit {
     let id = route.snapshot.paramMap.get('id');
     utilisateurService.getUtilisateurById(id).subscribe((monutilisateur)=> {
       this.user = monutilisateur;
-      console.log(JSON.stringify(this.user))
+      //console.log(JSON.stringify(this.user))
       });
   }
 
@@ -24,6 +24,7 @@ export class EditerComponent implements OnInit {
       this.router.navigateByUrl('utilisateurs');
     }); 
   }
+  
   ngOnInit() {
   }
 

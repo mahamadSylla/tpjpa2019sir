@@ -16,6 +16,7 @@ de présents et d'absents et un sondage qui a été fait pour planifier la réunion.
 - Envoyer le mail aux participants
 ## Fonctionnalités à développer	
 - Integration d'un PAD
+- La page d'authentification
 ## Lancement de l'application
 Pour exécuter l'application il faut : </br>
 1- un serveur smtp : fake SMPT, on peut avoir le zar ici : http://nilhcem.com/FakeSMTP/download.html </br>
@@ -23,9 +24,10 @@ Pour exécuter l'application il faut : </br>
 2- Lancer le conteneur web tomcat : mvn tomcat7:run ou importer et lancer à l'aide d'un IDE(projet maven) </br>
 ### Information complementaire  
 - Le fichier postman se trouve à la racine pour simplifier la vérification des REST : SIR requests REST.postman_collection.json
-- Le dossier Documentation contient quelques illustrations (en image) pour mieux comprendre l'architecture de l'application
+- Le dossier Documentation contient quelques illustrations (en image) pour mieux comprendre l'architecture de l'application et un back up de la base de données
+- Le dossier doodle_frontend contient le code source du frontend crée avec angular
 ## Technologies
-Java, Jersey, MyQSL, Tomcat, Hibernate, JPA
+Java, Jersey, MyQSL, Tomcat, Hibernate, JPA, Angual
 
 
 

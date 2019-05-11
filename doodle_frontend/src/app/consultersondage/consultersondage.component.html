@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  
-    <div class=" row card-header bg-info">
-      <h3>Sondage :{{sondage.id}} </h3>
-    </div>
-    <div *ngIf="sondage">
+
+  <div class=" row card-header bg-info">
+    <h3>Sondage :{{sondage.id}} </h3>
+  </div>
+  <div *ngIf="sondage">
     <div class="row">
       <table class="table table-bordered col-md-7">
         <thead>
@@ -20,7 +20,10 @@
           <tr>
             <td>{{sondage.intitule}}</td>
             <td>{{sondage.participatedWebLink}}</td>
-            <td *ngIf="sondage.dateRetenue"> {{sondage.dateRetenue}}</td>
+            <td>
+                <a *ngIf="sondage.dateRetenue; else valide">{{sondage.dateRetenue}}</a>
+                <ng-template #valide>Non défine</ng-template>
+            </td>
             <td>Issa</td>
             <td><a (click)="onGetMeeting(sondage.id)"><i class="fa fa-handshake-o fa-2x"></i></a></td>
             <td><a (click)="onGetParticipant(sondage.id)"><i class="fa fa-2x fa-users"></i></a></td>

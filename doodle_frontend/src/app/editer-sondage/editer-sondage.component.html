@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 offset-md-4 card border-primary mb-3" id="mg">
+        <div class="card-header"><h3 align="center">Modifier sondage</h3></div>
+        <div class="card-body">
+          <form action="" method="post">
+              <div class="form-group">
+                <label for="intitule">Intitulé du sondage</label>
+              </div>            
+                <textarea id="intitule" name="intitule" cols="50" rows="10" [(ngModel)]="sondage.intitule">
+                </textarea>
+                <div class="form-group">
+                    <label for="link">Lien de participation</label>
+                  </div>
+                   <input type="text" class="form-control" id="link" name="link" [(ngModel)]="sondage.participatedWebLink"/>
+              <div class="row pull-righ" id="mg"> 
+                <button type="submit" class="btn btn-primary" (click)="put()">Modifier</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="footer text-center">
+      All Rights Reserved by admin. Designed and Developed by
+      <a href="#">Doodle YAOSYL</a>.
+    </footer>
+  </div>
+  

@@ -14,6 +14,8 @@ import { CreerdatessondagesComponent } from './creerdatessondages/creerdatessond
 import { CreersondageComponent } from './creersondage/creersondage.component';
 import { PlagesComponent } from './plages/plages.component';
 import { EditerComponent } from './editer/editer.component';
+import { EditerSondageComponent } from './editer-sondage/editer-sondage.component';
+import { ParticiperComponent } from './participer/participer.component';
 
 const routes: Routes = [
   {
@@ -25,8 +27,16 @@ const routes: Routes = [
     component : EditerComponent
   },
   {
+    path : 'sondage/editer/:id',
+    component : EditerSondageComponent
+  },
+  {
     path : 'sondages',
     component : SondageComponent
+  },
+  {
+    path : 'sondage/participer/:id',
+    component : ParticiperComponent
   },
   {
     path : 'sondage/creer',

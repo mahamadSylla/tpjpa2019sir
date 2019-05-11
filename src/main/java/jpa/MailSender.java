@@ -23,7 +23,10 @@ public class MailSender {
 			message.setFrom(new InternetAddress(from));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject("Sondage pour la prochaine réunion");
-			message.setContent("<h1>Doodle : </h1>", "text/html");
+			message.setContent("<h1>YAOSYLDoodle : </h1>"
+					+ "Bonjour,"
+					+ "Vous êtes invité à participer au sondage concernant :"
+					+ "Vous se faire veuillez cliquer sur le lien ci-après", "text/html");
 			Transport.send(message);
 			System.out.println("Sent message successfully....");
 		} catch (Exception ex) {

@@ -302,25 +302,4 @@ public class Utilisateur {
 		this.reponseSondages.add(reponse);
 	}
 	
-	/**
-	 * @param preference
-	 *            the preference to add
-	 
-	public void addPreference(Preference preference) {
-		Objects.requireNonNull(preference, "Ne doit pas être nul");
-		this.preferences.add(preference);
-	}
-*/
-	/**
-	 * @param preference
-	 *            the preference to remove
-	 
-	public boolean removePreference(Preference preference) {
-		Objects.requireNonNull(preference, "Ne doit pas être nul");
-		if (!this.preferences.contains(preference)) {
-
-			return false;
-		}
-		return this.preferences.remove(preference);
-	}*/
 }

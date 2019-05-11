@@ -13,10 +13,6 @@ import jpa.Utilisateur;
 
 public class ReunionDaoImpl implements ReunionDAO {
 	EntityManager manager;
-
-	/**
-	 * 
-	 */
 	public ReunionDaoImpl() {
 		this.manager = EntityManagerHelper.getEntityManager();
 	}

@@ -173,7 +173,6 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		}
 	}
 
-	//n'a pas été vérifiée
 	public PreferenceAlimentaire ajouterPreference(int userId, int reunionId, PreferenceAlimentaire preferenceA) {
 		Objects.requireNonNull(userId, "ne dois pas être nul");
 		Objects.requireNonNull(reunionId, "ne dois pas être nul");

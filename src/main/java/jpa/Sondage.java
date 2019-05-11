@@ -18,20 +18,17 @@ import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 @Entity
 @NamedQueries({ 
 	@NamedQuery(name = "findAllSurvey", query = "SELECT s FROM Sondage s"),
 	@NamedQuery(name = "findSurveyById", query = "SELECT s FROM Sondage s WHERE s.id = :idSondage"),
 	@NamedQuery(name = "findSurveyByDateRetenue", query = "SELECT s FROM Sondage s WHERE s.dateRetenue.id = :idDateRetenue"),
-	//@NamedQuery(name = "findAllChoixDateBySurveyId", query = "SELECT c FROM Choixdate c WHERE c.sondage_id = :idSondage")
 })
 public class Sondage {
 	private int id;
 	private String intitule;
 	private String participatedWebLink;
-	//private String chooseFoodWebLink;
 	private Collection<ChoixDate> dates;
 	private ChoixDate dateRetenue;
 	private Utilisateur createur;
@@ -81,22 +78,6 @@ public class Sondage {
 	public void setIntitule(String intitule) {
 		this.intitule = intitule;
 	}
-
-	/**
-	 * @return the chooseFoodWebLink
-	 
-	public String getChooseFoodWebLink() {
-		return chooseFoodWebLink;
-	}
-*/
-	/**
-	 * @param chooseFoodWebLink
-	 *            the chooseFoodWebLink to set
-	 
-	public void setChooseFoodWebLink(String chooseFoodWebLink) {
-		this.chooseFoodWebLink = chooseFoodWebLink;
-	}
-*/
 	
 	/**
 	 * @return the participatedWebLink

@@ -38,11 +38,9 @@ public class Reunion {
 	private Sondage sondage;
 	private Collection<Utilisateur> presents;
 	private Collection<Utilisateur> absents;
-	//private Collection<Preference> preferences;
 
 	public Reunion() {
 		this.presents = new HashSet<Utilisateur>();
-		//this.preferences = new HashSet<Preference>();
 		this.absents = new HashSet<Utilisateur>();
 	}
 
@@ -160,23 +158,6 @@ public class Reunion {
 		this.sondage = sondage;
 	}
 	
-
-	/**
-	 * @return the preferences
-	 
-	@OneToMany(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="reunionId")
-	public Collection<Preference> getPreferences() {
-		return preferences;
-	}
-*/
-	/**
-	 * @param preferences the preferences to set
-	
-	public void setPreferences(Collection<Preference> preferences) {
-		this.preferences = preferences;
-	}
-*/
 	/**
 	 * @param user
 	 *            the user to add
@@ -185,31 +166,5 @@ public class Reunion {
 		Objects.requireNonNull(user, "L'utilisateur ne doit pas être nul");
 		this.presents.add(user);
 	}
-	
-	/**
-	 * @param preference
-	 * 			the preference to add
-
-	public void addPreference(Preference preference) {
-		Objects.requireNonNull(preference, "Ne doit pas être vide");
-		this.preferences.add(preference);
-	}*/
-	/**
-	 * @param preference
-	 * 			the preference to remove
-	 
-	public boolean removePreference(Preference preference) {
-		Objects.requireNonNull(preference, "Ne doit pas être vide");
-		if(!this.preferences.contains(preference)) {
-			return false;
-		}
-		return this.preferences.remove(preference);
-	}*/
-	
-	public void participation(int idSondage) {
-		Objects.requireNonNull(idSondage, "ne dois pas être nul");
-		
-	}
-
 
 }

@@ -9,6 +9,7 @@ import daoInterfaces.SondageDAO;
 import jpa.ChoixDate;
 import jpa.EntityManagerHelper;
 import jpa.MailSender;
+import jpa.Reponse;
 import jpa.ReponseSondage;
 import jpa.Reunion;
 import jpa.Sondage;
@@ -52,7 +53,7 @@ public class SondageDaoImpl implements SondageDAO {
 
 	}
 
-	public Collection<ReponseSondage> datesProposees(int idSondage) {
+	public Collection<ReponseSondage> reponses(int idSondage) {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		try {
 			Sondage sondage = manager.find(Sondage.class, idSondage);
@@ -178,8 +179,8 @@ public class SondageDaoImpl implements SondageDAO {
 		EntityManagerHelper.beginTransaction();
 		u.addReponse(reponse);
 		s.addReponse(reponse);
-		this.manager.persist(u);
-		this.manager.persist(s);
+		this.manager.merge(u);
+		this.manager.merge(s);
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 		System.out.println("La réponse a été ajoutée!");
@@ -187,25 +188,10 @@ public class SondageDaoImpl implements SondageDAO {
 
 	}
 
-	/**
-	 * public void choisirUneDate(int idReponseSondage, int idChoixDate) { try {
-	 * ReponseSondage reponse = manager.find(ReponseSondage.class,
-	 * idReponseSondage); ChoixDate date = manager.find(ChoixDate.class,
-	 * idChoixDate); if (reponse == null && date == null) { return; }
-	 * reponse.addChoix(date); EntityManagerHelper.beginTransaction();
-	 * this.manager.persist(reponse); EntityManagerHelper.commit();
-	 * EntityManagerHelper.closeEntityManager(); System.out.println("La date a été
-	 * ajoutée à la réponse");
-	 * 
-	 * } catch (Exception e) { System.out.println(e.getMessage()); }
-	 * 
-	 * }
-	 */
-
 	public Collection<Utilisateur> getParticipantsByIdSondage(int idSondage) {
 		Objects.requireNonNull(idSondage, "ne peut pas être null");
 		try {
-			Collection<ReponseSondage> reponses = this.datesProposees(idSondage);
+			Collection<ReponseSondage> reponses = this.reponses(idSondage);
 			Collection<Utilisateur> participants = new ArrayList<Utilisateur>();
 
 			for (ReponseSondage reponse : reponses) {
@@ -268,6 +254,39 @@ public class SondageDaoImpl implements SondageDAO {
 		try {
 			ChoixDate choixDate = manager.find(ChoixDate.class, idChoixDate);
 			return choixDate;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
+	
+	public Collection<ChoixDate> datesProposees(int idSondage) {
+		Objects.requireNonNull(idSondage, "ne peut pas être null");
+		try {
+			Sondage sondage = manager.find(Sondage.class, idSondage);
+			return sondage.getDates();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	public ReponseSondage reponse(Reponse reponse) {
+		Objects.requireNonNull(reponse, "ne peut pas être null");
+		try {
+			ReponseSondage rep = new ReponseSondage();
+			int idSondage = reponse.getIdSondage();
+			int idUtilisateur = reponse.getIdUtilisateur();
+			Collection<ChoixDate> choixDonnes = reponse.getChoixDates();
+			Sondage sondage = manager.find(Sondage.class, idSondage);
+			Utilisateur utilisateur =  manager.find(Utilisateur.class, idUtilisateur);
+			
+			rep.setChoixDonnes(choixDonnes);
+			rep.setParticipant(utilisateur);
+			rep.setSondage(sondage);
+			System.out.println("reponse adding");
+			return this.repondreSondage(rep);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

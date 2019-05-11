@@ -22,14 +22,15 @@
 					"raw": "\n\t{\n\t\t\"myDate\": \"2012-12-12\",\n\t\t\"debut\" : 16,\n\t\t\"fin\" : 17\n\t}\n"
 				},
 				"url": {
-					"raw": "localhost:8080/sondages/creerPlageHoraire",
+					"raw": "localhost:8080/sondages/1/creer",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"sondages",
-						"creerPlageHoraire"
+						"1",
+						"creer"
 					]
 				},
 				"description": "Pour voir la liste des sondages"
@@ -151,17 +152,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstName\" : \"toto\",\n\t\"name\" : \"titi\",\n\t\"mail\" : \"m1@m.com\"\n}"
+					"raw": "{\n\t\"firstName\" : \"toto\",\n\t\"name\" : \"titi\",\n\t\"mail\" : \"m1@m.com2\",\n\t\"password\": \"abcdef\"\n}"
 				},
 				"url": {
-					"raw": "localhost:8080/utilisateurs/creerUtilisateur",
+					"raw": "localhost:8080/utilisateurs/creer",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"utilisateurs",
-						"creerUtilisateur"
+						"creer"
 					]
 				},
 				"description": "Pour créer un utilisateur"
@@ -305,7 +306,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8080/sondages/1/1/valider",
+					"raw": "localhost:8080/sondages/1/5/valider",
 					"host": [
 						"localhost"
 					],
@@ -313,7 +314,7 @@
 					"path": [
 						"sondages",
 						"1",
-						"1",
+						"5",
 						"valider"
 					]
 				},
@@ -541,7 +542,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "\n\t{\n\t\t\"myDate\": \"2012-12-12\",\n\t\t\"debut\" : 16,\n\t\t\"fin\" : 17\n\t}\n"
+					"raw": "\n\t{\n\t\t\"myDate\": \"2012-12-12\",\n\t\t\"debut\" :13,\n\t\t\"fin\" : 19\n\t}\n"
 				},
 				"url": {
 					"raw": "localhost:8080/sondages/creerPlageHoraire",
@@ -608,7 +609,7 @@
 					"raw": "{\n\t\"intitule\":\"reunion test\",\n\t\"participatedWebLink\":\"link12\"\n}"
 				},
 				"url": {
-					"raw": "localhost:8080/sondages/1/creer",
+					"raw": "localhost:8080/sondages/1/participants",
 					"host": [
 						"localhost"
 					],
@@ -616,10 +617,111 @@
 					"path": [
 						"sondages",
 						"1",
-						"creer"
+						"participants"
 					]
 				},
 				"description": "Pour créer un sondage avec l'id du créateur "
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/2/2/valider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/2/2/valider",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"2",
+						"2",
+						"valider"
+					]
+				},
+				"description": "Pour valider la date de la réunion"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/1/reunion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/1/reunion",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"1",
+						"reunion"
+					]
+				},
+				"description": "retourne la réunion associée à un sondage"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/1/participants",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/1/participants",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"1",
+						"participants"
+					]
+				},
+				"description": "Retourne les participants d'un sondage"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/sondages/1/datesProposees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/sondages/1/datesProposees",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sondages",
+						"1",
+						"datesProposees"
+					]
+				},
+				"description": "Avoir les dates proposées dans un sondage"
 			},
 			"response": []
 		}

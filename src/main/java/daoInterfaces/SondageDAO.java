@@ -3,6 +3,7 @@ package daoInterfaces;
 import java.util.Collection;
 
 import jpa.ChoixDate;
+import jpa.Reponse;
 import jpa.ReponseSondage;
 import jpa.Reunion;
 import jpa.Sondage;
@@ -29,7 +30,9 @@ public interface SondageDAO {
 
 	public Sondage validerUneDate(int idSondage, int IdChoixDate);
 
-	public Collection<ReponseSondage> datesProposees(int idSondage);
+	public Collection<ReponseSondage> reponses(int idSondage);
+	
+	public Collection<ChoixDate> datesProposees(int idSondage);
 	
 	public ReponseSondage repondreSondage(ReponseSondage reponse);
 
@@ -38,5 +41,7 @@ public interface SondageDAO {
 	public Collection<Utilisateur> getParticipantsByIdSondage(int idSondage);
 
 	public Collection<ChoixDate> plages();
+	
+	public ReponseSondage reponse(Reponse reponse);
 
 }

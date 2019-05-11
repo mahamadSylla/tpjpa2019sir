@@ -1,3 +1,36 @@
-<p>
-  h W
-</p>
+<div class="container-fluid" *ngIf="datesProposees">
+  <div class=" row card-header bg-info">
+    <h3 style="color:white">Participation</h3>
+  </div>
+    <div class="row">
+      <table class="table table-bordered col-md-7">
+        <thead>
+          <tr>
+            <th scope="col">Jour</th>
+            <th scope="col">Heure de début </th>
+            <th scope="col">Heure de fin</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let d of datesProposees">
+            <td>{{d.myDate | date:'EEE'}} - {{d.myDate}}</td>
+            <td>{{d.debut}}h</td>
+            <td>{{d.fin}}h</td>
+            <td>
+              <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                  <input type="checkbox" class="custom-control-input" id="{{d.id}}" (change)="addChoose($event, d)">
+                  <label class="custom-control-label" for="{{d.id}}" >ok</label>
+                </div>
+              </div>
+            </td> 
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pull-right col-md-7">
+      <button type="submit" class="btn btn-success" (click)="put()">Soumetre</button>
+  </div>
+</div>
+{{choixDates|json}}

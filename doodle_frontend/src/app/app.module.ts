@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +29,7 @@ import { PlagesComponent } from './plages/plages.component';
 import { AddtimeslottosondageComponent } from './addtimeslottosondage/addtimeslottosondage.component';
 import { SondageReunionComponent } from './sondage-reunion/sondage-reunion.component';
 import { SondageParticipantsComponent } from './sondage-participants/sondage-participants.component';
+import { EditerSondageComponent } from './editer-sondage/editer-sondage.component';
 
 
 @NgModule({
@@ -56,7 +56,8 @@ import { SondageParticipantsComponent } from './sondage-participants/sondage-par
     PlagesComponent,
     AddtimeslottosondageComponent,
     SondageReunionComponent,
-    SondageParticipantsComponent
+    SondageParticipantsComponent,
+    EditerSondageComponent
   ],
   imports: [
     BrowserModule,
