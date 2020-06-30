@@ -1,33 +1,33 @@
 # Prise de RDV type doodle </br>
 Auteurs : Linda YAO, Mahamadou SYLLA</br>
-## Présentation</br>
-Cette application permet de créer un Doodle, c'est-à-dire donner la posibilité à un utilisateur de créer un système de sondage pour pouvoir planifier une 
-réunion au sein d'un organisme. Ainsi, l'application dispose deux genres d'utilisateur, les créateurs et les participants au sondage. Un utilisateur est identifié par 
-son mail unique, son nom et son prénom. Quand les utilisateur participent à un sondage, à travers leur réponse on saura distinguer les présents et les absents. Un sondage 
-contient une liste de reponses données par les participants qui est un ensemble de plage d'horaire, une liste de choix de date parmi laquelle les participants font leur choix, après la participation de tous les
-utilisateurs au sondage, le créateur choisira une date qui sera retenue pour la réunion. Une réunion est identifié par un resumé, un intitulé, une liste de
-de présents et d'absents et un sondage qui a été fait pour planifier la réunion. 
-## Fonctionnalités supportées 
-- Créer un utilisateur, un sondage et une réunion 
-- Ajouter un rôle à un utilisateur, une préference alimentaire d'un utilisateur
-- Avoir la liste de présences et d'absences d'une réunion, de réponses à un sondage ou d'un utilisateur, des alergies et les sondages participés par un utilisateur
-- Avoir la liste des réunions, utilisateurs et sondages
-- Valider une date d'une réunion
+## PrÃ©sentation</br>
+Cette application permet de crÃ©er un Doodle, c'est-Ã -dire donner la posibilitÃ© Ã  un utilisateur de crÃ©er un systÃ¨me de sondage pour pouvoir planifier une 
+rÃ©union au sein d'un organisme. Ainsi, l'application dispose deux genres d'utilisateur, les crÃ©ateurs et les participants au sondage. Un utilisateur est identifiÃ© par 
+son mail unique, son nom et son prÃ©nom. Quand les utilisateur participent Ã  un sondage, Ã  travers leur rÃ©ponse on saura distinguer les prÃ©sents et les absents. Un sondage 
+contient une liste de reponses donnÃ©es par les participants qui est un ensemble de plage d'horaire, une liste de choix de date parmi laquelle les participants font leur choix, aprÃ¨s la participation de tous les
+utilisateurs au sondage, le crÃ©ateur choisira une date qui sera retenue pour la rÃ©union. Une rÃ©union est identifiÃ© par un resumÃ©, un intitulÃ©, une liste de
+de prÃ©sents et d'absents et un sondage qui a Ã©tÃ© fait pour planifier la rÃ©union. 
+## FonctionnalitÃ©s supportÃ©es 
+- CrÃ©er un utilisateur, un sondage et une rÃ©union 
+- Ajouter un rÃ´le Ã  un utilisateur, une prÃ©ference alimentaire d'un utilisateur
+- Avoir la liste de prÃ©sences et d'absences d'une rÃ©union, de rÃ©ponses Ã  un sondage ou d'un utilisateur, des alergies et les sondages participÃ©s par un utilisateur
+- Avoir la liste des rÃ©unions, utilisateurs et sondages
+- Valider une date d'une rÃ©union
 - Envoyer le mail aux participants
-## Fonctionnalités à développer	
+## FonctionnalitÃ©s Ã  dÃ©velopper	
 - Integration d'un PAD
 - La page d'authentification
 ## Lancement de l'application
-Pour exécuter l'application il faut : </br>
+Pour exÃ©cuter l'application il faut : </br>
 1- un serveur smtp : fake SMPT, on peut avoir le zar ici : http://nilhcem.com/FakeSMTP/download.html </br>
-1- faire un back up du fichier sql de la base de données : jpa.sql</br>
-2- Lancer le conteneur web tomcat : mvn tomcat7:run ou importer et lancer à l'aide d'un IDE(projet maven) </br>
+1- faire un back up du fichier sql de la base de donnÃ©es : jpa.sql</br>
+2- Lancer le conteneur web tomcat : mvn tomcat7:run ou importer et lancer Ã  l'aide d'un IDE(projet maven) </br>
 ### Information complementaire  
-- Le fichier postman se trouve à la racine pour simplifier la vérification des REST : SIR requests REST.postman_collection.json
-- Le dossier Documentation contient quelques illustrations (en image) pour mieux comprendre l'architecture de l'application et un back up de la base de données
-- Le dossier doodle_frontend contient le code source du frontend crée avec angular
+- Le fichier postman se trouve Ã  la racine pour simplifier la vÃ©rification des REST : SIR requests REST.postman_collection.json
+- Le dossier Documentation contient quelques illustrations (en image) pour mieux comprendre l'architecture de l'application et un back up de la base de donnÃ©es
+- Le dossier doodle_frontend contient le code source du frontend crÃ©e avec angular
 ## Technologies
-Java, Jersey, MyQSL, Tomcat, Hibernate, JPA, Angual
+Java, Jersey, MySQL, Tomcat, Hibernate, JPA, Angular
 
 
 
